@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astra — Agents</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="demo.html">
+  <link rel="prefetch" href="pricing.html">
+  <link rel="prefetch" href="waitlist.html">
+  <style>
+    .page-hero {
+      padding: 200px var(--gutter) 60px;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+      width: min(800px, 90vw);
+      height: 460px;
+      background:
+        radial-gradient(closest-side,
+          oklch(0.84 0.08 235 / 0.14),
+          oklch(0.5 0.10 270 / 0.08) 40%,
+          transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .page-hero .wrap { max-width: 900px; margin: 0 auto; }
+    .page-hero h1 {
+      font-size: clamp(56px, 7.5vw, 110px);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+    .page-hero h1 em { color: var(--fg-dim); }
+    .page-hero .lede {
+      margin: 0 auto;
+      text-align: center;
+      max-width: 56ch;
+    }
+
+    /* agents */
+    .agents-section {
+      padding: 60px var(--gutter) 100px;
+      position: relative;
+      z-index: 2;
+    }
+    .agent-grid {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+    .agent-card {
+      background: var(--ink);
+      padding: 40px 36px 32px;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      transition: background 0.4s ease;
+      cursor: default;
+    }
+    .agent-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(60% 80% at 50% 0%, oklch(0.84 0.08 235 / 0.10), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .agent-card:hover { background: var(--ink-2); }
+    .agent-card:hover::after { opacity: 1; }
+    .agent-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 6px;
+    }
+    .agent-card .glyph {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      color: var(--star);
+      filter: drop-shadow(0 0 14px oklch(0.84 0.08 235 / 0.4));
+      transition: transform 0.4s ease, filter 0.4s ease;
+    }
+    .agent-card:hover .glyph {
+      transform: scale(1.08);
+      filter: drop-shadow(0 0 22px oklch(0.84 0.08 235 / 0.7));
+    }
+    .agent-card .glyph svg { width: 100%; height: 100%; }
+    .agent-card .num {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      color: var(--fg-mute);
+      text-align: right;
+      padding-top: 6px;
+    }
+    .agent-card .role {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--star);
+    }
+    .agent-card h3 {
+      font-size: clamp(28px, 2.6vw, 36px);
+      letter-spacing: -0.015em;
+      margin-top: 4px;
+    }
+    .agent-card p {
+      color: var(--fg-dim);
+      font-size: 14px;
+      line-height: 1.55;
+      margin: 8px 0 0;
+    }
+    .agent-card .tools {
+      margin-top: auto;
+      padding-top: 24px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+    }
+    .agent-card .tools span::before {
+      content: "·";
+      margin-right: 10px;
+      color: var(--star);
+    }
+    .agent-card .tools span:first-child::before { content: ""; margin: 0; }
+
+    /* the shared-mind explainer */
+    .shared-mind {
+      padding: 80px var(--gutter) 100px;
+      position: relative;
+      z-index: 2;
+    }
+    .shared-mind-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .shared-mind h2 {
+      font-size: clamp(40px, 5vw, 64px);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .shared-mind h2 em { color: var(--fg-dim); }
+    .shared-mind p { color: var(--fg-dim); margin: 0 0 14px; max-width: 50ch; }
+
+    /* the constellation diagram on the right */
+    .constellation {
+      aspect-ratio: 1 / 1;
+      max-width: 520px;
+      margin-left: auto;
+      width: 100%;
+      position: relative;
+    }
+    .constellation svg {
+      width: 100%; height: 100%;
+      overflow: visible;
+    }
+    .const-orbit {
+      stroke: var(--line-2);
+      fill: none;
+      stroke-dasharray: 2 5;
+    }
+    .const-line {
+      stroke: oklch(0.84 0.08 235 / 0.22);
+      stroke-width: 0.5;
+      fill: none;
+    }
+    /* energy pulses — a single bright dot travels along each line toward the core */
+    .const-energy {
+      stroke: oklch(0.94 0.06 235);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 2 198;
+      fill: none;
+      filter: drop-shadow(0 0 5px oklch(0.84 0.10 235)) drop-shadow(0 0 14px oklch(0.7 0.10 235 / 0.6));
+      animation: energyFlow 4.2s linear infinite;
+      animation-delay: var(--pulse-delay, 0s);
+    }
+    @keyframes energyFlow {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -200; }
+    }
+    .const-dot {
+      fill: var(--star);
+      filter: drop-shadow(0 0 6px var(--star));
+    }
+    .const-core {
+      fill: #ffffff;
+      filter: drop-shadow(0 0 8px var(--star)) drop-shadow(0 0 24px var(--star));
+      animation: corePulse 3.4s ease-in-out infinite;
+    }
+    @keyframes corePulse {
+      0%, 100% { opacity: 0.85; }
+      50% { opacity: 1; }
+    }
+    .const-label {
+      fill: var(--fg-dim);
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 100px var(--gutter);
+      text-align: center;
+      position: relative;
+    }
+    .cta-inner { max-width: 800px; margin: 0 auto; }
+    .cta h2 { margin-bottom: 24px; }
+    .cta p { color: var(--fg-dim); margin-bottom: 32px; }
+    .cta .btn-row { display: inline-flex; gap: 14px; }
+
+    @media (max-width: 1000px) {
+      .agent-grid { grid-template-columns: repeat(2, 1fr); }
+      .shared-mind-inner { grid-template-columns: 1fr; gap: 40px; }
+      .constellation { margin: 0 auto; }
+    }
+    @media (max-width: 700px) {
+      .page-hero { padding-top: 140px; }
+      .agent-grid { grid-template-columns: 1fr; }
+      .shared-mind { padding: 50px var(--gutter); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nebula"></div>
+  <canvas class="starfield" id="starfield"></canvas>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/astra-logo.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
+      <span style="letter-spacing:0.18em; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; font-weight: 400;">ASTRA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="agents.html" class="active">Agents</a>
+      <a href="demo.html" class="hide-sm">Demo</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
+    </div>
+  </nav>
+
+  <!-- ============================== HERO ============================== -->
+  <section class="page-hero" data-screen-label="Agents hero">
+    <div class="wrap">
+      <div class="eyebrow reveal" style="--d:0; justify-content: center; margin-bottom: 28px;">The stack</div>
+      <h1 class="reveal" style="--d:1">Six specialists,<br /><em>one shared mind.</em></h1>
+      <p class="lede reveal" style="--d:2">
+        Each agent owns its domain completely. Each one builds on what the others produce through a shared memory store. Together, they form a founding team that operates around the clock.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== AGENT GRID ============================== -->
+  <section class="agents-section" data-screen-label="Agent grid">
+    <div class="agent-grid">
+
+      <!-- 01 Legal -->
+      <div class="agent-card reveal" style="--d:0">
+        <div class="agent-card-head">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <rect x="8" y="8" width="28" height="28" rx="2" />
+              <path d="M14 16 L30 16 M14 22 L26 22 M14 28 L24 28" stroke-width="1" />
+              <circle cx="32" cy="32" r="3.2" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <div class="num">01</div>
+        </div>
+        <div class="role">Legal</div>
+        <h3>Files the company.</h3>
+        <p>Forms Delaware LLCs or C-Corps via Stripe Atlas with Computer Use. Pulls the EIN from IRS.gov. Drafts founder agreements, NDAs, IP assignment, and vesting schedules.</p>
+        <div class="tools"><span>Stripe Atlas</span><span>IRS.gov</span><span>Delaware</span></div>
+      </div>
+
+      <!-- 02 Web -->
+      <div class="agent-card reveal" style="--d:1">
+        <div class="agent-card-head">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="22" cy="22" r="14" />
+              <path d="M8 22 L36 22" stroke-width="1" />
+              <path d="M22 8 C28 12, 28 32, 22 36 C16 32, 16 12, 22 8 Z" stroke-width="1" />
+              <circle cx="22" cy="22" r="2.4" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <div class="num">02</div>
+        </div>
+        <div class="role">Web</div>
+        <h3>Ships the site.</h3>
+        <p>Generates copy, layout, and the waitlist flow from your one-paragraph pitch. Deploys live via Framer or Vercel before the end of day two. Iterates from plain-English feedback.</p>
+        <div class="tools"><span>Framer</span><span>Vercel</span><span>Stitch UI</span></div>
+      </div>
+
+      <!-- 03 Research -->
+      <div class="agent-card reveal" style="--d:2">
+        <div class="agent-card-head">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="22" cy="22" r="13" />
+              <circle cx="22" cy="22" r="6" />
+              <path d="M22 4 L22 13 M22 31 L22 40 M4 22 L13 22 M31 22 L40 22" stroke-width="1" />
+              <circle cx="22" cy="22" r="1.6" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <div class="num">03</div>
+        </div>
+        <div class="role">Research</div>
+        <h3>Validates the market.</h3>
+        <p>Full TAM/SAM/SOM, competitor landscape, customer personas, pricing benchmarks, and a go/no-go summary. Real-time Google grounding — not training-cutoff data.</p>
+        <div class="tools"><span>Google Search</span><span>Llama 3.1</span><span>Live web</span></div>
+      </div>
+
+      <!-- 04 Marketing -->
+      <div class="agent-card reveal" style="--d:0">
+        <div class="agent-card-head">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M8 32 Q16 30, 22 22 T36 8" />
+              <path d="M28 8 L36 8 L36 16" stroke-linecap="round" />
+              <circle cx="8" cy="32" r="2.5" fill="currentColor" stroke="none" />
+              <circle cx="22" cy="22" r="1.8" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <div class="num">04</div>
+        </div>
+        <div class="role">Marketing</div>
+        <h3>Finds first customers.</h3>
+        <p>Builds the GTM plan, writes the cold email sequence, runs Google and Meta ads within your budget, and generates social content. Adjusts autonomously on what converts.</p>
+        <div class="tools"><span>Google Ads</span><span>Meta</span><span>Cold sequences</span></div>
+      </div>
+
+      <!-- 05 Technical -->
+      <div class="agent-card reveal" style="--d:1">
+        <div class="agent-card-head">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16,14 6,22 16,30" />
+              <polyline points="28,14 38,22 28,30" />
+              <line x1="26" y1="10" x2="18" y2="34" />
+            </svg>
+          </div>
+          <div class="num">05</div>
+        </div>
+        <div class="role">Technical</div>
+        <h3>Builds on demand.</h3>
+        <p>Describe a feature in plain English. The Technical Agent writes the spec, generates the code, reviews itself, and deploys. You see the result — never the code.</p>
+        <div class="tools"><span>DeepSeek Coder</span><span>CodeLlama</span><span>Auto-deploy</span></div>
+      </div>
+
+      <!-- 06 Ops -->
+      <div class="agent-card reveal" style="--d:2">
+        <div class="agent-card-head">
+          <div class="glyph" aria-hidden="true">
+            <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="0.8">
+              <line x1="22" y1="22" x2="9" y2="10" />
+              <line x1="22" y1="22" x2="34" y2="9" />
+              <line x1="22" y1="22" x2="8" y2="30" />
+              <line x1="22" y1="22" x2="36" y2="32" />
+              <line x1="22" y1="22" x2="22" y2="38" />
+              <circle cx="22" cy="22" r="2.6" fill="currentColor" stroke="none" />
+              <circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="34" cy="9" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="8" cy="30" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="36" cy="32" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="22" cy="38" r="1.6" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
+          <div class="num">06</div>
+        </div>
+        <div class="role">Ops</div>
+        <h3>Runs everything else.</h3>
+        <p>Manages your task list, surfaces what needs a human decision, sends the weekly digest, drafts routine email replies, and remembers every decision the company has ever made.</p>
+        <div class="tools"><span>Vector memory</span><span>Approval queue</span><span>Weekly digest</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="line-reveal"></div>
+
+  <!-- ============================== SHARED MIND ============================== -->
+  <section class="shared-mind" data-screen-label="Shared mind">
+    <div class="shared-mind-inner">
+      <div>
+        <div class="eyebrow reveal" style="--d:0">The shared mind</div>
+        <h2 class="reveal" style="--d:1">Not six chatbots.<br /><em>One company.</em></h2>
+        <p class="reveal" style="--d:2">
+          Every agent reads from and writes to the same vector store — every decision, document, campaign, and conversation lives in one persistent memory. When Marketing writes a cold email, it knows the personas Research surfaced. When Technical ships a feature, Ops files it in the weekly digest. When Legal redlines a contract, the others learn from the change.
+        </p>
+        <p class="reveal" style="--d:3">
+          After ninety days, Astra knows your company better than any human consultant could — and that memory belongs to you.
+        </p>
+      </div>
+
+      <!-- Animated constellation diagram -->
+      <div class="constellation reveal" style="--d:1">
+        <svg viewBox="-260 -260 520 520" aria-hidden="true">
+          <!-- orbital rings -->
+          <circle class="const-orbit" cx="0" cy="0" r="200" />
+          <circle class="const-orbit" cx="0" cy="0" r="140" />
+
+          <!-- connecting lines + labeled nodes (static) -->
+          <g>
+            <line class="const-line" x1="0" y1="0" x2="0" y2="-200" />
+            <line class="const-line" x1="0" y1="0" x2="173" y2="-100" />
+            <line class="const-line" x1="0" y1="0" x2="173" y2="100" />
+            <line class="const-line" x1="0" y1="0" x2="0" y2="200" />
+            <line class="const-line" x1="0" y1="0" x2="-173" y2="100" />
+            <line class="const-line" x1="0" y1="0" x2="-173" y2="-100" />
+
+            <!-- energy pulses on top (agent → core), staggered -->
+            <line class="const-energy" x1="0"    y1="-200" x2="0"  y2="0" style="--pulse-delay: 0.00s" />
+            <line class="const-energy" x1="173"  y1="-100" x2="0"  y2="0" style="--pulse-delay: 0.70s" />
+            <line class="const-energy" x1="173"  y1="100"  x2="0"  y2="0" style="--pulse-delay: 1.40s" />
+            <line class="const-energy" x1="0"    y1="200"  x2="0"  y2="0" style="--pulse-delay: 2.10s" />
+            <line class="const-energy" x1="-173" y1="100"  x2="0"  y2="0" style="--pulse-delay: 2.80s" />
+            <line class="const-energy" x1="-173" y1="-100" x2="0"  y2="0" style="--pulse-delay: 3.50s" />
+
+            <!-- nodes -->
+            <g transform="translate(0,-200)">
+              <circle class="const-dot" r="4" />
+              <text class="const-label" x="0" y="-14" text-anchor="middle">Legal</text>
+            </g>
+            <g transform="translate(173,-100)">
+              <circle class="const-dot" r="4" />
+              <text class="const-label" x="14" y="4">Web</text>
+            </g>
+            <g transform="translate(173,100)">
+              <circle class="const-dot" r="4" />
+              <text class="const-label" x="14" y="4">Research</text>
+            </g>
+            <g transform="translate(0,200)">
+              <circle class="const-dot" r="4" />
+              <text class="const-label" x="0" y="20" text-anchor="middle">Marketing</text>
+            </g>
+            <g transform="translate(-173,100)">
+              <circle class="const-dot" r="4" />
+              <text class="const-label" x="-14" y="4" text-anchor="end">Technical</text>
+            </g>
+            <g transform="translate(-173,-100)">
+              <circle class="const-dot" r="4" />
+              <text class="const-label" x="-14" y="4" text-anchor="end">Ops</text>
+            </g>
+          </g>
+
+          <!-- core -->
+          <circle class="const-core" cx="0" cy="0" r="8" />
+          <text class="const-label" x="0" y="28" text-anchor="middle" style="font-family: var(--font-display); font-style: italic; font-size: 13px; letter-spacing: 0; text-transform: none; fill: var(--fg);">memory</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="line-reveal"></div>
+
+  <!-- ============================== CTA ============================== -->
+  <section class="cta" data-screen-label="CTA">
+    <div class="cta-inner">
+      <div class="eyebrow reveal" style="--d:0; justify-content: center;">Ready</div>
+      <h2 class="reveal" style="--d:1; margin-top: 22px;">Type the idea.<br /><em class="display-italic">We'll handle everything else.</em></h2>
+      <p class="lede reveal" style="--d:2; margin: 28px auto 0;">A first cohort of 100 founders, opening June 12. Launch and three months of Build at no cost in exchange for being a case study.</p>
+      <div class="btn-row reveal" style="--d:3; margin-top: 36px;">
+        <a href="waitlist.html" class="btn btn-primary">Join the waitlist <span class="arrow">→</span></a>
+        <a href="pricing.html" class="btn btn-ghost">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra Labs · Cohort One, 2026</div>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="demo.html">Demo</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="waitlist.html">Waitlist</a></li>
+          <li><a href="waitlist.html">Contact</a></li>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Disclosures</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Astra Labs, Inc.</span>
+      <span>Made by Astra, in 72 hours.</span>
+    </div>
+  </footer>
+
+  <script src="starfield.js"></script>
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('animating', 'in');
+          e.target.addEventListener('transitionend', () => e.target.classList.remove('animating'), { once: true });
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal, .line-reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

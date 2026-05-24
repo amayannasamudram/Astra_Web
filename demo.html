@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astra — Watch it work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="agents.html">
+  <link rel="prefetch" href="pricing.html">
+  <link rel="prefetch" href="waitlist.html">
+  <style>
+    /* ============ HERO ============ */
+    .page-hero {
+      padding: 180px var(--gutter) 40px;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+      width: min(800px, 90vw);
+      height: 420px;
+      background:
+        radial-gradient(closest-side,
+          oklch(0.84 0.08 235 / 0.14),
+          oklch(0.5 0.10 270 / 0.08) 40%,
+          transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .page-hero .wrap { max-width: 900px; margin: 0 auto; }
+    .page-hero h1 {
+      font-size: clamp(56px, 7.5vw, 110px);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+    .page-hero h1 em { color: var(--fg-dim); }
+    .page-hero .lede { margin: 0 auto; text-align: center; max-width: 56ch; }
+
+    /* ============ MAIN PLAYER ============ */
+    .stage {
+      padding: 40px var(--gutter) 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .stage-inner { max-width: 1240px; margin: 0 auto; }
+
+    .player {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line-2);
+      background: linear-gradient(180deg, var(--ink-2), var(--ink));
+      box-shadow:
+        0 0 0 1px var(--line),
+        0 0 80px oklch(0.84 0.08 235 / 0.20),
+        0 40px 120px rgba(0,0,0,0.55);
+    }
+    .player::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(60% 50% at 50% 50%, oklch(0.4 0.10 235 / 0.16), transparent 70%),
+        radial-gradient(80% 80% at 50% 100%, oklch(0.45 0.10 270 / 0.10), transparent 70%);
+      pointer-events: none;
+    }
+    /* faint grid texture */
+    .player::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(246,246,248,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(246,246,248,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(closest-side at 50% 50%, black 0%, transparent 80%);
+      -webkit-mask-image: radial-gradient(closest-side at 50% 50%, black 0%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .player-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      z-index: 1;
+    }
+
+    .play-btn {
+      position: relative;
+      width: 116px;
+      height: 116px;
+      border-radius: 50%;
+      background: rgba(246, 246, 248, 0.04);
+      border: 1px solid var(--line-2);
+      backdrop-filter: blur(14px);
+      color: var(--fg);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: transform 0.4s cubic-bezier(.16,1,.3,1),
+                  border-color 0.3s ease,
+                  box-shadow 0.4s ease;
+    }
+    .play-btn::before {
+      content: "";
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      opacity: 0.6;
+      transition: transform 0.5s cubic-bezier(.16,1,.3,1), opacity 0.4s;
+    }
+    .play-btn:hover {
+      transform: scale(1.06);
+      border-color: var(--star);
+      box-shadow: 0 0 40px oklch(0.84 0.08 235 / 0.45);
+    }
+    .play-btn:hover::before {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+    .play-btn svg { width: 36px; height: 36px; transform: translateX(2px); }
+
+    .player-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .player-label::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--star);
+      box-shadow: 0 0 10px var(--star);
+      animation: pulseDot 1.6s ease-in-out infinite;
+    }
+    @keyframes pulseDot { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+    .player-hint {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.4vw, 32px);
+      font-style: italic;
+      color: var(--fg);
+      letter-spacing: -0.005em;
+      text-align: center;
+    }
+    .player-hint span { display: block; font-style: normal; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute); margin-top: 10px; }
+
+    /* live <video> element style — use when you swap in the file */
+    .demo-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 2;
+      background: var(--ink);
+    }
+
+    /* control strip below player */
+    .player-strip {
+      max-width: 1240px;
+      margin: 22px auto 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+    }
+    .player-strip .group { display: flex; gap: 28px; }
+    .player-strip span span { color: var(--fg); margin-left: 8px; }
+
+    /* ============ CHAPTERS ============ */
+    .chapters {
+      padding: 80px var(--gutter);
+      position: relative;
+      z-index: 2;
+    }
+    .chapters-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .chapters-head .eyebrow { margin-bottom: 22px; }
+    .chapters-head h2 {
+      font-size: clamp(36px, 4.4vw, 56px);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+    .chapters-head p { color: var(--fg-dim); max-width: 38ch; }
+
+    .chapter-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      border-top: 1px solid var(--line);
+    }
+    .chapter-list li {
+      display: grid;
+      grid-template-columns: 80px 1fr 24px;
+      align-items: center;
+      gap: 28px;
+      padding: 22px 8px;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      transition: background 0.25s ease, padding 0.3s cubic-bezier(.16,1,.3,1);
+    }
+    .chapter-list li:hover {
+      background: rgba(246,246,248,0.02);
+      padding-left: 14px;
+    }
+    .chapter-list .time {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--star);
+    }
+    .chapter-list .desc {
+      font-family: var(--font-display);
+      font-size: clamp(19px, 1.9vw, 24px);
+      letter-spacing: -0.005em;
+      color: var(--fg);
+    }
+    .chapter-list .desc em { color: var(--fg-dim); }
+    .chapter-list .arrow {
+      color: var(--fg-mute);
+      transition: transform 0.3s cubic-bezier(.16,1,.3,1), color 0.2s ease;
+      font-family: var(--font-mono);
+    }
+    .chapter-list li:hover .arrow {
+      color: var(--fg);
+      transform: translateX(6px);
+    }
+
+    /* ============ MINI DEMOS ============ */
+    .more-demos {
+      padding: 70px var(--gutter) 100px;
+      position: relative;
+      z-index: 2;
+    }
+    .more-demos-inner { max-width: var(--max); margin: 0 auto; }
+    .more-head {
+      margin-bottom: 40px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .more-head h2 {
+      font-size: clamp(32px, 3.6vw, 48px);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .more-head .eyebrow { margin-bottom: 14px; }
+    .more-head .right { color: var(--fg-mute); font-size: 13px; max-width: 36ch; font-family: var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .mini {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .mini-frame {
+      aspect-ratio: 16 / 10;
+      border-radius: 12px;
+      border: 1px solid var(--line-2);
+      background: linear-gradient(180deg, var(--ink-2), var(--ink));
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s ease;
+    }
+    .mini-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(50% 50% at 50% 50%, oklch(0.4 0.10 235 / 0.16), transparent 70%);
+      opacity: 0.5;
+      transition: opacity 0.4s;
+    }
+    .mini:hover .mini-frame {
+      transform: translateY(-4px);
+      border-color: oklch(0.84 0.08 235 / 0.6);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px oklch(0.84 0.08 235 / 0.18);
+    }
+    .mini:hover .mini-frame::before { opacity: 1; }
+
+    .mini-glyph {
+      width: 56px;
+      height: 56px;
+      color: var(--star);
+      filter: drop-shadow(0 0 12px oklch(0.84 0.08 235 / 0.5));
+      position: relative;
+      z-index: 1;
+    }
+    .mini-frame .mini-play {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(5, 6, 10, 0.65);
+      border: 1px solid var(--line-2);
+      display: grid;
+      place-items: center;
+      color: var(--fg-dim);
+      backdrop-filter: blur(8px);
+      transition: color 0.3s;
+    }
+    .mini:hover .mini-frame .mini-play { color: var(--fg); }
+    .mini-frame .mini-play svg { width: 12px; height: 12px; transform: translateX(1px); }
+
+    .mini-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .mini-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--star);
+    }
+    .mini-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: -0.005em;
+      color: var(--fg);
+    }
+    .mini-duration {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin-top: 2px;
+    }
+
+    /* ============ CTA ============ */
+    .cta {
+      padding: 100px var(--gutter);
+      position: relative;
+      z-index: 2;
+    }
+    .cta-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cta-inner .eyebrow { margin-bottom: 22px; }
+    .cta-inner h2 {
+      font-size: clamp(40px, 5.6vw, 78px);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: 0 0 24px;
+    }
+    .cta-inner h2 em { color: var(--fg-dim); font-style: italic; }
+    .cta-inner p {
+      color: var(--fg-dim);
+      max-width: 56ch;
+      margin: 0 0 32px;
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.5;
+    }
+    .cta-inner .btn-row {
+      display: inline-flex;
+      gap: 14px;
+    }
+
+    @media (max-width: 1000px) {
+      .chapters-inner { grid-template-columns: 1fr; gap: 40px; }
+      .mini-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .page-hero { padding-top: 140px; }
+      .player-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .more-head { flex-direction: column; align-items: flex-start; }
+      .play-btn { width: 84px; height: 84px; }
+      .play-btn svg { width: 28px; height: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nebula"></div>
+  <canvas class="starfield" id="starfield"></canvas>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/astra-logo.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
+      <span style="letter-spacing:0.18em; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; font-weight: 400;">ASTRA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="agents.html">Agents</a>
+      <a href="demo.html" class="active">Demo</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
+    </div>
+  </nav>
+
+  <!-- ============================== HERO ============================== -->
+  <section class="page-hero" data-screen-label="Demo hero">
+    <div class="wrap">
+      <div class="eyebrow reveal" style="--d:0; justify-content: center; margin-bottom: 28px;">Watch it work</div>
+      <h1 class="reveal" style="--d:1">Watch a company<br /><em>assemble itself.</em></h1>
+      <p class="lede reveal" style="--d:2">
+        Seventy-two hours condensed to a few minutes. A founder types an idea — the agents do everything else. The clip below is the full play-by-play, recorded live during cohort kickoff.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== MAIN PLAYER ============================== -->
+  <section class="stage" data-screen-label="Demo player">
+    <div class="stage-inner">
+
+      <div class="player reveal" style="--d:0">
+        <!--
+          ── TO ADD YOUR DEMO VIDEO ──────────────────────────────────────
+          1. Drop the file at:   assets/demo.mp4
+          2. (optional) poster:   assets/demo-poster.jpg
+          3. Replace the <div class="player-placeholder"> block below with:
+
+             <video class="demo-video" controls preload="metadata" poster="assets/demo-poster.jpg">
+               <source src="assets/demo.mp4" type="video/mp4" />
+             </video>
+
+          (The placeholder block has no <video> element, so nothing 404s.)
+          ─────────────────────────────────────────────────────────────────
+        -->
+        <div class="player-placeholder">
+          <button class="play-btn" aria-label="Play demo (placeholder)">
+            <svg viewBox="0 0 36 36" fill="none">
+              <polygon points="10,6 10,30 30,18" fill="currentColor" />
+            </svg>
+          </button>
+          <div class="player-hint">
+            Demo footage lands here.
+            <span>16:9 · drop the file at assets/demo.mp4</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="player-strip">
+        <div class="group">
+          <span>Demo<span>v1</span></span>
+          <span>Runtime<span>04:32</span></span>
+        </div>
+        <div class="group">
+          <span>Captured<span>Jun 3, 2026</span></span>
+          <span>Founder<span>cohort one · #003</span></span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="line-reveal"></div>
+
+  <!-- ============================== CHAPTERS ============================== -->
+  <section class="chapters" data-screen-label="Chapters">
+    <div class="chapters-inner">
+      <div class="chapters-head">
+        <div class="eyebrow reveal" style="--d:0">Chapters</div>
+        <h2 class="reveal" style="--d:1">Every minute of the assembly.</h2>
+        <p class="reveal" style="--d:2">Jump to any moment. The full demo is one continuous take — no cuts, no fakes. What you see is what the agents actually did.</p>
+      </div>
+
+      <ol class="chapter-list reveal" style="--d:0">
+        <li>
+          <span class="time">00:00</span>
+          <span class="desc">Founder types the idea <em>— a single text box, plain English.</em></span>
+          <span class="arrow">→</span>
+        </li>
+        <li>
+          <span class="time">00:30</span>
+          <span class="desc">Research Agent <em>dispatches market analysis.</em></span>
+          <span class="arrow">→</span>
+        </li>
+        <li>
+          <span class="time">01:15</span>
+          <span class="desc">Legal Agent <em>files Delaware C-Corp on Stripe Atlas.</em></span>
+          <span class="arrow">→</span>
+        </li>
+        <li>
+          <span class="time">02:18</span>
+          <span class="desc">EIN <em>returned from IRS.gov — entity is real.</em></span>
+          <span class="arrow">→</span>
+        </li>
+        <li>
+          <span class="time">02:45</span>
+          <span class="desc">Web Agent <em>ships the landing page to a real domain.</em></span>
+          <span class="arrow">→</span>
+        </li>
+        <li>
+          <span class="time">03:50</span>
+          <span class="desc">Marketing Agent <em>sends the first cold sequence.</em></span>
+          <span class="arrow">→</span>
+        </li>
+        <li>
+          <span class="time">04:20</span>
+          <span class="desc">Company is live <em>· first signups within the hour.</em></span>
+          <span class="arrow">→</span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="line-reveal"></div>
+
+  <!-- ============================== MORE DEMOS ============================== -->
+  <section class="more-demos" data-screen-label="More demos">
+    <div class="more-demos-inner">
+      <div class="more-head">
+        <div>
+          <div class="eyebrow reveal" style="--d:0">Look inside each agent</div>
+          <h2 class="reveal" style="--d:1">Six shorter clips,<br /><em class="display-italic">one per specialist.</em></h2>
+        </div>
+        <div class="right reveal" style="--d:2">Each clip is a tight focus on one agent working through a real task from cohort one.</div>
+      </div>
+
+      <div class="mini-grid">
+
+        <a href="#" class="mini reveal" style="--d:0">
+          <div class="mini-frame">
+            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <rect x="8" y="8" width="28" height="28" rx="2" />
+              <path d="M14 16 L30 16 M14 22 L26 22 M14 28 L24 28" stroke-width="1" />
+              <circle cx="32" cy="32" r="3.2" fill="currentColor" stroke="none" />
+            </svg>
+            <div class="mini-play"><svg viewBox="0 0 12 12"><polygon points="3,2 3,10 10,6" fill="currentColor" /></svg></div>
+          </div>
+          <div class="mini-meta">
+            <span class="mini-role">Legal</span>
+            <span class="mini-title">Filing a Delaware C-Corp</span>
+            <span class="mini-duration">00:42 · placeholder</span>
+          </div>
+        </a>
+
+        <a href="#" class="mini reveal" style="--d:1">
+          <div class="mini-frame">
+            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="22" cy="22" r="14" />
+              <path d="M8 22 L36 22" stroke-width="1" />
+              <path d="M22 8 C28 12, 28 32, 22 36 C16 32, 16 12, 22 8 Z" stroke-width="1" />
+              <circle cx="22" cy="22" r="2.4" fill="currentColor" stroke="none" />
+            </svg>
+            <div class="mini-play"><svg viewBox="0 0 12 12"><polygon points="3,2 3,10 10,6" fill="currentColor" /></svg></div>
+          </div>
+          <div class="mini-meta">
+            <span class="mini-role">Web</span>
+            <span class="mini-title">Shipping a landing page</span>
+            <span class="mini-duration">00:38 · placeholder</span>
+          </div>
+        </a>
+
+        <a href="#" class="mini reveal" style="--d:2">
+          <div class="mini-frame">
+            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <circle cx="22" cy="22" r="13" />
+              <circle cx="22" cy="22" r="6" />
+              <path d="M22 4 L22 13 M22 31 L22 40 M4 22 L13 22 M31 22 L40 22" stroke-width="1" />
+              <circle cx="22" cy="22" r="1.6" fill="currentColor" stroke="none" />
+            </svg>
+            <div class="mini-play"><svg viewBox="0 0 12 12"><polygon points="3,2 3,10 10,6" fill="currentColor" /></svg></div>
+          </div>
+          <div class="mini-meta">
+            <span class="mini-role">Research</span>
+            <span class="mini-title">Validating a music app</span>
+            <span class="mini-duration">01:14 · placeholder</span>
+          </div>
+        </a>
+
+        <a href="#" class="mini reveal" style="--d:0">
+          <div class="mini-frame">
+            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M8 32 Q16 30, 22 22 T36 8" />
+              <path d="M28 8 L36 8 L36 16" stroke-linecap="round" />
+              <circle cx="8" cy="32" r="2.5" fill="currentColor" stroke="none" />
+              <circle cx="22" cy="22" r="1.8" fill="currentColor" stroke="none" />
+            </svg>
+            <div class="mini-play"><svg viewBox="0 0 12 12"><polygon points="3,2 3,10 10,6" fill="currentColor" /></svg></div>
+          </div>
+          <div class="mini-meta">
+            <span class="mini-role">Marketing</span>
+            <span class="mini-title">Cold email sequence, day 1</span>
+            <span class="mini-duration">00:55 · placeholder</span>
+          </div>
+        </a>
+
+        <a href="#" class="mini reveal" style="--d:1">
+          <div class="mini-frame">
+            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16,14 6,22 16,30" />
+              <polyline points="28,14 38,22 28,30" />
+              <line x1="26" y1="10" x2="18" y2="34" />
+            </svg>
+            <div class="mini-play"><svg viewBox="0 0 12 12"><polygon points="3,2 3,10 10,6" fill="currentColor" /></svg></div>
+          </div>
+          <div class="mini-meta">
+            <span class="mini-role">Technical</span>
+            <span class="mini-title">Shipping a referral system</span>
+            <span class="mini-duration">01:08 · placeholder</span>
+          </div>
+        </a>
+
+        <a href="#" class="mini reveal" style="--d:2">
+          <div class="mini-frame">
+            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="0.8">
+              <line x1="22" y1="22" x2="9" y2="10" />
+              <line x1="22" y1="22" x2="34" y2="9" />
+              <line x1="22" y1="22" x2="8" y2="30" />
+              <line x1="22" y1="22" x2="36" y2="32" />
+              <line x1="22" y1="22" x2="22" y2="38" />
+              <circle cx="22" cy="22" r="2.6" fill="currentColor" stroke="none" />
+              <circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="34" cy="9" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="8" cy="30" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="36" cy="32" r="1.6" fill="currentColor" stroke="none" />
+              <circle cx="22" cy="38" r="1.6" fill="currentColor" stroke="none" />
+            </svg>
+            <div class="mini-play"><svg viewBox="0 0 12 12"><polygon points="3,2 3,10 10,6" fill="currentColor" /></svg></div>
+          </div>
+          <div class="mini-meta">
+            <span class="mini-role">Ops</span>
+            <span class="mini-title">Weekly digest in 60 seconds</span>
+            <span class="mini-duration">00:48 · placeholder</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="line-reveal"></div>
+
+  <!-- ============================== CTA ============================== -->
+  <section class="cta" data-screen-label="CTA">
+    <div class="cta-inner">
+      <div class="eyebrow reveal" style="--d:0">Ready</div>
+      <h2 class="reveal" style="--d:1">Stop watching.<br /><em>Start shipping.</em></h2>
+      <p class="reveal" style="--d:2">A first cohort of 100 founders opens June 12. Launch setup and three months of Build at no cost in exchange for being a case study.</p>
+      <div class="btn-row reveal" style="--d:3">
+        <a href="waitlist.html" class="btn btn-primary">Join the waitlist <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra Labs · Cohort One, 2026</div>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="demo.html">Demo</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="waitlist.html">Waitlist</a></li>
+          <li><a href="waitlist.html">Contact</a></li>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Disclosures</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Astra Labs, Inc.</span>
+      <span>Made by Astra, in 72 hours.</span>
+    </div>
+  </footer>
+
+  <script src="starfield.js"></script>
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('animating', 'in');
+          e.target.addEventListener('transitionend', () => e.target.classList.remove('animating'), { once: true });
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal, .line-reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>

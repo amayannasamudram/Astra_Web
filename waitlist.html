@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astra — Waitlist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="agents.html">
+  <link rel="prefetch" href="demo.html">
+  <link rel="prefetch" href="pricing.html">
+  <style>
+    .wait-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 160px var(--gutter) 80px;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 90px;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+    }
+
+    /* ============ LEFT — atmosphere + counter ============ */
+    .wait-left .eyebrow { margin-bottom: 28px; }
+    .wait-left h1 {
+      font-size: clamp(56px, 7.5vw, 110px);
+      line-height: 0.98;
+      margin-bottom: 28px;
+      letter-spacing: -0.02em;
+    }
+    .wait-left h1 em { color: var(--fg-dim); }
+    .wait-left p { margin-bottom: 12px; max-width: 50ch; }
+
+    .counter {
+      margin-top: 56px;
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .counter-cell .k {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin-bottom: 12px;
+    }
+    .counter-cell .v {
+      font-family: var(--font-display);
+      font-size: 52px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .counter-cell .v .of { color: var(--fg-mute); font-size: 0.4em; letter-spacing: 0; }
+    .counter-cell .v.live { color: var(--star); }
+    .counter-cell .v.live::before {
+      content: "●";
+      font-size: 0.4em;
+      margin-right: 8px;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+    .progress {
+      margin-top: 24px;
+      height: 1px;
+      width: 100%;
+      background: var(--line);
+      position: relative;
+      overflow: hidden;
+    }
+    .progress::after {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 67%;
+      background: linear-gradient(to right, transparent, var(--star) 50%, transparent);
+      animation: scan 3s ease-in-out infinite;
+    }
+    @keyframes scan {
+      0% { transform: translateX(-50%); opacity: 0.4; }
+      50% { transform: translateX(0); opacity: 1; }
+      100% { transform: translateX(50%); opacity: 0.4; }
+    }
+    .progress-fill {
+      height: 100%;
+      width: 67%;
+      background: linear-gradient(to right, oklch(0.6 0.08 235), var(--star));
+      box-shadow: 0 0 12px oklch(0.84 0.08 235 / 0.6);
+    }
+
+    .recent {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .recent h5 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin: 0 0 4px;
+      font-weight: 400;
+    }
+    .recent-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--fg-dim);
+      letter-spacing: 0.02em;
+    }
+    .recent-item .star {
+      color: var(--star);
+      width: 12px;
+      text-align: center;
+    }
+    .recent-item .grow { flex: 1; }
+    .recent-item .when { color: var(--fg-mute); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+
+    /* ============ RIGHT — form card ============ */
+    .form-card {
+      position: relative;
+      padding: 48px 44px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(16,20,32,0.78), rgba(8,10,18,0.86));
+      border: 1px solid var(--line-2);
+      backdrop-filter: blur(12px);
+      box-shadow:
+        0 0 0 1px oklch(0.84 0.08 235 / 0.06),
+        0 30px 100px rgba(0,0,0,0.5),
+        inset 0 1px 0 rgba(255,255,255,0.04);
+      overflow: hidden;
+    }
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(60% 60% at 50% 0%, oklch(0.84 0.08 235 / 0.12), transparent 60%),
+        radial-gradient(60% 60% at 50% 100%, oklch(0.5 0.10 290 / 0.12), transparent 60%);
+      pointer-events: none;
+      border-radius: 20px;
+    }
+    .form-card .tag {
+      position: relative;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--star);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-card .tag::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--star);
+      box-shadow: 0 0 10px var(--star);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .form-card h2 {
+      position: relative;
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    .form-card .sub {
+      position: relative;
+      color: var(--fg-dim);
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 36px;
+    }
+
+    .form { position: relative; display: flex; flex-direction: column; gap: 22px; }
+    .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+    .field label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+    }
+    .field label .opt {
+      font-style: italic;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: var(--fg-mute);
+      margin-left: 6px;
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      max-width: 100%;
+      background: rgba(5,6,10,0.6);
+      border: 1px solid var(--line-2);
+      color: var(--fg);
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field input::placeholder, .field textarea::placeholder { color: var(--fg-mute); }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--star);
+      box-shadow: 0 0 0 3px oklch(0.84 0.08 235 / 0.15);
+    }
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+      font-family: var(--font-body);
+      line-height: 1.5;
+    }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* segmented chips */
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line-2);
+      background: rgba(246,246,248,0.02);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .chip:hover { color: var(--fg); border-color: var(--line-2); background: rgba(246,246,248,0.04); }
+    .chip.on {
+      color: var(--ink);
+      background: var(--fg);
+      border-color: var(--fg);
+    }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 8px;
+      justify-content: space-between;
+    }
+    .submit-row .legal {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--fg-mute);
+      max-width: 26ch;
+      line-height: 1.4;
+    }
+    .submit-row .btn-primary {
+      padding: 14px 24px;
+      font-size: 14px;
+    }
+
+    /* success state */
+    .form-success {
+      display: none;
+      padding: 36px 0;
+      text-align: center;
+    }
+    .form-success.show { display: block; }
+    .form-success .glyph {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, var(--star) 60%, transparent 90%);
+      box-shadow: 0 0 30px var(--star), 0 0 80px oklch(0.84 0.08 235 / 0.5);
+    }
+    .form-success h3 {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+    .form-success p { color: var(--fg-dim); font-size: 15px; }
+    .form-success .ticket {
+      margin-top: 24px;
+      display: inline-flex;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(246,246,248,0.04);
+      border: 1px solid var(--line-2);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg);
+    }
+    .form-success .ticket .num { color: var(--star); }
+
+    /* contact alt */
+    .contact-alt {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .contact-card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(246,246,248,0.015);
+    }
+    .contact-card h6 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin: 0 0 8px;
+      font-weight: 400;
+    }
+    .contact-card .v {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: -0.005em;
+      color: var(--fg);
+    }
+    .contact-card .meta {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--fg-dim);
+    }
+
+    @media (max-width: 1000px) {
+      .wait-wrap { grid-template-columns: 1fr; gap: 60px; padding-top: 130px; }
+      .form-card { padding: 36px 28px; }
+      .field-row { grid-template-columns: 1fr; }
+      .counter { grid-template-columns: 1fr 1fr; }
+      .contact-alt { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nebula"></div>
+  <canvas class="starfield" id="starfield"></canvas>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/astra-logo.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
+      <span style="letter-spacing:0.18em; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; font-weight: 400;">ASTRA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="agents.html">Agents</a>
+      <a href="demo.html" class="hide-sm">Demo</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
+    </div>
+  </nav>
+
+  <div class="wait-wrap" data-screen-label="Waitlist">
+
+    <!-- ============ LEFT ============ -->
+    <div class="wait-left">
+      <div class="eyebrow">Cohort One · Summer 2026</div>
+      <h1>Bring an idea.<br /><em>Get a company.</em></h1>
+      <p class="lede">
+        The first hundred founders get Launch and three months of Build at no cost in exchange for being a case study.
+      </p>
+      <p class="lede" style="color: var(--fg-mute);">
+        Cohort opens June 12. Accepted founders ship within seventy-two hours.
+      </p>
+
+      <div class="counter">
+        <div class="counter-cell">
+          <div class="k">Seats remaining</div>
+          <div class="v">33<span class="of">/ 100</span></div>
+        </div>
+        <div class="counter-cell">
+          <div class="k">Status</div>
+          <div class="v live">Open</div>
+        </div>
+      </div>
+      <div class="progress"><div class="progress-fill"></div></div>
+
+      <div class="contact-alt">
+        <div class="contact-card">
+          <h6>Press</h6>
+          <div class="v">press@astra.ai</div>
+          <div class="meta">Replies within one business day.</div>
+        </div>
+        <div class="contact-card">
+          <h6>Accelerators</h6>
+          <div class="v">cohorts@astra.ai</div>
+          <div class="meta">University and incubator partnerships.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ RIGHT — form ============ -->
+    <div class="form-card">
+      <div class="tag">Application · 4 fields</div>
+      <h2 id="formTitle">Type the idea.<br /><em style="color: var(--fg-dim);">We'll take it from there.</em></h2>
+      <p class="sub" id="formSub">No business plan, no pitch deck. A few sentences in plain English is all we need to dispatch the agents.</p>
+
+      <form class="form" id="form" novalidate>
+        <div class="field-row">
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" placeholder="Vera Aldana" required />
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" placeholder="vera@studio.com" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-idea">The idea <span class="opt">— two or three sentences</span></label>
+          <textarea id="f-idea" name="idea" placeholder="A tool that helps independent musicians find collaborators in their city — by sound, not just by genre." required></textarea>
+        </div>
+
+        <div class="field">
+          <label>Where are you in the journey?</label>
+          <div class="chip-row" id="stageChips">
+            <div class="chip" data-val="thinking">Just thinking</div>
+            <div class="chip" data-val="weekend">Tinkering weekends</div>
+            <div class="chip" data-val="building">Building, no entity</div>
+            <div class="chip" data-val="incorporated">Already incorporated</div>
+          </div>
+          <input type="hidden" name="stage" id="f-stage" />
+        </div>
+
+        <div class="submit-row">
+          <p class="legal">
+            By applying you agree to occasional emails about the cohort. We never share your idea.
+          </p>
+          <button type="submit" class="btn btn-primary">
+            Apply <span class="arrow">→</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="form-success" id="success">
+        <div class="glyph"></div>
+        <h3>You're on the list.</h3>
+        <p>Astra received your application. Watch your inbox for the cohort invite — they go out Mondays at 09:00 UTC.</p>
+        <div class="ticket">
+          <span>Ticket</span>
+          <span class="num" id="ticketNum">#0067</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra Labs · Cohort One, 2026</div>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="demo.html">Demo</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="waitlist.html">Waitlist</a></li>
+          <li><a href="waitlist.html">Contact</a></li>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Disclosures</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Astra Labs, Inc.</span>
+      <span>Made by Astra, in 72 hours.</span>
+    </div>
+  </footer>
+
+  <script src="starfield.js"></script>
+  <script>
+    // chip selector
+    const chips = document.querySelectorAll('#stageChips .chip');
+    const hidden = document.getElementById('f-stage');
+    chips.forEach(c => {
+      c.addEventListener('click', () => {
+        chips.forEach(x => x.classList.remove('on'));
+        c.classList.add('on');
+        hidden.value = c.dataset.val;
+      });
+    });
+
+    // form submit (no server — just shows success state)
+    const form = document.getElementById('form');
+    const success = document.getElementById('success');
+    const formTitle = document.getElementById('formTitle');
+    const formSub = document.getElementById('formSub');
+    const ticketNum = document.getElementById('ticketNum');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = form.querySelector('#f-name').value.trim();
+      const email = form.querySelector('#f-email').value.trim();
+      const idea = form.querySelector('#f-idea').value.trim();
+      if (!name || !email || !idea) {
+        // simple inline shake
+        form.style.animation = 'none';
+        requestAnimationFrame(() => {
+          form.style.animation = 'shake 0.32s cubic-bezier(.36,.07,.19,.97)';
+        });
+        return;
+      }
+      // pick a ticket number based on remaining seats
+      const seat = 67 + Math.floor(Math.random() * 4);
+      ticketNum.textContent = '#00' + seat;
+
+      form.style.transition = 'opacity 0.3s, transform 0.3s';
+      form.style.opacity = '0';
+      form.style.transform = 'translateY(-8px)';
+      formTitle.innerHTML = 'Application received.';
+      formSub.textContent = 'Your ticket is below. We will be in touch.';
+      setTimeout(() => {
+        form.style.display = 'none';
+        success.classList.add('show');
+      }, 280);
+    });
+  </script>
+  <style>
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+      40%, 60% { transform: translate3d(3px, 0, 0); }
+    }
+  </style>
+
+</body>
+</html>

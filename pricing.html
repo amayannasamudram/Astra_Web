@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astra — Pricing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="prefetch" href="index.html">
+  <link rel="prefetch" href="agents.html">
+  <link rel="prefetch" href="demo.html">
+  <link rel="prefetch" href="waitlist.html">
+  <style>
+    .page-hero {
+      padding: 200px var(--gutter) 40px;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+      width: min(800px, 90vw);
+      height: 440px;
+      background:
+        radial-gradient(closest-side,
+          oklch(0.84 0.08 235 / 0.14),
+          oklch(0.5 0.10 270 / 0.08) 40%,
+          transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .page-hero .wrap { max-width: 900px; margin: 0 auto; }
+    .page-hero h1 {
+      font-size: clamp(56px, 8vw, 120px);
+      line-height: 1.04;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+    .page-hero h1 em { color: var(--fg-dim); }
+    .page-hero .lede {
+      margin: 0 auto;
+      text-align: center;
+      max-width: 56ch;
+    }
+
+    /* setup-fee callout */
+    .setup-bar {
+      max-width: 760px;
+      margin: 60px auto 0;
+      padding: 18px 28px;
+      border-radius: 14px;
+      border: 1px solid var(--line-2);
+      background: rgba(246, 246, 248, 0.025);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 2;
+    }
+    .setup-bar .k {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--star);
+      white-space: nowrap;
+    }
+    .setup-bar .price {
+      font-family: var(--font-display);
+      font-size: 36px;
+      line-height: 1;
+      color: var(--fg);
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .setup-bar .price .small {
+      font-size: 14px;
+      color: var(--fg-mute);
+      margin-left: 6px;
+      letter-spacing: 0;
+    }
+    .setup-bar .sep {
+      width: 1px;
+      align-self: stretch;
+      background: var(--line);
+    }
+    .setup-bar p {
+      margin: 0;
+      color: var(--fg-dim);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    /* billing switch */
+    .billing-switch-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 56px auto 0;
+      position: relative;
+      z-index: 2;
+    }
+    .billing-switch {
+      display: inline-flex;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(5, 6, 10, 0.6);
+      border: 1px solid var(--line-2);
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+    .billing-switch button {
+      position: relative;
+      z-index: 2;
+      padding: 10px 22px;
+      background: transparent;
+      border: 0;
+      color: var(--fg-dim);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 999px;
+      transition: color 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .billing-switch button.active { color: var(--ink); }
+    .billing-switch button:not(.active):hover { color: var(--fg); }
+    .billing-switch .indicator {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      height: calc(100% - 8px);
+      border-radius: 999px;
+      background: var(--fg);
+      transition: transform 0.35s cubic-bezier(.4, 0, .2, 1), width 0.35s cubic-bezier(.4, 0, .2, 1);
+      z-index: 1;
+    }
+    .billing-switch .save-badge {
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: oklch(0.84 0.08 235 / 0.16);
+      color: var(--star);
+      font-size: 9px;
+      letter-spacing: 0.16em;
+    }
+    .billing-switch button.active .save-badge {
+      background: oklch(0.4 0.10 270 / 0.25);
+      color: var(--star);
+    }
+
+    /* pricing tiers — 2 cards, centered */
+    .tiers {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 40px var(--gutter) 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .tier {
+      position: relative;
+      padding: 40px 36px 36px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(16,20,32,0.7), rgba(8,10,18,0.6));
+      border: 1px solid var(--line-2);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+    .tier.featured {
+      border-color: oklch(0.84 0.08 235 / 0.55);
+      box-shadow:
+        0 0 0 1px oklch(0.84 0.08 235 / 0.2),
+        0 0 60px oklch(0.84 0.08 235 / 0.15),
+        0 0 200px oklch(0.4 0.10 270 / 0.18);
+    }
+    .tier.featured::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(80% 60% at 50% 0%, oklch(0.84 0.08 235 / 0.18), transparent 60%);
+      pointer-events: none;
+    }
+    .tier-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin-bottom: 24px;
+    }
+    .tier.featured .tier-tag { color: var(--star); }
+    .tier.featured .tier-tag::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--star);
+      box-shadow: 0 0 10px var(--star);
+    }
+    .tier-name {
+      font-family: var(--font-display);
+      font-size: 48px;
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .tier-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+    .tier-price .currency {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--fg-dim);
+    }
+    .tier-price .amount {
+      font-family: var(--font-display);
+      font-size: 76px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      transition: opacity 0.2s ease;
+    }
+    .tier-price .amount.swap { opacity: 0.3; }
+    .tier-price .unit {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+      margin-left: 6px;
+    }
+    .tier-subtitle {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .tier-subtitle .save-inline {
+      color: var(--star);
+      margin-left: 8px;
+      letter-spacing: 0.16em;
+    }
+    .tier ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .tier ul li {
+      font-size: 14px;
+      color: var(--fg-dim);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.45;
+    }
+    .tier ul li::before {
+      content: "";
+      flex-shrink: 0;
+      width: 5px; height: 5px;
+      margin-top: 8px;
+      border-radius: 50%;
+      background: var(--star);
+      box-shadow: 0 0 6px oklch(0.84 0.08 235 / 0.7);
+    }
+    .tier .cta-row { margin-top: auto; }
+    .tier .btn { width: 100%; justify-content: center; }
+
+    /* credits table */
+    .credits {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 80px var(--gutter) 60px;
+      position: relative;
+      z-index: 2;
+    }
+    .credits-head {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 60px;
+      margin-bottom: 50px;
+      align-items: end;
+    }
+    .credits-head h2 { font-size: clamp(40px, 5vw, 64px); }
+    .credits-table {
+      border-top: 1px solid var(--line);
+    }
+    .credit-row {
+      display: grid;
+      grid-template-columns: 1fr 120px 1fr;
+      gap: 32px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .credit-row:hover {
+      background: rgba(246,246,248,0.015);
+    }
+    .credit-row .task {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: -0.01em;
+    }
+    .credit-row .cost {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-align: right;
+      color: var(--star);
+    }
+    .credit-row .vs {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--fg-mute);
+      text-align: right;
+    }
+    .credit-row .vs .strike {
+      text-decoration: line-through;
+      text-decoration-color: oklch(0.84 0.10 78 / 0.6);
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px var(--gutter) 100px;
+      position: relative;
+      z-index: 2;
+    }
+    .faq h2 {
+      font-size: clamp(40px, 5vw, 64px);
+      margin-bottom: 8px;
+    }
+    .faq > .eyebrow { margin-bottom: 18px; }
+    .faq-list { margin-top: 48px; border-top: 1px solid var(--line); }
+    details.faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 24px 0;
+    }
+    details.faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2vw, 26px);
+      letter-spacing: -0.005em;
+      color: var(--fg);
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item .sign {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+      position: relative;
+    }
+    details.faq-item .sign::before,
+    details.faq-item .sign::after {
+      content: "";
+      position: absolute;
+      background: var(--fg-dim);
+      transition: transform 0.3s, background 0.3s;
+    }
+    details.faq-item .sign::before {
+      top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-0.5px);
+    }
+    details.faq-item .sign::after {
+      left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-0.5px);
+    }
+    details.faq-item[open] .sign::after { transform: translateX(-0.5px) rotate(90deg); }
+    details.faq-item[open] .sign::before,
+    details.faq-item[open] .sign::after { background: var(--star); }
+    details.faq-item .answer {
+      margin-top: 18px;
+      color: var(--fg-dim);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 70ch;
+    }
+
+    /* CTA — bulletproof centered */
+    .cta-section {
+      padding: 100px var(--gutter);
+      position: relative;
+      z-index: 2;
+    }
+    .cta-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cta-inner .eyebrow { margin-bottom: 22px; }
+    .cta-inner h2 {
+      font-size: clamp(40px, 5.6vw, 78px);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: 0 0 24px;
+    }
+    .cta-inner h2 em { color: var(--fg-dim); font-style: italic; }
+    .cta-inner p {
+      color: var(--fg-dim);
+      max-width: 56ch;
+      margin: 0 0 32px;
+      font-size: clamp(17px, 1.5vw, 20px);
+      line-height: 1.5;
+    }
+    .cta-inner .btn-row {
+      display: inline-flex;
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .tiers { grid-template-columns: 1fr; }
+      .credits-head { grid-template-columns: 1fr; gap: 20px; }
+      .credit-row { grid-template-columns: 1fr 80px; gap: 12px; }
+      .credit-row .vs { grid-column: 1 / -1; text-align: left; }
+      .page-hero { padding-top: 160px; }
+      .setup-bar { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
+      .setup-bar .sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nebula"></div>
+  <canvas class="starfield" id="starfield"></canvas>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/astra-logo.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
+      <span style="letter-spacing:0.18em; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; font-weight: 400;">ASTRA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="agents.html">Agents</a>
+      <a href="demo.html" class="hide-sm">Demo</a>
+      <a href="pricing.html" class="active">Pricing</a>
+      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
+    </div>
+  </nav>
+
+  <!-- ============================== HERO ============================== -->
+  <section class="page-hero" data-screen-label="Pricing hero">
+    <div class="wrap">
+      <div class="eyebrow reveal" style="--d:0; justify-content: center; margin-bottom: 28px;">Pricing</div>
+      <h1 class="reveal" style="--d:1">Two plans.<br /><em>Pay for what runs.</em></h1>
+      <p class="lede reveal" style="--d:2; text-align: center; margin: 24px auto 0;">
+        Build keeps your agents running. Scale adds priority compute, dedicated memory, and the investor toolkit. Every plan begins with a one-time setup so your company starts day one fully formed.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== SETUP FEE CALLOUT ============================== -->
+  <div class="setup-bar reveal" style="--d:0">
+    <div>
+      <div class="k">Setup · one-time</div>
+      <div class="price">$249<span class="small">at signup</span></div>
+    </div>
+    <div class="sep"></div>
+    <p>Entity formation, EIN, founder agreements, and your first landing page — included with every plan. Non-recurring.</p>
+  </div>
+
+  <!-- ============================== BILLING SWITCH ============================== -->
+  <div class="billing-switch-wrap reveal" style="--d:1">
+    <div class="billing-switch" id="billingSwitch">
+      <div class="indicator" id="switchIndicator"></div>
+      <button class="active" data-period="monthly">Monthly</button>
+      <button data-period="yearly">Yearly <span class="save-badge">save 35%</span></button>
+    </div>
+  </div>
+
+  <!-- ============================== TIERS ============================== -->
+  <section class="tiers" data-screen-label="Pricing tiers">
+
+    <div class="tier reveal" style="--d:0" data-monthly="149" data-yearly="97">
+      <div class="tier-tag">Build</div>
+      <div class="tier-name">Build</div>
+      <div class="tier-price">
+        <span class="currency">$</span>
+        <span class="amount">149</span>
+        <span class="unit" data-unit="/ month" data-unit-yearly="/ mo, billed yearly">/ month</span>
+      </div>
+      <div class="tier-subtitle">All six agents, 24/7 <span class="save-inline" data-save-yearly="$624 saved per year" data-save-monthly=""></span></div>
+      <ul>
+        <li>All six agents active 24 / 7</li>
+        <li>Features on demand via credits</li>
+        <li>Marketing campaigns running autonomously</li>
+        <li>Weekly ops digest</li>
+        <li>Ongoing legal compliance monitoring</li>
+        <li>Website iterations from plain English</li>
+        <li>20 credits per month included</li>
+        <li>Agent chat interface</li>
+      </ul>
+      <div class="cta-row">
+        <a href="waitlist.html" class="btn btn-ghost">Start with Build <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="tier featured reveal" style="--d:1" data-monthly="200" data-yearly="130">
+      <div class="tier-tag">Most popular</div>
+      <div class="tier-name">Scale</div>
+      <div class="tier-price">
+        <span class="currency">$</span>
+        <span class="amount">200</span>
+        <span class="unit" data-unit="/ month" data-unit-yearly="/ mo, billed yearly">/ month</span>
+      </div>
+      <div class="tier-subtitle">Everything in Build, plus <span class="save-inline" data-save-yearly="$840 saved per year" data-save-monthly=""></span></div>
+      <ul>
+        <li>50 credits per month included</li>
+        <li>Priority agent processing</li>
+        <li>Dedicated persistent memory</li>
+        <li>Investor deck generation</li>
+        <li>Pitch preparation assistance</li>
+        <li>Term-sheet review</li>
+        <li>Faster Computer Use queues</li>
+        <li>Early access to new agents</li>
+      </ul>
+      <div class="cta-row">
+        <a href="waitlist.html" class="btn btn-primary">Get on the waitlist <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================== CREDITS ============================== -->
+  <section class="credits" data-screen-label="Credits">
+    <div class="credits-head">
+      <div>
+        <div class="eyebrow reveal" style="--d:0">Credits</div>
+        <h2 class="reveal" style="--d:1">$10 each. Roll over forever.</h2>
+      </div>
+      <div>
+        <p class="lede reveal" style="--d:2">
+          Credits power the heavy tasks — building a new feature, generating a full investor deck, launching a 500-contact email campaign. Build comes with 20 a month; Scale with 50. The rest you buy as you need them, at $10 each, and unused ones never expire.
+        </p>
+      </div>
+    </div>
+
+    <div class="credits-table">
+      <div class="credit-row reveal">
+        <div class="task">Full feature development<br /><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute);">new screen or endpoint</span></div>
+        <div class="cost">10 credits</div>
+        <div class="vs">vs. <span class="strike">$500 – $2,000</span> freelancer</div>
+      </div>
+      <div class="credit-row reveal">
+        <div class="task">Investor pitch deck<br /><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute);">10 slides, designed</span></div>
+        <div class="cost">8 credits</div>
+        <div class="vs">vs. <span class="strike">$2,000</span> pitch designer</div>
+      </div>
+      <div class="credit-row reveal">
+        <div class="task">Website redesign<br /><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute);">full visual refresh</span></div>
+        <div class="cost">6 credits</div>
+        <div class="vs">vs. <span class="strike">$3,000</span> web designer</div>
+      </div>
+      <div class="credit-row reveal">
+        <div class="task">Market research report<br /><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute);">new vertical or competitor</span></div>
+        <div class="cost">5 credits</div>
+        <div class="vs">vs. <span class="strike">$1,500</span> research firm</div>
+      </div>
+      <div class="credit-row reveal">
+        <div class="task">Cold email campaign<br /><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute);">500 contacts, 3-step sequence</span></div>
+        <div class="cost">4 credits</div>
+        <div class="vs">vs. <span class="strike">$800</span> marketing agency</div>
+      </div>
+      <div class="credit-row reveal">
+        <div class="task">Google / Meta ad campaign<br /><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute);">setup and launch</span></div>
+        <div class="cost">4 credits</div>
+        <div class="vs">vs. <span class="strike">$1,000</span> consultant</div>
+      </div>
+      <div class="credit-row reveal">
+        <div class="task">Custom legal agreement<br /><span style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute);">contract or amendment</span></div>
+        <div class="cost">3 credits</div>
+        <div class="vs">vs. <span class="strike">$400 / hr</span> attorney</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================== MATH ============================== -->
+  <section class="cta-section" data-screen-label="Math">
+    <div class="cta-inner">
+      <div class="eyebrow reveal" style="--d:0">The math, once more</div>
+      <p class="reveal" style="--d:1; font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 48px); line-height: 1.25; letter-spacing: -0.01em; margin: 16px 0 0; color: var(--fg);">
+        Specialists for one month: <span style="color: var(--fg-mute); text-decoration: line-through; text-decoration-color: oklch(0.84 0.10 78 / 0.6); font-style: italic;">$7,300</span>.<br />
+        A month of Astra: <span style="color: var(--star);">$149</span>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== FAQ ============================== -->
+  <section class="faq" data-screen-label="FAQ">
+    <div class="eyebrow">FAQ</div>
+    <h2>Honest answers.</h2>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What's included in the one-time $249 setup? <span class="sign"></span></summary>
+        <div class="answer">Everything that turns an idea into an entity on day one: the Delaware LLC or C-Corp filing, the EIN from the IRS, founder agreements and NDAs in your specific context, IP assignment documents, the full first market-research report, and a live landing page deployed to a real domain. It is charged once at signup and never again.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Is the LLC actually filed, or is this a template generator? <span class="sign"></span></summary>
+        <div class="answer">Actually filed. The Legal Agent uses Computer Use on Stripe Atlas to navigate the real filing UI, complete payment, and submit the formation documents. The EIN is then retrieved from IRS.gov the same way. You receive the real certificate of formation and EIN letter from the State of Delaware.</div>
+      </details>
+      <details class="faq-item">
+        <summary>How does yearly billing work? <span class="sign"></span></summary>
+        <div class="answer">Yearly is billed once for the year and saves you 30% versus monthly. You can switch back to monthly at renewal. Mid-year cancellation refunds the remaining unused months on a pro-rata basis.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Is this legal advice? <span class="sign"></span></summary>
+        <div class="answer">No. Astra prepares documents and files paperwork autonomously, but every output ships with an explicit disclaimer: AI-generated document preparation, not legal advice. We recommend reviewing important documents with a licensed attorney before signing anything significant.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What happens to my unused credits? <span class="sign"></span></summary>
+        <div class="answer">They roll over indefinitely. There is no monthly expiration. If you skip a month of heavy lifting, your credit balance is still there next month.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I cancel? <span class="sign"></span></summary>
+        <div class="answer">Yes, any time. The setup fee is non-refundable once filing has begun, but Build and Scale are month-to-month with no commitment. If you cancel, you keep every document, the company entity, and your company memory — exportable on the way out.</div>
+      </details>
+      <details class="faq-item">
+        <summary>What if I'm not in the US? <span class="sign"></span></summary>
+        <div class="answer">Delaware accepts founders from any country — that is one of its longstanding advantages. Stripe Atlas handles the registered agent requirement for non-US residents and the EIN is obtained whether or not you have a US Social Security Number.</div>
+      </details>
+      <details class="faq-item">
+        <summary>Do you have an enterprise plan? <span class="sign"></span></summary>
+        <div class="answer">For university accelerators and incubators, yes — we offer cohort pricing starting at $1,500 per cohort of ten founders. Reach out via the contact form on the waitlist page.</div>
+      </details>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================== CTA ============================== -->
+  <section class="cta-section" data-screen-label="CTA">
+    <div class="cta-inner">
+      <div class="eyebrow reveal" style="--d:0">Cohort one</div>
+      <h2 class="reveal" style="--d:1">Free for the first <em>hundred founders.</em></h2>
+      <p class="reveal" style="--d:2">Launch setup and three months of Build at no cost, in exchange for being a case study. Cohort One ships its first companies the week of June 12.</p>
+      <div class="btn-row reveal" style="--d:3">
+        <a href="waitlist.html" class="btn btn-primary">Join the waitlist <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra Labs · Cohort One, 2026</div>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="demo.html">Demo</a></li>
+          <li><a href="index.html#how">How it works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="waitlist.html">Waitlist</a></li>
+          <li><a href="waitlist.html">Contact</a></li>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Disclosures</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Astra Labs, Inc.</span>
+      <span>Made by Astra, in 72 hours.</span>
+    </div>
+  </footer>
+
+  <script src="starfield.js"></script>
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('animating', 'in');
+          e.target.addEventListener('transitionend', () => e.target.classList.remove('animating'), { once: true });
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* billing toggle */
+    const switchEl = document.getElementById('billingSwitch');
+    const indicator = document.getElementById('switchIndicator');
+    const buttons = switchEl.querySelectorAll('button');
+    const tierEls = document.querySelectorAll('.tier');
+
+    function positionIndicator(btn) {
+      const switchRect = switchEl.getBoundingClientRect();
+      const btnRect = btn.getBoundingClientRect();
+      indicator.style.width = btnRect.width + 'px';
+      indicator.style.transform = `translateX(${btnRect.left - switchRect.left - 4}px)`;
+    }
+
+    function setPeriod(period) {
+      tierEls.forEach(tier => {
+        const amountEl = tier.querySelector('.amount');
+        const unitEl = tier.querySelector('.unit');
+        const saveEl = tier.querySelector('.save-inline');
+        const newAmount = tier.dataset[period];
+        amountEl.classList.add('swap');
+        setTimeout(() => {
+          amountEl.textContent = newAmount;
+          unitEl.textContent = unitEl.dataset[period === 'monthly' ? 'unit' : 'unitYearly'];
+          if (saveEl) saveEl.textContent = saveEl.dataset[period === 'monthly' ? 'saveMonthly' : 'saveYearly'];
+          amountEl.classList.remove('swap');
+        }, 120);
+      });
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        positionIndicator(btn);
+        setPeriod(btn.dataset.period);
+      });
+    });
+
+    // init indicator on first paint
+    requestAnimationFrame(() => positionIndicator(switchEl.querySelector('.active')));
+    window.addEventListener('resize', () => {
+      const active = switchEl.querySelector('.active');
+      if (active) positionIndicator(active);
+    });
+  </script>
+
+</body>
+</html>
