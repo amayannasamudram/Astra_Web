@@ -429,9 +429,9 @@
 
     <!-- ============ RIGHT — form ============ -->
     <div class="form-card">
-      <div class="tag">Application · 4 fields</div>
-      <h2 id="formTitle">Type the idea.<br /><em style="color: var(--fg-dim);">We'll take it from there.</em></h2>
-      <p class="sub" id="formSub">No business plan, no pitch deck. A few sentences in plain English is all we need to dispatch the agents.</p>
+      <div class="tag" id="formTag">Application · Opens June 1st</div>
+      <h2 id="formTitle">Applications open<br /><em style="color: var(--fg-dim);">June 1st.</em></h2>
+      <p class="sub" id="formSub">Drop your idea below — we'll unlock submissions the moment the countdown hits zero.</p>
 
       <form class="form" id="form" novalidate>
         <div class="field-row">
@@ -614,13 +614,36 @@
   <script>
     (function(){
       var target = new Date('2026-06-01T00:00:00');
+      var unlocked = false;
+
+      var submitBtn = document.querySelector('#form button[type="submit"]');
+      var formTitle = document.getElementById('formTitle');
+      var formSub   = document.getElementById('formSub');
+      var formTag   = document.getElementById('formTag');
+
+      // Lock form initially
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Opens June 1st';
+      submitBtn.style.opacity = '0.45';
+      submitBtn.style.cursor = 'not-allowed';
+
+      function unlock() {
+        if (unlocked) return;
+        unlocked = true;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Apply <span class="arrow">→</span>';
+        submitBtn.style.opacity = '';
+        submitBtn.style.cursor = '';
+        formTag.textContent = 'Application · 4 fields';
+        formTitle.innerHTML = 'Type the idea.<br /><em style="color: var(--fg-dim);">We\'ll take it from there.</em>';
+        formSub.textContent = 'No business plan, no pitch deck. A few sentences in plain English is all we need to dispatch the agents.';
+        var bar = document.querySelector('.announce-bar');
+        if (bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
+      }
+
       function tick(){
         var diff = target - new Date();
-        if(diff <= 0){
-          var bar = document.querySelector('.announce-bar');
-          if(bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
-          return;
-        }
+        if(diff <= 0){ unlock(); return; }
         var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
             m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
         document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
