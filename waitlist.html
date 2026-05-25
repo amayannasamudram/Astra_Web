@@ -542,6 +542,15 @@
     const ticketNum = document.getElementById('ticketNum');
     const submitBtn = form.querySelector('button[type="submit"]');
 
+    // Load live count on page load
+    function applyCount(data) {
+      const seatsEl = document.getElementById('seatsDisplay');
+      const fillEl = document.querySelector('.progress-fill');
+      seatsEl.innerHTML = data.remaining + '<span class="of">/ 25</span>';
+      fillEl.style.width = Math.min(100, (data.taken / data.total) * 100) + '%';
+    }
+    fetch('/api/count').then(r => r.ok ? r.json() : null).then(d => { if (d) applyCount(d); }).catch(() => {});
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = form.querySelector('#f-name').value.trim();
@@ -568,15 +577,9 @@
 
         if (!res.ok) throw new Error('server');
 
-        // update counter + bar live
-        const seatsEl = document.getElementById('seatsDisplay');
-        const fillEl = document.querySelector('.progress-fill');
-        const total = 25;
-        const taken = parseInt(seatsEl.textContent) || 8;
-        const newTaken = taken + 1;
-        const newRemaining = total - newTaken;
-        seatsEl.innerHTML = newRemaining + '<span class="of">/ 25</span>';
-        fillEl.style.width = Math.min(100, (newTaken / total) * 100) + '%';
+        // increment live counter
+        const incRes = await fetch('/api/increment', { method: 'POST' });
+        if (incRes.ok) { const d = await incRes.json(); applyCount(d); }
 
         const seat = 67 + Math.floor(Math.random() * 4);
         ticketNum.textContent = '#00' + seat;
