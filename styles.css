@@ -417,10 +417,28 @@ section { position: relative; z-index: 2; }
 }
 .headline-wipe.in { clip-path: inset(0 0 0 0); }
 
-/* ---------- mobile ---------- */
+/* ---------- mobile tablet (≤800px) ---------- */
 @media (max-width: 800px) {
   .nav-links { gap: 18px; }
   .nav-links .hide-sm { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
   .footer-bottom { flex-direction: column; gap: 10px; }
+}
+
+/* ---------- mobile phone (≤640px) ---------- */
+@media (max-width: 640px) {
+  /* Announce bar: drop label + CTA button, just show countdown centered */
+  .announce-bar { gap: 0; padding: 0 16px; }
+  .announce-bar .ab-label { display: none; }
+  .announce-bar .ab-cta { display: none; }
+  .announce-bar .ab-countdown { font-size: 14px; gap: 8px; }
+
+  /* Nav: drop text links — just logo mark + CTA pill */
+  .nav { padding: 14px var(--gutter); }
+  .nav-links a:not(.btn) { display: none; }
+  .nav-links { gap: 0; }
+
+  /* Footer: single column */
+  .footer { padding: 60px var(--gutter) 40px; margin-top: 48px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
 }
