@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astra — Careers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .careers-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 140px var(--gutter) 80px;
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .careers-wrap .eyebrow { justify-content: center; margin-bottom: 36px; }
+    .careers-wrap h1 {
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin-bottom: 4px;
+    }
+    .careers-wrap h1 em { color: var(--fg-dim); }
+    .careers-wrap .body {
+      font-size: clamp(16px, 1.4vw, 19px);
+      color: var(--fg-dim);
+      line-height: 1.65;
+      max-width: 52ch;
+      margin: 0 auto 48px;
+    }
+    .careers-wrap .body strong { color: var(--fg); font-weight: 500; }
+    .divider-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--line-2), transparent);
+      margin: 0 auto 40px;
+    }
+    .careers-note {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nebula"></div>
+  <canvas class="starfield" id="starfield"></canvas>
+
+  <div class="announce-bar">
+    <span class="ab-label">Cohort One opens in</span>
+    <span class="ab-countdown">
+      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
+    </span>
+    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="brand_assets/astra_logo_new.png" alt="" width="36" height="36" style="display:block;" />
+      <span style="letter-spacing:0.18em; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; font-weight: 400;">ASTRA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="agents.html">Agents</a>
+      <a href="demo.html" class="hide-sm">Demo</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
+    </div>
+  </nav>
+
+  <div class="careers-wrap">
+    <div class="eyebrow">Careers at Astra</div>
+
+    <h1>Why are you<br /><em>looking for a job?</em></h1>
+
+    <div style="margin: 0 0 48px; font-family: var(--font-display); font-size: clamp(52px, 8vw, 110px); line-height: 1; letter-spacing: -0.03em; color: var(--fg);">
+      Just build<br /><em style="color: var(--star);">with Astra.</em>
+    </div>
+
+    <p class="body">
+      Seriously. You found us — which means you have the drive to build something.
+      <strong>That's exactly the kind of person Astra was made for.</strong><br /><br />
+      Instead of sending a résumé somewhere, why not send your idea here?
+      We'll spin up a full founding team around it — legal, design, engineering, marketing —
+      and have you live within 72 hours. No co-founder needed. No runway required.
+      Just the idea you've been sitting on.
+    </p>
+
+    <a href="waitlist.html" class="btn btn-primary" style="font-size: 15px; padding: 14px 28px;">
+      Reserve your spot <span class="arrow">→</span>
+    </a>
+
+    <p class="careers-note">Applications open June 1st · 25 founding spots</p>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="demo.html">Demo</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="waitlist.html">Waitlist</a></li>
+          <li><a href="waitlist.html">Contact</a></li>
+          <li><a href="careers.html" class="active">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="legal.html">Terms</a></li>
+          <li><a href="legal.html">Privacy</a></li>
+          <li><a href="legal.html">Disclosures</a></li>
+          <li><a href="legal.html">Cloud Service Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Astra LLC</span>
+      <span>Made by Astra, in 72 hours.</span>
+    </div>
+  </footer>
+
+  <script src="starfield.js"></script>
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('animating', 'in');
+          e.target.addEventListener('transitionend', () => e.target.classList.remove('animating'), { once: true });
+        }
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal, .line-reveal').forEach(el => io.observe(el));
+  </script>
+  <script>
+    (function(){
+      var target = new Date('2026-06-01T00:00:00');
+      function tick(){
+        var diff = target - new Date();
+        if(diff <= 0){
+          var bar = document.querySelector('.announce-bar');
+          if(bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
+          return;
+        }
+        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
+            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
+      }
+      tick(); setInterval(tick,1000);
+    })();
+  </script>
+
+</body>
+</html>

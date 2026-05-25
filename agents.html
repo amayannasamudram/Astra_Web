@@ -262,6 +262,20 @@
   <div class="nebula"></div>
   <canvas class="starfield" id="starfield"></canvas>
 
+  <div class="announce-bar">
+    <span class="ab-label">Cohort One opens in</span>
+    <span class="ab-countdown">
+      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
+    </span>
+    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="nav-brand">
       <img src="brand_assets/astra_logo_new.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
@@ -489,7 +503,7 @@
     <div class="cta-inner">
       <div class="eyebrow reveal" style="--d:0; justify-content: center;">Ready</div>
       <h2 class="reveal" style="--d:1; margin-top: 22px;">Type the idea.<br /><em class="display-italic">We'll handle everything else.</em></h2>
-      <p class="lede reveal" style="--d:2; margin: 28px auto 0;">Currently accepting 25 founders for the first cohort. Every accepted founder receives discounted pricing for the Build plan.</p>
+      <p class="lede reveal" style="--d:2; margin: 28px auto 0;">The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications are open now.</p>
       <div class="btn-row reveal" style="--d:3; margin-top: 36px;">
         <a href="waitlist.html" class="btn btn-primary">Join the waitlist <span class="arrow">→</span></a>
         <a href="pricing.html" class="btn btn-ghost">See pricing</a>
@@ -502,7 +516,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra Labs · Cohort One, 2026</div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
       </div>
       <div>
         <h5>Product</h5>
@@ -524,15 +538,15 @@
       <div>
         <h5>Legal</h5>
         <ul>
-          <li><a href="#">Terms</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Disclosures</a></li>
-          <li><a href="#">Security</a></li>
+          <li><a href="legal.html">Terms</a></li>
+          <li><a href="legal.html">Privacy</a></li>
+          <li><a href="legal.html">Disclosures</a></li>
+          <li><a href="legal.html">Cloud Service Agreement</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Astra Labs, Inc.</span>
+      <span>© 2026 Astra LLC</span>
       <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
@@ -548,6 +562,26 @@
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal, .line-reveal').forEach(el => io.observe(el));
+  </script>
+  <script>
+    (function(){
+      var target = new Date('2026-06-01T00:00:00');
+      function tick(){
+        var diff = target - new Date();
+        if(diff <= 0){
+          var bar = document.querySelector('.announce-bar');
+          if(bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
+          return;
+        }
+        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
+            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
+      }
+      tick(); setInterval(tick,1000);
+    })();
   </script>
 
 </body>

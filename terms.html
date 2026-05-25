@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astra — Terms of Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .legal-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 140px var(--gutter) 100px;
+      position: relative;
+      z-index: 2;
+    }
+    .draft-banner {
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.35);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 48px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      line-height: 1.6;
+      color: rgba(245,200,100,0.9);
+    }
+    .draft-banner strong { display: block; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: rgb(245,180,50); }
+    .legal-wrap h1 { font-size: clamp(36px,5vw,56px); letter-spacing:-0.02em; margin-bottom:8px; }
+    .legal-meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .legal-wrap h2 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--star);
+      margin: 40px 0 12px;
+      font-weight: 500;
+    }
+    .legal-wrap h3 {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--fg);
+      margin: 24px 0 8px;
+      letter-spacing: 0;
+      line-height: 1.4;
+    }
+    .legal-wrap p, .legal-wrap li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--fg-dim);
+      margin-bottom: 14px;
+    }
+    .legal-wrap ul, .legal-wrap ol { padding-left: 22px; margin-bottom: 14px; }
+    .legal-wrap li { margin-bottom: 6px; }
+    .legal-wrap .caps {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--fg);
+      line-height: 1.65;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 14px;
+    }
+    .divider { height:1px; background: var(--line); margin: 40px 0; }
+  </style>
+</head>
+<body>
+  <div class="nebula"></div>
+  <canvas class="starfield" id="starfield"></canvas>
+
+  <div class="announce-bar">
+    <span class="ab-label">Cohort One opens in</span>
+    <span class="ab-countdown">
+      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
+    </span>
+    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-brand">
+      <img src="brand_assets/astra_logo_new.png" alt="" width="36" height="36" style="display:block;" />
+      <span style="letter-spacing:0.18em; font-family: var(--font-mono); font-size: 13px; text-transform: uppercase; font-weight: 400;">ASTRA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Overview</a>
+      <a href="agents.html">Agents</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
+    </div>
+  </nav>
+
+  <div class="legal-wrap">
+    <div class="draft-banner">
+      <strong>Pre-Release Draft</strong>
+      These documents are pre-release drafts provided for informational and review purposes only. They are not finalized, not executed, and not legally binding. Astra LLC reserves the right to modify any portion of these documents prior to final publication. Do not rely on these drafts for legal, financial, or business decisions.
+    </div>
+
+    <h1>Terms of Service</h1>
+    <div class="legal-meta">Effective Date: June 1, 2026 &nbsp;·&nbsp; Operated by: Astra LLC</div>
+
+    <p>These Terms of Service ("Terms") govern your access to and use of the Astra platform, including all AI agents, the founder dashboard, and any related services provided by Astra LLC ("Astra," "we," "us," or "our"). By creating an account or using any part of the Astra platform, you ("Founder" or "you") agree to be bound by these Terms. If you do not agree, do not use the platform.</p>
+
+    <h2>1. The Astra Platform</h2>
+    <p>Astra provides an AI-powered founding team platform consisting of six specialized autonomous agents: the Legal Agent, Technical Agent, Web Agent, Research Agent, Marketing Agent, and Ops Agent (collectively, the "Agent Stack"). Each agent operates within its defined domain and communicates with other agents via a shared memory system. The platform is designed to assist first-time founders in forming legal entities, building products, validating markets, and acquiring customers.</p>
+    <p>Astra is a tool to assist you in building your company. It is not a law firm, a licensed financial advisor, a registered agent, or a marketing agency. No attorney-client relationship, financial advisory relationship, or agency relationship is created between you and Astra by use of the platform.</p>
+
+    <h2>2. Agent Autonomy and the Approval Queue</h2>
+    <p>Astra's agents operate autonomously on your behalf within boundaries you establish. Certain high-stakes or irreversible actions require your explicit approval before execution ("Approval-Required Actions"). These include, but are not limited to:</p>
+    <ul>
+      <li>Filing a legal entity (LLC) and authorizing the associated payment</li>
+      <li>Sending mass outbound email campaigns on your behalf</li>
+      <li>Launching paid advertising campaigns (Google Ads, Meta Ads)</li>
+      <li>Publishing public-facing content updates to your website or landing page</li>
+      <li>Executing any transaction involving your payment method</li>
+    </ul>
+    <p>Other actions may be auto-executed with dashboard notification, such as generating internal draft documents or posting routine social content, as determined by the platform's approval logic. You may adjust auto-approval thresholds in your dashboard settings.</p>
+    <p>By approving any action in the Approval Queue, you confirm that you have reviewed and authorized that specific action. Astra is not liable for outcomes arising from actions you have explicitly approved.</p>
+
+    <h2>3. Computer Use and Third-Party Platform Interactions</h2>
+    <p>Certain Astra agents use autonomous Computer Use capabilities to navigate and interact with third-party platforms on your behalf. These platforms include, without limitation: government filing portals, the IRS.gov EIN application portal, Google Ads, Meta Ads, and social media platforms.</p>
+    <p>By using Astra's agent services, you expressly authorize Astra to access and interact with these third-party platforms as your agent for the purposes you specify. You acknowledge and agree that:</p>
+    <ul>
+      <li>Your use of any third-party platform through Astra remains subject to that platform's own terms of service and policies.</li>
+      <li>Astra's ability to interact with such platforms is contingent on those platforms' interfaces and policies, which may change without notice.</li>
+      <li>Astra is not responsible for errors, failures, delays, or account suspensions arising from changes to a third-party platform's interface, security systems, or terms.</li>
+      <li>You are solely responsible for verifying all filings, submissions, and actions completed by Astra's agents on third-party platforms, including corporate formation filings and IRS submissions.</li>
+      <li>Astra does not store or transmit your third-party platform credentials beyond the minimum necessary to execute an authorized action.</li>
+    </ul>
+
+    <h2>4. Legal Document Generation — Not Legal Advice</h2>
+    <p>Astra's Legal Agent generates legal documents including, but not limited to, founder agreements, non-disclosure agreements (NDAs), intellectual property assignment agreements, and vesting schedules.</p>
+    <div class="caps">ALL DOCUMENTS GENERATED BY ASTRA ARE AI-GENERATED DRAFTS FOR DOCUMENT PREPARATION PURPOSES ONLY. THEY DO NOT CONSTITUTE LEGAL ADVICE. Astra expressly disclaims any representation that its generated documents are legally sufficient, enforceable, or appropriate for your specific circumstances, jurisdiction, or use case. You are strongly advised to have all Astra-generated legal documents reviewed by a licensed attorney admitted in your jurisdiction before executing or relying upon them.</div>
+
+    <h2>5. Plans and Pricing</h2>
+    <h3>5.1 Plan Tiers</h3>
+    <p>Astra offers multiple service tiers. Current pricing is available on our pricing page and is subject to change with 30 days' notice to active subscribers.</p>
+    <h3>5.2 Billing</h3>
+    <p>All payments are processed via Stripe. By providing payment information, you authorize Astra to charge your payment method for all applicable fees. Subscription fees are billed monthly in advance. Astra reserves the right to modify pricing with 30 days' notice to active subscribers. Continued use after the notice period constitutes acceptance of the new pricing.</p>
+
+    <h2>6. Company Memory and Data Ownership</h2>
+    <p>The Ops Agent maintains a persistent vector memory store of all agent outputs, documents, decisions, and company history associated with your account ("Company Memory"). You retain ownership of all data and content you input into Astra and all outputs generated by the Agent Stack on your behalf. You grant Astra a limited, non-exclusive license to store, process, and use your Company Memory data solely for the purpose of operating and improving your agent services. This license terminates upon account deletion, subject to our Privacy Statement.</p>
+    <p>Upon account termination, Astra will delete your Company Memory data within 60 days, except where retention is required by law.</p>
+
+    <h2>7. Acceptable Use</h2>
+    <p>You agree not to use Astra to:</p>
+    <ul>
+      <li>Violate any applicable law, regulation, or third-party rights</li>
+      <li>Conduct or facilitate fraud, deception, or misrepresentation</li>
+      <li>Spam, harass, or send unsolicited commercial communications in violation of CAN-SPAM, GDPR, or applicable anti-spam laws</li>
+      <li>Form entities or generate documents for illegal purposes</li>
+      <li>Circumvent or attempt to circumvent any third-party platform's terms of service through Astra's Computer Use capabilities</li>
+      <li>Reverse engineer, decompile, or attempt to extract Astra's underlying model weights, inference infrastructure, or proprietary systems</li>
+      <li>Resell or redistribute access to Astra's agent services without written authorization</li>
+    </ul>
+
+    <h2>8. Intellectual Property</h2>
+    <p>Astra and its underlying technology, including the Agent Stack architecture, the Approval Queue system, and the Company Memory infrastructure, are the intellectual property of Astra LLC. Nothing in these Terms grants you any ownership rights in Astra's platform or technology.</p>
+    <p>All content generated by the Agent Stack on your behalf (documents, landing pages, code, research reports, email copy) is assigned to you upon generation, subject to any applicable third-party licenses in underlying models or deployment platforms.</p>
+
+    <h2>9. Disclaimers and Limitation of Liability</h2>
+    <div class="caps">THE ASTRA PLATFORM IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. ASTRA DOES NOT WARRANT THAT THE PLATFORM WILL BE ERROR-FREE, UNINTERRUPTED, OR THAT AGENT OUTPUTS WILL BE ACCURATE, COMPLETE, OR LEGALLY SUFFICIENT.</div>
+    <div class="caps">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, ASTRA'S TOTAL LIABILITY TO YOU FOR ANY CLAIM ARISING OUT OF OR RELATING TO THESE TERMS OR YOUR USE OF THE PLATFORM SHALL NOT EXCEED THE GREATER OF (A) THE TOTAL FEES PAID BY YOU TO ASTRA IN THE TWELVE MONTHS PRECEDING THE CLAIM, OR (B) $500. ASTRA SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES.</div>
+
+    <h2>10. Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless Astra and its officers, directors, employees, and agents from any claims, liabilities, damages, and expenses (including reasonable attorneys' fees) arising out of or related to: (a) your use of the platform; (b) any action taken by Astra's agents following your explicit approval; (c) your violation of these Terms; or (d) your violation of any third-party rights.</p>
+
+    <h2>11. Termination</h2>
+    <p>You may terminate your account at any time through the dashboard settings. Astra may suspend or terminate your account for material violation of these Terms, with or without notice depending on severity. Upon termination, your access to the platform and Agent Stack ceases immediately. Prepaid monthly subscription fees for the current billing period are non-refundable.</p>
+
+    <h2>12. Governing Law and Dispute Resolution</h2>
+    <p>These Terms are governed by the laws of the State of Delaware, without regard to conflict of law principles. Any dispute arising from these Terms shall be resolved by binding arbitration administered by the American Arbitration Association under its Commercial Arbitration Rules, with proceedings conducted in English. Class action waivers apply to the fullest extent permitted by law.</p>
+
+    <h2>13. Changes to These Terms</h2>
+    <p>Astra reserves the right to modify these Terms at any time. Material changes will be communicated via dashboard notification at least 14 days before taking effect. Your continued use of the platform after the effective date of any modification constitutes your acceptance of the updated Terms.</p>
+
+    <h2>14. Contact</h2>
+    <p>Questions about these Terms may be directed to Astra LLC through the contact form on our waitlist page.</p>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="agents.html">Agents</a></li>
+          <li><a href="demo.html">Demo</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="waitlist.html">Waitlist</a></li>
+          <li><a href="waitlist.html">Contact</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="legal.html" class="active">Terms</a></li>
+          <li><a href="legal.html">Privacy</a></li>
+          <li><a href="legal.html">Disclosures</a></li>
+          <li><a href="legal.html">Cloud Service Agreement</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Astra LLC</span>
+      <span>Made by Astra, in 72 hours.</span>
+    </div>
+  </footer>
+
+  <script src="starfield.js"></script>
+  <script>
+    (function(){
+      var target = new Date('2026-06-01T00:00:00');
+      function tick(){
+        var diff = target - new Date();
+        if(diff <= 0){ return; }
+        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
+            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
+      }
+      tick(); setInterval(tick,1000);
+    })();
+  </script>
+</body>
+</html>

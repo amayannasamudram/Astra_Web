@@ -372,6 +372,20 @@
   <div class="nebula"></div>
   <canvas class="starfield" id="starfield"></canvas>
 
+  <div class="announce-bar">
+    <span class="ab-label">Cohort One opens in</span>
+    <span class="ab-countdown">
+      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
+      <span class="ab-sep">:</span>
+      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
+    </span>
+    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
+  </div>
+
   <nav class="nav">
     <a href="index.html" class="nav-brand">
       <img src="brand_assets/astra_logo_new.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
@@ -390,13 +404,13 @@
 
     <!-- ============ LEFT ============ -->
     <div class="wait-left">
-      <div class="eyebrow">Cohort One · Summer 2026</div>
+      <div class="eyebrow">Cohort One · Opening June 1st</div>
       <h1>Bring an idea.<br /><em>Get a company.</em></h1>
       <p class="lede">
-        The first 25 accepted founders get a discounted rate on the Build plan in exchange for being a case study.
+        The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study.
       </p>
       <p class="lede" style="color: var(--fg-mute);">
-        Cohort opens June 12. Accepted founders ship within seventy-two hours.
+        Cohort One launches June 1st. Accepted founders ship within seventy-two hours of kickoff.
       </p>
 
       <div class="counter">
@@ -406,23 +420,11 @@
         </div>
         <div class="counter-cell">
           <div class="k">Status</div>
-          <div class="v live">Open</div>
+          <div class="v live">Coming Soon</div>
         </div>
       </div>
       <div class="progress"><div class="progress-fill"></div></div>
 
-      <div class="contact-alt">
-        <div class="contact-card">
-          <h6>Press</h6>
-          <div class="v">press@astra.ai</div>
-          <div class="meta">Replies within one business day.</div>
-        </div>
-        <div class="contact-card">
-          <h6>Accelerators</h6>
-          <div class="v">cohorts@astra.ai</div>
-          <div class="meta">University and incubator partnerships.</div>
-        </div>
-      </div>
     </div>
 
     <!-- ============ RIGHT — form ============ -->
@@ -485,7 +487,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra Labs · Cohort One, 2026</div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
       </div>
       <div>
         <h5>Product</h5>
@@ -502,22 +504,21 @@
         <ul>
           <li><a href="waitlist.html">Waitlist</a></li>
           <li><a href="waitlist.html">Contact</a></li>
-          <li><a href="#">Manifesto</a></li>
-          <li><a href="#">Careers</a></li>
+          <li><a href="careers.html">Careers</a></li>
         </ul>
       </div>
       <div>
         <h5>Legal</h5>
         <ul>
-          <li><a href="#">Terms</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Disclosures</a></li>
-          <li><a href="#">Security</a></li>
+          <li><a href="legal.html">Terms</a></li>
+          <li><a href="legal.html">Privacy</a></li>
+          <li><a href="legal.html">Disclosures</a></li>
+          <li><a href="legal.html">Cloud Service Agreement</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 Astra Labs, Inc.</span>
+      <span>© 2026 Astra LLC</span>
       <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
@@ -610,6 +611,26 @@
       40%, 60% { transform: translate3d(3px, 0, 0); }
     }
   </style>
+  <script>
+    (function(){
+      var target = new Date('2026-06-01T00:00:00');
+      function tick(){
+        var diff = target - new Date();
+        if(diff <= 0){
+          var bar = document.querySelector('.announce-bar');
+          if(bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
+          return;
+        }
+        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
+            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
+        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
+        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
+      }
+      tick(); setInterval(tick,1000);
+    })();
+  </script>
 
 </body>
 </html>
