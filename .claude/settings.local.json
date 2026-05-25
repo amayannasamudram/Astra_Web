@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node screenshot.mjs http://localhost:3000)",
+      "Bash(node -e ' *)",
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(ls \"c:\\\\Users\\\\amay7\\\\OneDrive\\\\Astra_Web\\\\\")",
+      "Read(//c/Users/amay7/OneDrive/**)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(vercel --version)",
+      "Bash(vercel deploy *)",
+      "Bash(dir \"c:\\\\Users\\\\amay7\\\\OneDrive\\\\Astra_Web\")",
+      "Bash(git push *)",
+      "Bash(powershell -File \"C:\\\\Users\\\\amay7\\\\AppData\\\\Local\\\\Temp\\\\extract_docs.ps1\")"
+    ]
+  }
+}
