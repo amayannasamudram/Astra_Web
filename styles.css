@@ -4,24 +4,24 @@
    ====================================================================== */
 
 :root {
-  /* surfaces */
-  --ink:        #05060a;
-  --ink-2:      #0a0c14;
-  --ink-3:      #11141e;
-  --line:       rgba(245, 245, 250, 0.08);
-  --line-2:     rgba(245, 245, 250, 0.14);
+  /* surfaces — Void */
+  --ink:        #00000A;
+  --ink-2:      #05080F;
+  --ink-3:      #0A1220;
+  --line:       rgba(32, 96, 255, 0.09);
+  --line-2:     rgba(32, 96, 255, 0.17);
 
-  /* type */
-  --fg:         #f6f6f8;
-  --fg-dim:     rgba(246, 246, 248, 0.62);
-  --fg-mute:    rgba(246, 246, 248, 0.38);
+  /* type — Supernova */
+  --fg:         #F5FFFF;
+  --fg-dim:     rgba(245, 255, 255, 0.62);
+  --fg-mute:    rgba(245, 255, 255, 0.36);
 
-  /* accents */
-  --star:       oklch(0.84 0.08 235);     /* cool starlight */
-  --star-dim:   oklch(0.62 0.08 235);
-  --gold:       oklch(0.84 0.10 78);      /* distant sun */
-  --gold-dim:   oklch(0.62 0.10 78);
-  --aurora:     oklch(0.78 0.13 290);     /* faint magenta nebula */
+  /* accents — Electric / Stellar / Nebula */
+  --star:       oklch(0.62 0.24 264);     /* electric blue */
+  --star-dim:   oklch(0.48 0.22 264);
+  --gold:       oklch(0.70 0.18 248);     /* stellar blue */
+  --gold-dim:   oklch(0.55 0.16 252);
+  --aurora:     oklch(0.62 0.10 255);     /* nebula blue */
 
   /* fonts */
   --font-display: "Instrument Serif", "Times New Roman", serif;
@@ -99,9 +99,9 @@ button { font: inherit; cursor: pointer; }
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(60vw 50vh at 20% 18%, oklch(0.45 0.13 270 / 0.18), transparent 60%),
-    radial-gradient(50vw 40vh at 85% 30%, oklch(0.55 0.10 235 / 0.14), transparent 65%),
-    radial-gradient(70vw 60vh at 60% 90%, oklch(0.50 0.10 78 / 0.10), transparent 70%);
+    radial-gradient(60vw 50vh at 20% 18%, oklch(0.48 0.24 264 / 0.18), transparent 60%),
+    radial-gradient(50vw 40vh at 85% 30%, oklch(0.55 0.22 256 / 0.14), transparent 65%),
+    radial-gradient(70vw 60vh at 60% 90%, oklch(0.42 0.20 264 / 0.10), transparent 70%);
   filter: blur(40px);
 }
 
