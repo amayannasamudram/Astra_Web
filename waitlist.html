@@ -534,39 +534,58 @@
       });
     });
 
-    // form submit (no server — just shows success state)
     const form = document.getElementById('form');
     const success = document.getElementById('success');
     const formTitle = document.getElementById('formTitle');
     const formSub = document.getElementById('formSub');
     const ticketNum = document.getElementById('ticketNum');
+    const submitBtn = form.querySelector('button[type="submit"]');
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = form.querySelector('#f-name').value.trim();
       const email = form.querySelector('#f-email').value.trim();
       const idea = form.querySelector('#f-idea').value.trim();
+
       if (!name || !email || !idea) {
-        // simple inline shake
         form.style.animation = 'none';
         requestAnimationFrame(() => {
           form.style.animation = 'shake 0.32s cubic-bezier(.36,.07,.19,.97)';
         });
         return;
       }
-      // pick a ticket number based on remaining seats
-      const seat = 67 + Math.floor(Math.random() * 4);
-      ticketNum.textContent = '#00' + seat;
 
-      form.style.transition = 'opacity 0.3s, transform 0.3s';
-      form.style.opacity = '0';
-      form.style.transform = 'translateY(-8px)';
-      formTitle.innerHTML = 'Application received.';
-      formSub.textContent = 'Your ticket is below. We will be in touch.';
-      setTimeout(() => {
-        form.style.display = 'none';
-        success.classList.add('show');
-      }, 280);
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('https://formspree.io/f/xnjrbowr', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form)
+        });
+
+        if (!res.ok) throw new Error('server');
+
+        const seat = 67 + Math.floor(Math.random() * 4);
+        ticketNum.textContent = '#00' + seat;
+
+        form.style.transition = 'opacity 0.3s, transform 0.3s';
+        form.style.opacity = '0';
+        form.style.transform = 'translateY(-8px)';
+        formTitle.innerHTML = 'Application received.';
+        formSub.textContent = 'Your ticket is below. We will be in touch.';
+        setTimeout(() => {
+          form.style.display = 'none';
+          success.classList.add('show');
+        }, 280);
+
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Apply <span class="arrow">→</span>';
+        formSub.textContent = 'Something went wrong — please try again or email us directly.';
+        formSub.style.color = 'oklch(0.65 0.18 20)';
+      }
     });
   </script>
   <style>
