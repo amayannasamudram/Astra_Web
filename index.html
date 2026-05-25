@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -35,8 +35,8 @@
       height: min(900px, 90vw);
       background:
         radial-gradient(closest-side,
-          oklch(0.62 0.24 264 / 0.18),
-          oklch(0.42 0.22 264 / 0.10) 35%,
+          oklch(0.62 0.24 240 / 0.18),
+          oklch(0.42 0.22 240 / 0.10) 35%,
           transparent 70%);
       filter: blur(10px);
       pointer-events: none;
@@ -203,8 +203,8 @@
       text-transform: uppercase;
       color: var(--fg);
     }
-    .mock-row .pill.gold { color: var(--gold); border-color: oklch(0.62 0.24 264 / 0.4); }
-    .mock-row .pill.star { color: var(--star); border-color: oklch(0.62 0.24 264 / 0.4); }
+    .mock-row .pill.gold { color: var(--gold); border-color: oklch(0.62 0.24 240 / 0.4); }
+    .mock-row .pill.star { color: var(--star); border-color: oklch(0.62 0.24 240 / 0.4); }
     .mock-row .agent-tag { color: var(--fg); }
     .mock-row .grow { flex: 1; }
     .mock-row .meta { color: var(--fg-mute); font-size: 10px; }
@@ -225,7 +225,7 @@
     .value-block .price-line .strike {
       color: var(--fg-mute);
       text-decoration: line-through;
-      text-decoration-color: oklch(0.58 0.22 264 / 0.6);
+      text-decoration-color: oklch(0.58 0.22 240 / 0.6);
       font-style: italic;
     }
     .value-block .price-line .accent { color: var(--star); }
@@ -380,12 +380,12 @@
             <div class="copy">
               <div class="eyebrow reveal" style="--d:0">24 hours · legal agent</div>
               <h3 class="reveal" style="--d:1">File the company.</h3>
-              <p class="reveal" style="--d:2">Delaware C-Corp filed via Stripe Atlas. EIN pulled from IRS.gov. Founder agreement, NDA, and IP assignment drafted in your specific context. Compliance deadlines tracked thereafter.</p>
+              <p class="reveal" style="--d:2">Delaware LLC filed via Stripe Atlas. EIN pulled from IRS.gov. Founder agreement, NDA, and IP assignment drafted in your specific context. Compliance deadlines tracked thereafter.</p>
             </div>
             <div class="visual reveal" style="--d:1">
               <div class="mock">
                 <div class="mock-head"><span>Legal Agent · Approval Queue</span><span class="live">2 PENDING</span></div>
-                <div class="mock-row"><span class="pill">FILE</span><span class="grow agent-tag">Delaware C-Corp incorporation</span><span class="meta">approved 14:02</span></div>
+                <div class="mock-row"><span class="pill">FILE</span><span class="grow agent-tag">Delaware LLC formation</span><span class="meta">approved 14:02</span></div>
                 <div class="mock-row"><span class="pill">PAY</span><span class="grow agent-tag">Stripe Atlas · $500</span><span class="meta">approved 14:02</span></div>
                 <div class="mock-row"><span class="pill star">EIN</span><span class="grow agent-tag">retrieved from IRS.gov</span><span class="meta">88-4012984</span></div>
                 <div class="mock-row"><span class="pill gold">DRAFT</span><span class="grow agent-tag">Founder agreement · v2</span><span class="meta">awaiting review</span></div>

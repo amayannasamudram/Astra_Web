@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -29,8 +29,8 @@
       height: 460px;
       background:
         radial-gradient(closest-side,
-          oklch(0.62 0.24 264 / 0.16),
-          oklch(0.42 0.22 264 / 0.08) 40%,
+          oklch(0.62 0.24 240 / 0.16),
+          oklch(0.42 0.22 240 / 0.08) 40%,
           transparent 70%);
       filter: blur(10px);
       pointer-events: none;
@@ -82,7 +82,7 @@
       inset: 0;
       pointer-events: none;
       background:
-        radial-gradient(60% 80% at 50% 0%, oklch(0.62 0.24 264 / 0.10), transparent 60%);
+        radial-gradient(60% 80% at 50% 0%, oklch(0.62 0.24 240 / 0.10), transparent 60%);
       opacity: 0;
       transition: opacity 0.5s ease;
     }
@@ -100,12 +100,12 @@
       height: 48px;
       flex-shrink: 0;
       color: var(--star);
-      filter: drop-shadow(0 0 14px oklch(0.62 0.24 264 / 0.4));
+      filter: drop-shadow(0 0 14px oklch(0.62 0.24 240 / 0.4));
       transition: transform 0.4s ease, filter 0.4s ease;
     }
     .agent-card:hover .glyph {
       transform: scale(1.08);
-      filter: drop-shadow(0 0 22px oklch(0.62 0.24 264 / 0.7));
+      filter: drop-shadow(0 0 22px oklch(0.62 0.24 240 / 0.7));
     }
     .agent-card .glyph svg { width: 100%; height: 100%; }
     .agent-card .num {
@@ -193,18 +193,18 @@
       stroke-dasharray: 2 5;
     }
     .const-line {
-      stroke: oklch(0.62 0.24 264 / 0.22);
+      stroke: oklch(0.62 0.24 240 / 0.22);
       stroke-width: 0.5;
       fill: none;
     }
     /* energy pulses — a single bright dot travels along each line toward the core */
     .const-energy {
-      stroke: oklch(0.80 0.22 264);
+      stroke: oklch(0.80 0.22 240);
       stroke-width: 2;
       stroke-linecap: round;
       stroke-dasharray: 2 198;
       fill: none;
-      filter: drop-shadow(0 0 5px oklch(0.62 0.24 264)) drop-shadow(0 0 14px oklch(0.55 0.22 264 / 0.6));
+      filter: drop-shadow(0 0 5px oklch(0.62 0.24 240)) drop-shadow(0 0 14px oklch(0.55 0.22 240 / 0.6));
       animation: energyFlow 4.2s linear infinite;
       animation-delay: var(--pulse-delay, 0s);
     }
@@ -304,7 +304,7 @@
         </div>
         <div class="role">Legal</div>
         <h3>Files the company.</h3>
-        <p>Forms Delaware LLCs or C-Corps via Stripe Atlas with Computer Use. Pulls the EIN from IRS.gov. Drafts founder agreements, NDAs, IP assignment, and vesting schedules.</p>
+        <p>Forms Delaware LLCs via Stripe Atlas with Computer Use. Pulls the EIN from IRS.gov. Drafts founder agreements, NDAs, IP assignment, and vesting schedules.</p>
       </div>
 
       <!-- 02 Web -->
