@@ -19,6 +19,9 @@ const filepath = path.join(dir, filename);
 const browser = await puppeteer.launch({ headless: 'new' });
 const page = await browser.newPage();
 await page.setViewport({ width: 1440, height: 900 });
+// Set preview auth so the gate doesn't redirect
+await page.goto('http://localhost:3000', { waitUntil: 'domcontentloaded' });
+await page.evaluate(() => localStorage.setItem('astra_preview', '1'));
 await page.goto(url, { waitUntil: 'networkidle0', timeout: 15000 });
 await new Promise(r => setTimeout(r, 800));
 await page.screenshot({ path: filepath, fullPage: false });
