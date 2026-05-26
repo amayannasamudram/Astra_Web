@@ -15,8 +15,8 @@
   --rule:       #E2DFD6;
   --rule-2:     #D4D0C5;
 
-  /* a single accent — deep ink blue, used very sparingly */
-  --accent:     oklch(0.42 0.09 245);
+  /* brand blue — from logo mark */
+  --accent:     #2563EB;
 
   /* fonts */
   --font-sans:    "Geist", "Inter Tight", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
@@ -115,11 +115,22 @@ h1 strong, h2 strong, h3 strong, h4 strong,
 }
 .nav-v2 .links a {
   color: var(--mute);
-  transition: color 0.2s;
+  transition: color 0.2s, border-color 0.2s;
   position: relative;
 }
+.nav-v2 .links a:not(.btn-v2) {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
 .nav-v2 .links a:hover { color: var(--ink); }
+.nav-v2 .links a:not(.btn-v2):hover { border-bottom-color: var(--ink); }
 .nav-v2 .links a.active { color: var(--ink); }
+.nav-v2 .links a.active:not(.btn-v2) { border-bottom-color: var(--accent); }
+/* ensure btn-v2 inside nav keeps its own color regardless of .links a specificity */
+.nav-v2 .links a.btn-v2 { color: #fff; }
+.nav-v2 .links a.btn-v2:hover { color: var(--accent); }
+.nav-v2 .links a.btn-v2.ghost { color: var(--ink); }
+.nav-v2 .links a.btn-v2.ghost:hover { color: var(--ink); }
 
 /* ---------- buttons ---------- */
 .btn-v2 {
@@ -132,12 +143,12 @@ h1 strong, h2 strong, h3 strong, h4 strong,
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
-  border: 1px solid #4E4A46;
-  background: #4E4A46;
-  color: var(--paper);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
-.btn-v2:hover { background: transparent; color: #4E4A46; }
+.btn-v2:hover { background: transparent; color: var(--accent); }
 .btn-v2 .arrow { transition: transform 0.25s; display: inline-block; }
 .btn-v2:hover .arrow { transform: translateX(3px); }
 
@@ -173,6 +184,7 @@ h1 strong, h2 strong, h3 strong, h4 strong,
   text-transform: uppercase;
   color: var(--mute);
   font-weight: 400;
+  margin-bottom: 20px;
 }
 .eyebrow-v2::before {
   content: "";

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -18,7 +18,7 @@
       font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
     }
     .announce-bar .ab-label { opacity: 0.55; }
-    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; font-size: 14px; }
+    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; font-size: 18px; }
     .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
     .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
     .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
@@ -45,9 +45,52 @@
       justify-content: center;
       text-align: center;
       z-index: 2;
+      overflow: hidden;
     }
-    
-
+    /* ===== AURORA ===== */
+    #hero-aurora {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .aurora-el {
+      position: absolute;
+      inset: -10px;
+      opacity: 0.5;
+      will-change: background-position;
+      background-image:
+        repeating-linear-gradient(100deg, #fff 0%, #fff 7%, transparent 10%, transparent 12%, #fff 16%),
+        repeating-linear-gradient(100deg, #3b82f6 10%, #a5b4fc 15%, #93c5fd 20%, #ddd6fe 25%, #60a5fa 30%);
+      background-size: 300%, 200%;
+      background-position: 50% 50%, 50% 50%;
+      filter: blur(10px) invert(1);
+      -webkit-mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%);
+      mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%);
+      animation: aurora 60s linear infinite;
+    }
+    .aurora-el::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(100deg, #fff 0%, #fff 7%, transparent 10%, transparent 12%, #fff 16%),
+        repeating-linear-gradient(100deg, #3b82f6 10%, #a5b4fc 15%, #93c5fd 20%, #ddd6fe 25%, #60a5fa 30%);
+      background-size: 200%, 100%;
+      background-attachment: fixed;
+      mix-blend-mode: difference;
+      animation: aurora 60s linear infinite;
+    }
+    @keyframes aurora {
+      from { background-position: 50% 50%, 50% 50%; }
+      to   { background-position: 350% 50%, 350% 50%; }
+    }
+    /* hero content above canvas */
+    .hero h1, .hero-lede, .hero-ctas, .hero .eyebrow {
+      position: relative;
+      z-index: 2;
+    }
     .hero .eyebrow { margin-bottom: 32px; }
     .hero h1 {
       font-size: clamp(60px, 9vw, 132px);
@@ -131,23 +174,23 @@
     .timeline-steps {
       display: flex;
       flex-direction: column;
-      gap: 100px;
+      gap: 80px;
     }
     .timeline-step {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 56px;
+      align-items: start;
     }
-    .timeline-step .copy .eyebrow { margin-bottom: 18px; }
+    .timeline-step .copy .eyebrow { margin-bottom: 14px; }
     .timeline-step .copy h3 {
-      font-size: clamp(32px, 3.4vw, 48px);
-      margin-bottom: 18px;
+      font-size: clamp(28px, 3.4vw, 44px);
+      margin-bottom: 14px;
     }
-    .timeline-step .copy p { color: var(--mute); max-width: 50ch; }
+    .timeline-step .copy p { color: var(--mute); max-width: 50ch; margin: 0; }
     .timeline-step .visual {
       aspect-ratio: 4 / 3;
-      border-radius: 14px;
+      border-radius: 4px;
       background: var(--paper-2);
       border: 1px solid var(--rule-2);
       position: relative;
@@ -158,11 +201,11 @@
     /* mock cards */
     .mock {
       position: absolute;
-      inset: 24px;
-      border-radius: 10px;
+      inset: 0;
+      border-radius: 0;
       background: var(--paper-2);
-      border: 1px solid var(--rule-2);
-      padding: 18px;
+      border: none;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -196,7 +239,7 @@
       font-family: var(--font-mono);
       font-size: 11px;
       color: var(--mute);
-      padding: 8px 0;
+      padding: 5px 0;
     }
     .mock-row .pill {
       padding: 2px 8px;
@@ -211,8 +254,8 @@
     .mock-row .pill.gold { color: var(--mute-2); border-color: oklch(0.62 0 0 / 0.4); }
     .mock-row .pill.star { color: var(--accent); border-color: oklch(0.62 0 0 / 0.4); }
     .mock-row .agent-tag { color: var(--ink); }
-    .mock-row .grow { flex: 1; }
-    .mock-row .meta { color: var(--mute-2); font-size: 10px; }
+    .mock-row .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .mock-row .meta { color: var(--mute-2); font-size: 10px; white-space: nowrap; flex-shrink: 0; }
 
     /* value */
     .value-block {
@@ -245,6 +288,13 @@
     .cta h2 { margin-bottom: 24px; }
     .cta p { color: var(--mute); margin-bottom: 32px; }
     .cta .btn-row { display: inline-flex; gap: 14px; }
+
+    /* hero Astra accent */
+    .hero-astra {
+      font-style: italic;
+      color: var(--accent);
+      font-weight: 300;
+    }
 
     @keyframes blink { 50% { opacity: 0; } }
 
@@ -279,7 +329,7 @@
   </div>
 
   <nav class="nav-v2">
-    <a href="index.html" class="brand"><img src="brand_assets/logo_White.png" alt="Astra" style="height:38px;width:auto;mix-blend-mode:multiply;">Astra</a>
+    <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:40px;width:auto;mix-blend-mode:multiply;"></a>
     <div class="links">
       <a href="index.html" class="active">Overview</a>
       <a href="agents.html">Agents</a>
@@ -292,7 +342,8 @@
 
   <!-- ============================== HERO ============================== -->
   <section class="hero" data-screen-label="Hero">
-    <h1 class="r" style="--d:1">You bring the idea.<br />Astra does the rest.</h1>
+    <div id="hero-aurora" aria-hidden="true"><div class="aurora-el"></div></div>
+    <h1 class="r" style="--d:1">You bring the idea.<br /><span class="hero-astra">Astra</span> does the rest.</h1>
     <p class="hero-lede r" style="--d:2">
       An AI founding team for first-time founders. <strong>Eight autonomous agents</strong> that file your entity, build your product, validate your market, and fill your pipeline — <strong>seventy-two hours</strong> from a text box to a live company.
     </p>
@@ -424,7 +475,7 @@
                 <div style="font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.05em;">A collaborator network for independent musicians — matched by what you actually play, not what you call yourself.</div>
                 <div style="display:flex; gap: 8px; margin-top: auto;">
                   <div style="flex:1; padding: 8px; border:1px solid var(--rule-2); border-radius: 6px; font-family: var(--font-mono); font-size: 10px; color: var(--mute-2);">you@studio.com</div>
-                  <div style="padding: 8px 14px; background: var(--ink); color: var(--ink); border-radius: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;">Get in</div>
+                  <div style="padding: 8px 14px; background: var(--ink); color: var(--paper); border-radius: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;">Get in</div>
                 </div>
               </div>
             </div>
@@ -481,7 +532,7 @@
       <div class="value-block">
         <div class="eyebrow-v2 r" style="--d:0; justify-content: center;">The math</div>
         <p class="price-line r" style="--d:1">
-          A lawyer, a research firm, a designer, a marketing agency, and a freelance engineer for one month is roughly <span class="strike">$7,300</span>.
+          A current dev team for one month is roughly <span class="strike">$7,300</span>.
         </p>
         <p class="price-line r" style="--d:2">
           Astra for a <em style="font-style:italic; color:var(--mute);">new founder</em>: setup + first month from <span class="accent">$340</span>.<br />
@@ -598,6 +649,7 @@
       tick(); setInterval(tick,1000);
     })();
   </script>
+
 
 </body>
 </html>
