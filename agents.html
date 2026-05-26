@@ -18,7 +18,7 @@
       font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
     }
     .announce-bar .ab-label { opacity: 0.55; }
-    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; }
+    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; font-size: 14px; }
     .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
     .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
     .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
@@ -41,7 +41,8 @@
       text-align: center;
     }
     
-    .page-hero .wrap { max-width: 900px; margin: 0 auto; }
+    .page-hero .wrap, .page-hero .wrap-v2 { max-width: 900px; margin: 0 auto; }
+    .page-hero .lede-v2 { margin: 0 auto; text-align: center; }
     .page-hero h1 {
       font-size: clamp(56px, 7.5vw, 110px);
       line-height: 1.04;
@@ -71,7 +72,7 @@
       border: 1px solid var(--rule);
     }
     .agent-card {
-      background: var(--ink);
+      background: var(--paper);
       padding: 40px 36px 32px;
       min-height: 380px;
       display: flex;
@@ -82,7 +83,7 @@
       cursor: default;
     }
     .agent-card::after { display: none; }
-    .agent-card:hover { background: var(--ink-soft, #2A2823); }
+    .agent-card:hover { background: var(--paper-2); }
     .agent-card:hover::after { opacity: 1; }
     .agent-card-head {
       display: flex;
@@ -95,8 +96,7 @@
       width: 48px;
       height: 48px;
       flex-shrink: 0;
-      color: var(--accent);
-      
+      color: var(--ink-soft);
       transition: transform 0.4s ease, filter 0.4s ease;
     }
     .agent-card:hover .glyph {
@@ -117,7 +117,7 @@
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--mute-2);
     }
     .agent-card h3 {
       font-size: clamp(28px, 2.6vw, 36px);
@@ -275,7 +275,7 @@
   </div>
 
   <nav class="nav-v2">
-    <a href="index.html" class="brand"><div class="brand-mark">A</div>Astra</a>
+    <a href="index.html" class="brand"><img src="brand_assets/logo_White.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;">Astra</a>
     <div class="links">
       <a href="index.html">Overview</a>
       <a href="agents.html" class="active">Agents</a>
