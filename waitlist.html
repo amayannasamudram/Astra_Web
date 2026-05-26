@@ -6,28 +6,9 @@
   <title>Astra — Waitlist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* announce-bar v2 */
-    .announce-bar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
-      height: 36px; background: var(--ink); color: var(--paper);
-      display: flex; align-items: center; justify-content: center; gap: 16px;
-      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
-    }
-    .announce-bar .ab-label { opacity: 0.55; }
-    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; font-size: 18px; }
-    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
-    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
-    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
-    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
-    .nav-v2 { top: 36px !important; }
-    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
-    .links .hide-sm { }
-    @media (max-width: 800px) { .links .hide-sm { display: none; } }
-  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <link rel="prefetch" href="index.html">
   <link rel="prefetch" href="agents.html">
@@ -37,7 +18,7 @@
     .wait-wrap {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 160px var(--gutter) 80px;
+      padding: 160px 32px 80px;
       display: grid;
       grid-template-columns: 1.05fr 1fr;
       gap: 90px;
@@ -48,7 +29,7 @@
     }
 
     /* ============ LEFT — atmosphere + counter ============ */
-    .wait-left .eyebrow, .wait-left .eyebrow-v2 { margin-bottom: 28px; }
+    .wait-left .eyebrow { margin-bottom: 28px; }
     .wait-left h1 {
       font-size: clamp(56px, 7.5vw, 110px);
       line-height: 0.98;
@@ -61,22 +42,22 @@
     .counter {
       margin-top: 56px;
       padding: 32px 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+      border-top: 1px solid var(--hair);
+      border-bottom: 1px solid var(--hair);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
     .counter-cell .k {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
       margin-bottom: 12px;
     }
     .counter-cell .v {
-      font-family: var(--font-serif);
+      font-family: 'Inter Tight', system-ui, sans-serif;
       font-size: 52px;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -84,7 +65,7 @@
       align-items: baseline;
       gap: 6px;
     }
-    .counter-cell .v .of { color: var(--mute-2); font-size: 0.4em; letter-spacing: 0; }
+    .counter-cell .v .of { color: var(--mute); font-size: 0.4em; letter-spacing: 0; }
     .counter-cell .v.live { color: var(--accent); }
     .counter-cell .v.live::before {
       content: "●";
@@ -98,7 +79,7 @@
       margin-top: 24px;
       height: 1px;
       width: 100%;
-      background: var(--rule);
+      background: var(--hair);
       position: relative;
       overflow: hidden;
     }
@@ -130,11 +111,11 @@
       gap: 14px;
     }
     .recent h5 {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
       margin: 0 0 4px;
       font-weight: 400;
     }
@@ -143,8 +124,8 @@
       gap: 14px;
       align-items: center;
       padding: 10px 0;
-      border-bottom: 1px solid var(--rule);
-      font-family: var(--font-mono);
+      border-bottom: 1px solid var(--hair);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       color: var(--mute);
       letter-spacing: 0.02em;
@@ -155,22 +136,22 @@
       text-align: center;
     }
     .recent-item .grow { flex: 1; }
-    .recent-item .when { color: var(--mute-2); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+    .recent-item .when { color: var(--mute); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
 
     /* ============ RIGHT — form card ============ */
     .form-card {
       position: relative;
       padding: 48px 44px;
       border-radius: 20px;
-      background: var(--paper-2);
-      border: 1px solid var(--rule);
+      background: var(--bg);
+      border: 1px solid var(--hair);
       box-shadow: 0 4px 32px rgba(0,0,0,0.07);
       overflow: hidden;
     }
     .form-card::before { display: none; }
     .form-card .tag {
       position: relative;
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
@@ -205,33 +186,33 @@
     .form { position: relative; display: flex; flex-direction: column; gap: 22px; }
     .field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
     .field label {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
     }
     .field label .opt {
       font-style: italic;
       letter-spacing: 0.04em;
       text-transform: none;
-      color: var(--mute-2);
+      color: var(--mute);
       margin-left: 6px;
     }
     .field input, .field textarea, .field select {
       width: 100%;
       max-width: 100%;
-      background: rgba(0,0,0,0.06);
-      border: 1px solid var(--rule-2);
+      background: rgba(0,0,0,0.04);
+      border: 1px solid var(--hair-2);
       color: var(--ink);
       padding: 14px 16px;
       border-radius: 10px;
-      font-family: var(--font-sans);
+      font-family: 'Inter Tight', system-ui, sans-serif;
       font-size: 15px;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .field input::placeholder, .field textarea::placeholder { color: var(--mute-2); }
+    .field input::placeholder, .field textarea::placeholder { color: var(--mute); }
     .field input:focus, .field textarea:focus, .field select:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 3px oklch(0.62 0 0 / 0.15);
@@ -239,7 +220,7 @@
     .field textarea {
       resize: vertical;
       min-height: 120px;
-      font-family: var(--font-sans);
+      font-family: 'Inter Tight', system-ui, sans-serif;
       line-height: 1.5;
     }
     .field-row {
@@ -257,9 +238,9 @@
     .chip {
       padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid var(--rule-2);
+      border: 1px solid var(--hair-2);
       background: rgba(246,246,248,0.02);
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -267,9 +248,9 @@
       cursor: pointer;
       transition: all 0.2s;
     }
-    .chip:hover { color: var(--ink); border-color: var(--rule-2); background: rgba(246,246,248,0.04); }
+    .chip:hover { color: var(--ink); border-color: var(--hair-2); background: rgba(246,246,248,0.04); }
     .chip.on {
-      color: var(--paper);
+      color: var(--bg);
       background: var(--ink);
       border-color: var(--ink);
     }
@@ -282,10 +263,10 @@
       justify-content: space-between;
     }
     .submit-row .legal {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.06em;
-      color: var(--mute-2);
+      color: var(--mute);
       max-width: 26ch;
       line-height: 1.4;
     }
@@ -321,8 +302,8 @@
       padding: 10px 16px;
       border-radius: 999px;
       background: rgba(246,246,248,0.04);
-      border: 1px solid var(--rule-2);
-      font-family: var(--font-mono);
+      border: 1px solid var(--hair-2);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -334,28 +315,28 @@
     .contact-alt {
       margin-top: 40px;
       padding-top: 32px;
-      border-top: 1px solid var(--rule);
+      border-top: 1px solid var(--hair);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
     }
     .contact-card {
       padding: 24px;
-      border: 1px solid var(--rule);
+      border: 1px solid var(--hair);
       border-radius: 14px;
       background: rgba(246,246,248,0.015);
     }
     .contact-card h6 {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
       margin: 0 0 8px;
       font-weight: 400;
     }
     .contact-card .v {
-      font-family: var(--font-serif);
+      font-family: 'Inter Tight', system-ui, sans-serif;
       font-size: 22px;
       letter-spacing: -0.005em;
       color: var(--ink);
@@ -377,32 +358,16 @@
 </head>
 <body>
 
-
-
-
-  <div class="announce-bar">
-    <span class="ab-label">Cohort One opens in</span>
-    <span class="ab-countdown">
-      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
-    </span>
-    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
-  </div>
-
-  <nav class="nav-v2">
-    <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:40px;width:auto;mix-blend-mode:multiply;"></a>
-    <div class="links">
-      <a href="index.html">Overview</a>
-      <a href="agents.html">Agents</a>
-      <a href="demo.html" class="hide-sm">Demo</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
+  <nav class="nav">
+    <div class="nav-inner wrap">
+      <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="agents.html" class="nav-link">Agents</a>
+        <a href="demo.html" class="nav-link">Demo</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="waitlist.html" class="nav-cta">Join waitlist →</a>
+      </div>
     </div>
   </nav>
 
@@ -410,12 +375,12 @@
 
     <!-- ============ LEFT ============ -->
     <div class="wait-left">
-      <div class="eyebrow-v2">Cohort One · Opening June 1st</div>
+      <div class="mono section-label" style="margin-bottom:28px;">Cohort One · Opening June 1st</div>
       <h1>Bring an idea.<br /><em>Get a company.</em></h1>
-      <p class="lede-v2">
+      <p class="lead">
         The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study.
       </p>
-      <p class="lede-v2" style="color: var(--mute-2);">
+      <p class="lead" style="color: var(--mute);">
         Cohort One launches June 1st. Accepted founders ship within seventy-two hours of kickoff.
       </p>
 
@@ -471,8 +436,8 @@
           <p class="legal">
             By applying you agree to occasional emails about the cohort. We never share your idea.
           </p>
-          <button type="submit" class="btn-v2">
-            Apply <span class="arrow">→</span>
+          <button type="submit" class="btn-primary">
+            Apply →
           </button>
         </div>
       </form>
@@ -489,43 +454,14 @@
     </div>
   </div>
 
-  <footer class="footer-v2">
-    <div class="grid">
-      <div>
-        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
+  <footer>
+    <div class="foot-inner wrap">
+      <span class="mono">© 2026 Astra Technologies Inc.</span>
+      <div style="display:flex;gap:24px;">
+        <a href="terms.html" class="mono" style="color:var(--mute)">Terms</a>
+        <a href="privacy.html" class="mono" style="color:var(--mute)">Privacy</a>
+        <a href="mailto:hello@astracreates.com" class="mono" style="color:var(--mute)">hello@astracreates.com</a>
       </div>
-      <div>
-        <h5>Product</h5>
-        <ul>
-          <li><a href="index.html">Overview</a></li>
-          <li><a href="agents.html">Agents</a></li>
-          <li><a href="demo.html">Demo</a></li>
-          <li><a href="index.html#how">How it works</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <ul>
-          <li><a href="waitlist.html">Waitlist</a></li>
-          <li><a href="waitlist.html">Contact</a></li>
-          <li><a href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="legal.html">Terms</a></li>
-          <li><a href="legal.html">Privacy</a></li>
-          <li><a href="legal.html">Disclosures</a></li>
-          <li><a href="legal.html">Cloud Service Agreement</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom">
-      <span>© 2026 Astra LLC</span>
-      <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
 
@@ -603,7 +539,7 @@
 
       } catch {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Apply <span class="arrow">→</span>';
+        submitBtn.innerHTML = 'Apply →';
         formSub.textContent = 'Something went wrong — please try again or email us directly.';
         formSub.style.color = 'oklch(0.65 0.18 20)';
       }
@@ -637,25 +573,17 @@
         if (unlocked) return;
         unlocked = true;
         submitBtn.disabled = false;
-        submitBtn.innerHTML = 'Apply <span class="arrow">→</span>';
+        submitBtn.innerHTML = 'Apply →';
         submitBtn.style.opacity = '';
         submitBtn.style.cursor = '';
         formTag.textContent = 'Application · 4 fields';
         formTitle.innerHTML = 'Type the idea.<br /><em style="color: var(--mute);">We\'ll take it from there.</em>';
         formSub.textContent = 'No business plan, no pitch deck. A few sentences in plain English is all we need to dispatch the agents.';
-        var bar = document.querySelector('.announce-bar');
-        if (bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
       }
 
       function tick(){
         var diff = target - new Date();
         if(diff <= 0){ unlock(); return; }
-        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
-            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
-        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
-        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
-        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
-        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
       }
       tick(); setInterval(tick,1000);
     })();

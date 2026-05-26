@@ -6,28 +6,9 @@
   <title>Astra — Your AI Founding Team</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* announce-bar v2 */
-    .announce-bar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
-      height: 36px; background: var(--ink); color: var(--paper);
-      display: flex; align-items: center; justify-content: center; gap: 16px;
-      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
-    }
-    .announce-bar .ab-label { opacity: 0.55; }
-    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; font-size: 18px; }
-    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
-    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
-    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
-    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
-    .nav-v2 { top: 36px !important; }
-    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
-    .links .hide-sm { }
-    @media (max-width: 800px) { .links .hide-sm { display: none; } }
-  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <link rel="prefetch" href="agents.html">
   <link rel="prefetch" href="demo.html">
@@ -38,59 +19,15 @@
     .hero {
       position: relative;
       min-height: 92vh;
-      padding: 150px var(--gutter) 80px;
+      padding: 150px 32px 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       z-index: 2;
-      overflow: hidden;
     }
-    /* ===== AURORA ===== */
-    #hero-aurora {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .aurora-el {
-      position: absolute;
-      inset: -10px;
-      opacity: 0.5;
-      will-change: background-position;
-      background-image:
-        repeating-linear-gradient(100deg, #fff 0%, #fff 7%, transparent 10%, transparent 12%, #fff 16%),
-        repeating-linear-gradient(100deg, #3b82f6 10%, #a5b4fc 15%, #93c5fd 20%, #ddd6fe 25%, #60a5fa 30%);
-      background-size: 300%, 200%;
-      background-position: 50% 50%, 50% 50%;
-      filter: blur(10px) invert(1);
-      -webkit-mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%);
-      mask-image: radial-gradient(ellipse at 100% 0%, black 10%, transparent 70%);
-      animation: aurora 60s linear infinite;
-    }
-    .aurora-el::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        repeating-linear-gradient(100deg, #fff 0%, #fff 7%, transparent 10%, transparent 12%, #fff 16%),
-        repeating-linear-gradient(100deg, #3b82f6 10%, #a5b4fc 15%, #93c5fd 20%, #ddd6fe 25%, #60a5fa 30%);
-      background-size: 200%, 100%;
-      background-attachment: fixed;
-      mix-blend-mode: difference;
-      animation: aurora 60s linear infinite;
-    }
-    @keyframes aurora {
-      from { background-position: 50% 50%, 50% 50%; }
-      to   { background-position: 350% 50%, 350% 50%; }
-    }
-    /* hero content above canvas */
-    .hero h1, .hero-lede, .hero-ctas, .hero .eyebrow {
-      position: relative;
-      z-index: 2;
-    }
+
     .hero .eyebrow { margin-bottom: 32px; }
     .hero h1 {
       font-size: clamp(60px, 9vw, 132px);
@@ -121,12 +58,12 @@
 
     /* ===== shared section ===== */
     .section {
-      padding: 100px var(--gutter);
+      padding: 100px 32px;
       position: relative;
     }
-    .section-tight { padding: 70px var(--gutter); }
+    .section-tight { padding: 70px 32px; }
     .section-inner {
-      max-width: var(--max);
+      max-width: 1280px;
       margin: 0 auto;
     }
     .section-head {
@@ -151,7 +88,7 @@
       position: sticky;
       top: 120px;
       padding-right: 28px;
-      border-right: 1px solid var(--rule);
+      border-right: 1px solid var(--hair);
     }
     .timeline-rail ol {
       list-style: none;
@@ -162,11 +99,11 @@
       gap: 14px;
     }
     .timeline-rail li {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
       transition: color 0.3s;
       cursor: pointer;
     }
@@ -191,11 +128,11 @@
     .timeline-step .visual {
       aspect-ratio: 4 / 3;
       border-radius: 4px;
-      background: var(--paper-2);
-      border: 1px solid var(--rule-2);
+      background: var(--bg);
+      border: 1px solid var(--hair-2);
       position: relative;
       overflow: hidden;
-      box-shadow: inset 0 0 0 1px var(--rule);
+      box-shadow: inset 0 0 0 1px var(--hair);
     }
 
     /* mock cards */
@@ -203,7 +140,7 @@
       position: absolute;
       inset: 0;
       border-radius: 0;
-      background: var(--paper-2);
+      background: var(--bg);
       border: none;
       padding: 20px;
       display: flex;
@@ -214,13 +151,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 9px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--hair);
     }
     .mock-head .live::before {
       content: "";
@@ -236,7 +173,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       color: var(--mute);
       padding: 5px 0;
@@ -245,33 +182,33 @@
       padding: 2px 8px;
       border-radius: 999px;
       background: rgba(246,246,248,0.04);
-      border: 1px solid var(--rule-2);
+      border: 1px solid var(--hair-2);
       font-size: 9px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--ink);
     }
-    .mock-row .pill.gold { color: var(--mute-2); border-color: oklch(0.62 0 0 / 0.4); }
+    .mock-row .pill.gold { color: var(--mute); border-color: oklch(0.62 0 0 / 0.4); }
     .mock-row .pill.star { color: var(--accent); border-color: oklch(0.62 0 0 / 0.4); }
     .mock-row .agent-tag { color: var(--ink); }
     .mock-row .grow { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .mock-row .meta { color: var(--mute-2); font-size: 10px; white-space: nowrap; flex-shrink: 0; }
+    .mock-row .meta { color: var(--mute); font-size: 10px; white-space: nowrap; flex-shrink: 0; }
 
     /* value */
     .value-block {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
       text-align: center;
     }
     .value-block .price-line {
-      font-family: var(--font-serif);
+      font-family: 'Inter Tight', system-ui, sans-serif;
       font-size: clamp(36px, 4.6vw, 64px);
       line-height: 1.15;
       letter-spacing: -0.015em;
       margin: 28px 0;
     }
     .value-block .price-line .strike {
-      color: var(--mute-2);
+      color: var(--mute);
       text-decoration: line-through;
       text-decoration-color: oklch(0.58 0 0 / 0.6);
       font-style: italic;
@@ -280,11 +217,11 @@
 
     /* CTA */
     .cta {
-      padding: 110px var(--gutter);
+      padding: 110px 32px;
       text-align: center;
       position: relative;
     }
-    .cta-inner { max-width: 800px; margin: 0 auto; }
+    .cta-inner { max-width: 1000px; margin: 0 auto; }
     .cta h2 { margin-bottom: 24px; }
     .cta p { color: var(--mute); margin-bottom: 32px; }
     .cta .btn-row { display: inline-flex; gap: 14px; }
@@ -298,11 +235,11 @@
 
     @keyframes blink { 50% { opacity: 0; } }
 
-    @media (max-width: 900px) {
-      .section { padding: 70px var(--gutter); }
+    @media (max-width: 1100px) {
+      .section { padding: 70px 32px; }
       .section-head { grid-template-columns: 1fr; gap: 24px; margin-bottom: 50px; }
       .timeline { grid-template-columns: 1fr; gap: 30px; }
-      .timeline-rail { position: static; padding-right: 0; border-right: 0; border-bottom: 1px solid var(--rule); padding-bottom: 18px; }
+      .timeline-rail { position: static; padding-right: 0; border-right: 0; border-bottom: 1px solid var(--hair); padding-bottom: 18px; }
       .timeline-rail ol { flex-direction: row; flex-wrap: wrap; gap: 14px 22px; }
       .timeline-step { grid-template-columns: 1fr; gap: 24px; }
       .timeline-steps { gap: 70px; }
@@ -311,63 +248,44 @@
 </head>
 <body>
 
-
-
-
-  <div class="announce-bar">
-    <span class="ab-label">Cohort One opens in</span>
-    <span class="ab-countdown">
-      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
-    </span>
-    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
-  </div>
-
-  <nav class="nav-v2">
-    <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:40px;width:auto;mix-blend-mode:multiply;"></a>
-    <div class="links">
-      <a href="index.html" class="active">Overview</a>
-      <a href="agents.html">Agents</a>
-      <a href="demo.html" class="hide-sm">Demo</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
+  <nav class="nav">
+    <div class="nav-inner wrap">
+      <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Overview</a>
+        <a href="agents.html" class="nav-link">Agents</a>
+        <a href="demo.html" class="nav-link">Demo</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="waitlist.html" class="nav-cta">Join waitlist →</a>
+      </div>
     </div>
   </nav>
 
   <!-- ============================== HERO ============================== -->
   <section class="hero" data-screen-label="Hero">
-    <div id="hero-aurora" aria-hidden="true"><div class="aurora-el"></div></div>
-    <h1 class="r" style="--d:1">You bring the idea.<br /><span class="hero-astra">Astra</span> does the rest.</h1>
-    <p class="hero-lede r" style="--d:2">
+    <h1>You bring the idea.<br /><span class="hero-astra">Astra</span> does the rest.</h1>
+    <p class="hero-lede">
       An AI founding team for first-time founders. <strong>Eight autonomous agents</strong> that file your entity, build your product, validate your market, and fill your pipeline — <strong>seventy-two hours</strong> from a text box to a live company.
     </p>
-    <div class="hero-ctas r" style="--d:3">
-      <a href="waitlist.html" class="btn-v2">Join the waitlist <span class="arrow">→</span></a>
-      <a href="agents.html" class="btn-v2 ghost">Meet the agents</a>
+    <div class="hero-ctas">
+      <a href="waitlist.html" class="btn-primary">Join the waitlist →</a>
+      <a href="agents.html" class="btn-secondary">Meet the agents</a>
     </div>
   </section>
-
-  <div class="rule-v2"></div>
 
   <!-- ============================== PROBLEM ============================== -->
   <section class="section" data-screen-label="Problem">
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="eyebrow-v2 r" style="--d:0">The gap</div>
-          <h2 class="r" style="--d:1">Most ideas<br /><em class="display-italic">never ship.</em></h2>
+          <div class="mono section-label">The gap</div>
+          <h2>Most ideas<br /><em>never ship.</em></h2>
         </div>
         <div>
-          <p class="lede-v2 r" style="--d:2">
+          <p class="lead">
             Not because they were bad. Building a company requires eight different skillsets at once — research, web, marketing, technical, legal, ops, sales, and design. Hiring all six costs $300,000+ a year. A wealthy founder gets help for free. A first-generation founder gets a blank Google Doc.
           </p>
-          <p class="lede-v2 r" style="--d:3; margin-top:18px;">
+          <p class="lead" style="margin-top:18px;">
             Astra closes that gap entirely.
           </p>
         </div>
@@ -375,18 +293,16 @@
     </div>
   </section>
 
-  <div class="rule-v2"></div>
-
   <!-- ============================== HOW IT WORKS ============================== -->
   <section class="section" id="how" data-screen-label="How it works">
     <div class="section-inner">
       <div class="section-head">
         <div>
-          <div class="eyebrow-v2 r" style="--d:0">The flow</div>
-          <h2 class="r" style="--d:1">One text box.<br /><em class="display-italic">Three days.</em></h2>
+          <div class="mono section-label">The flow</div>
+          <h2>One text box.<br /><em>Three days.</em></h2>
         </div>
         <div>
-          <p class="lede-v2 r" style="--d:2">
+          <p class="lead">
             Onboarding is a single conversation. You describe the idea in plain English. Astra extracts the context, distributes it across eight agents, and the company assembles itself.
           </p>
         </div>
@@ -408,17 +324,17 @@
 
           <article class="timeline-step" data-step="0">
             <div class="copy">
-              <div class="eyebrow-v2 r" style="--d:0">5 minutes · founder</div>
-              <h3 class="r" style="--d:1">Describe the idea.</h3>
-              <p class="r" style="--d:2">A text box. No form, no template, no structured questionnaire. Astra parses your description and distributes context to all eight agents simultaneously.</p>
+              <div class="mono section-label">5 minutes · founder</div>
+              <h3>Describe the idea.</h3>
+              <p>A text box. No form, no template, no structured questionnaire. Astra parses your description and distributes context to all eight agents simultaneously.</p>
             </div>
-            <div class="visual r" style="--d:1">
+            <div class="visual">
               <div class="mock">
                 <div class="mock-head"><span>New Company · Untitled</span><span class="live">DRAFT</span></div>
-                <div style="font-family: var(--font-serif); font-size: 22px; line-height: 1.35; color: var(--ink); padding: 8px 0;">
+                <div style="font-family: 'Inter Tight', system-ui, sans-serif; font-size: 22px; line-height: 1.35; color: var(--ink); padding: 8px 0;">
                   <span style="color: var(--mute);">I want to build a tool that helps independent musicians</span> find collaborators in their city — by sound, not just by genre.<span style="display:inline-block; width:8px; height: 1em; background: var(--accent); margin-left: 4px; vertical-align: -3px; animation: blink 1s steps(2) infinite;"></span>
                 </div>
-                <div style="margin-top:auto; display:flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--mute-2); letter-spacing: 0.18em; text-transform: uppercase;">
+                <div style="margin-top:auto; display:flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); letter-spacing: 0.18em; text-transform: uppercase;">
                   <span>249 / ∞</span><span>Press ⌘↵ to dispatch agents</span>
                 </div>
               </div>
@@ -427,11 +343,11 @@
 
           <article class="timeline-step" data-step="1">
             <div class="copy">
-              <div class="eyebrow-v2 r" style="--d:0">2 hours · research agent</div>
-              <h3 class="r" style="--d:1">Validate the market.</h3>
-              <p class="r" style="--d:2">Total addressable market, competitor landscape, customer personas, pricing benchmarks, and an honest go/no-go recommendation. Updated weekly as the market shifts.</p>
+              <div class="mono section-label">2 hours · research agent</div>
+              <h3>Validate the market.</h3>
+              <p>Total addressable market, competitor landscape, customer personas, pricing benchmarks, and an honest go/no-go recommendation. Updated weekly as the market shifts.</p>
             </div>
-            <div class="visual r" style="--d:1">
+            <div class="visual">
               <div class="mock">
                 <div class="mock-head"><span>Research Agent · Brief</span><span class="live">LIVE</span></div>
                 <div class="mock-row"><span class="pill star">TAM</span><span class="grow agent-tag">$2.4B addressable</span><span class="meta">+12% YoY</span></div>
@@ -439,18 +355,18 @@
                 <div class="mock-row"><span class="pill gold">RIVAL</span><span class="grow agent-tag">BandLab, Vampr, Splice</span><span class="meta">3 direct</span></div>
                 <div class="mock-row"><span class="pill gold">RIVAL</span><span class="grow agent-tag">none with audio-fingerprint match</span><span class="meta">gap</span></div>
                 <div class="mock-row"><span class="pill star">CPL</span><span class="grow agent-tag">$3.20 estimated</span><span class="meta">Meta, IG</span></div>
-                <div class="mock-row" style="border-top:1px solid var(--rule); margin-top: 6px; padding-top: 12px;"><span style="color: var(--accent);">●</span><span class="grow" style="color: var(--ink);">Recommendation: <em style="font-family: var(--font-serif); font-style: italic;">proceed.</em></span></div>
+                <div class="mock-row" style="border-top:1px solid var(--hair); margin-top: 6px; padding-top: 12px;"><span style="color: var(--accent);">●</span><span class="grow" style="color: var(--ink);">Recommendation: <em style="font-family: 'Inter Tight', system-ui, sans-serif; font-style: italic;">proceed.</em></span></div>
               </div>
             </div>
           </article>
 
           <article class="timeline-step" data-step="2">
             <div class="copy">
-              <div class="eyebrow-v2 r" style="--d:0">24 hours · legal agent</div>
-              <h3 class="r" style="--d:1">File the company.</h3>
-              <p class="r" style="--d:2">Delaware LLC filed and registered. EIN pulled from IRS.gov. Founder agreement, NDA, and IP assignment drafted in your specific context. Compliance deadlines tracked thereafter.</p>
+              <div class="mono section-label">24 hours · legal agent</div>
+              <h3>File the company.</h3>
+              <p>Delaware LLC filed and registered. EIN pulled from IRS.gov. Founder agreement, NDA, and IP assignment drafted in your specific context. Compliance deadlines tracked thereafter.</p>
             </div>
-            <div class="visual r" style="--d:1">
+            <div class="visual">
               <div class="mock">
                 <div class="mock-head"><span>Legal Agent · Approval Queue</span><span class="live">2 PENDING</span></div>
                 <div class="mock-row"><span class="pill">FILE</span><span class="grow agent-tag">Delaware LLC formation</span><span class="meta">approved 14:02</span></div>
@@ -464,18 +380,18 @@
 
           <article class="timeline-step" data-step="3">
             <div class="copy">
-              <div class="eyebrow-v2 r" style="--d:0">48 hours · web agent</div>
-              <h3 class="r" style="--d:1">Launch the site.</h3>
-              <p class="r" style="--d:2">Headline, value prop, feature highlights, waitlist form, pricing preview — all generated in your brand voice and deployed live to a real domain. The company exists on the internet before day two ends.</p>
+              <div class="mono section-label">48 hours · web agent</div>
+              <h3>Launch the site.</h3>
+              <p>Headline, value prop, feature highlights, waitlist form, pricing preview — all generated in your brand voice and deployed live to a real domain. The company exists on the internet before day two ends.</p>
             </div>
-            <div class="visual r" style="--d:1">
+            <div class="visual">
               <div class="mock">
                 <div class="mock-head"><span>resonant.fm</span><span class="live">DEPLOYED</span></div>
-                <div style="font-family: var(--font-serif); font-size: 28px; line-height: 1.1; color: var(--ink); padding: 4px 0;">Find your sound,<br /><em style="color: var(--mute);">in your city.</em></div>
-                <div style="font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.05em;">A collaborator network for independent musicians — matched by what you actually play, not what you call yourself.</div>
+                <div style="font-family: 'Inter Tight', system-ui, sans-serif; font-size: 28px; line-height: 1.1; color: var(--ink); padding: 4px 0;">Find your sound,<br /><em style="color: var(--mute);">in your city.</em></div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.05em;">A collaborator network for independent musicians — matched by what you actually play, not what you call yourself.</div>
                 <div style="display:flex; gap: 8px; margin-top: auto;">
-                  <div style="flex:1; padding: 8px; border:1px solid var(--rule-2); border-radius: 6px; font-family: var(--font-mono); font-size: 10px; color: var(--mute-2);">you@studio.com</div>
-                  <div style="padding: 8px 14px; background: var(--ink); color: var(--paper); border-radius: 6px; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;">Get in</div>
+                  <div style="flex:1; padding: 8px; border:1px solid var(--hair-2); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute);">you@studio.com</div>
+                  <div style="padding: 8px 14px; background: var(--ink); color: var(--bg); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;">Get in</div>
                 </div>
               </div>
             </div>
@@ -483,11 +399,11 @@
 
           <article class="timeline-step" data-step="4">
             <div class="copy">
-              <div class="eyebrow-v2 r" style="--d:0">ongoing · marketing agent</div>
-              <h3 class="r" style="--d:1">Acquire customers.</h3>
-              <p class="r" style="--d:2">Cold email sequences to the personas Research identified. Google and Meta ad campaigns inside your budget. Social posts across platforms. Adjusts autonomously on what converts.</p>
+              <div class="mono section-label">ongoing · marketing agent</div>
+              <h3>Acquire customers.</h3>
+              <p>Cold email sequences to the personas Research identified. Google and Meta ad campaigns inside your budget. Social posts across platforms. Adjusts autonomously on what converts.</p>
             </div>
-            <div class="visual r" style="--d:1">
+            <div class="visual">
               <div class="mock">
                 <div class="mock-head"><span>Marketing Agent · 7-day window</span><span class="live">RUNNING</span></div>
                 <div class="mock-row"><span class="pill star">SENT</span><span class="grow agent-tag">Cold sequence · cohort A</span><span class="meta">487 / 500</span></div>
@@ -501,20 +417,20 @@
 
           <article class="timeline-step" data-step="5">
             <div class="copy">
-              <div class="eyebrow-v2 r" style="--d:0">always · ops agent</div>
-              <h3 class="r" style="--d:1">Run everything else.</h3>
-              <p class="r" style="--d:2">Your task list, the approval queue, the weekly digest, every routine email response, and a persistent memory of every decision your company has ever made.</p>
+              <div class="mono section-label">always · ops agent</div>
+              <h3>Run everything else.</h3>
+              <p>Your task list, the approval queue, the weekly digest, every routine email response, and a persistent memory of every decision your company has ever made.</p>
             </div>
-            <div class="visual r" style="--d:1">
+            <div class="visual">
               <div class="mock">
                 <div class="mock-head"><span>Weekly Digest · Week 06</span><span class="live">DRAFT</span></div>
-                <div style="font-family: var(--font-serif); font-size: 18px; line-height: 1.35; color: var(--ink); padding: 4px 0;">
+                <div style="font-family: 'Inter Tight', system-ui, sans-serif; font-size: 18px; line-height: 1.35; color: var(--ink); padding: 4px 0;">
                   This week the company hit <em style="color: var(--accent);">214 signups</em> — a 38% jump on last week's pace.
                 </div>
                 <div class="mock-row"><span class="pill">DECIDED</span><span class="grow agent-tag">Hold pricing at $9 / mo</span></div>
                 <div class="mock-row"><span class="pill">SHIPPED</span><span class="grow agent-tag">Audio-fingerprint v0 onboarding</span></div>
                 <div class="mock-row"><span class="pill gold">DECIDE</span><span class="grow agent-tag">Open up Berlin or wait?</span></div>
-                <div style="margin-top: auto; font-family: var(--font-mono); font-size: 10px; color: var(--mute-2); letter-spacing: 0.18em; text-transform: uppercase;">3 items need you · 0 are urgent</div>
+                <div style="margin-top: auto; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--mute); letter-spacing: 0.18em; text-transform: uppercase;">3 items need you · 0 are urgent</div>
               </div>
             </div>
           </article>
@@ -524,98 +440,55 @@
     </div>
   </section>
 
-  <div class="rule-v2"></div>
-
   <!-- ============================== VALUE ============================== -->
   <section class="section" data-screen-label="Value">
     <div class="section-inner">
       <div class="value-block">
-        <div class="eyebrow-v2 r" style="--d:0; justify-content: center;">The math</div>
-        <p class="price-line r" style="--d:1">
+        <div class="mono section-label" style="display:flex; justify-content: center;">The math</div>
+        <p class="price-line">
           A current dev team for one month is roughly <span class="strike">$7,300</span>.
         </p>
-        <p class="price-line r" style="--d:2">
+        <p class="price-line">
           Astra for a <em style="font-style:italic; color:var(--mute);">new founder</em>: setup + first month from <span class="accent">$340</span>.<br />
           Already running? Setup + first month from <span class="accent">$85</span>.
         </p>
-        <p class="lede-v2 r" style="--d:3; margin: 24px auto 0; text-align: center;">
+        <p class="lead" style="margin: 24px auto 0; text-align: center;">
           Whether you're starting from scratch or already operating — there's a plan for where you are.
         </p>
-        <div class="r" style="--d:4; margin-top: 32px; display: flex; justify-content: center;">
-          <a href="pricing.html" class="btn-v2 ghost" style="font-size: 13px;">See plans for your stage <span class="arrow">→</span></a>
+        <div style="margin-top: 32px; display: flex; justify-content: center;">
+          <a href="pricing.html" class="btn-secondary" style="font-size: 13px;">See plans for your stage →</a>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="rule-v2"></div>
-
   <!-- ============================== CTA ============================== -->
   <section class="cta" data-screen-label="CTA">
     <div class="cta-inner">
-      <div class="eyebrow-v2 r" style="--d:0; justify-content: center;">Cohort one · Opening June 1st</div>
-      <h2 class="r" style="--d:1; margin-top: 22px;">You bring the idea.<br /><em class="display-italic">Astra handles everything else.</em></h2>
-      <p class="lede-v2 r" style="--d:2; margin: 28px auto 0;">The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open June 1st.</p>
-      <div class="btn-row r" style="--d:3; margin-top: 36px;">
-        <a href="waitlist.html" class="btn-v2">Join the waitlist <span class="arrow">→</span></a>
-        <a href="pricing.html" class="btn-v2 ghost">See pricing</a>
+      <div class="mono section-label" style="display:flex; justify-content: center; margin-bottom:22px;">Cohort one · Opening June 1st</div>
+      <h2>You bring the idea.<br /><em>Astra handles everything else.</em></h2>
+      <p class="lead" style="margin: 28px auto 0;">The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open June 1st.</p>
+      <div class="btn-row" style="margin-top: 36px;">
+        <a href="waitlist.html" class="btn-primary">Join the waitlist →</a>
+        <a href="pricing.html" class="btn-secondary">See pricing</a>
       </div>
     </div>
   </section>
 
   <!-- ============================== FOOTER ============================== -->
-  <footer class="footer-v2">
-    <div class="grid">
-      <div>
-        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
+  <footer>
+    <div class="foot-inner wrap">
+      <span class="mono">© 2026 Astra Technologies Inc.</span>
+      <div style="display:flex;gap:24px;">
+        <a href="terms.html" class="mono" style="color:var(--mute)">Terms</a>
+        <a href="privacy.html" class="mono" style="color:var(--mute)">Privacy</a>
+        <a href="mailto:hello@astracreates.com" class="mono" style="color:var(--mute)">hello@astracreates.com</a>
       </div>
-      <div>
-        <h5>Product</h5>
-        <ul>
-          <li><a href="index.html">Overview</a></li>
-          <li><a href="agents.html">Agents</a></li>
-          <li><a href="demo.html">Demo</a></li>
-          <li><a href="index.html#how">How it works</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <ul>
-          <li><a href="waitlist.html">Waitlist</a></li>
-          <li><a href="waitlist.html">Contact</a></li>
-          <li><a href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="legal.html">Terms</a></li>
-          <li><a href="legal.html">Privacy</a></li>
-          <li><a href="legal.html">Disclosures</a></li>
-          <li><a href="legal.html">Cloud Service Agreement</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom">
-      <span>© 2026 Astra LLC</span>
-      <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
 
 
   <script>
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          
-        }
-      });
-    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.r').forEach(el => io.observe(el));
-
     // timeline rail highlighting
     const rail = document.querySelectorAll('#timelineRail li');
     const steps = document.querySelectorAll('.timeline-step');
@@ -629,27 +502,6 @@
     }, { rootMargin: '-40% 0px -40% 0px' });
     steps.forEach(s => stepIO.observe(s));
   </script>
-  <script>
-    (function(){
-      var target = new Date('2026-06-01T00:00:00');
-      function tick(){
-        var diff = target - new Date();
-        if(diff <= 0){
-          var bar = document.querySelector('.announce-bar');
-          if(bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
-          return;
-        }
-        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
-            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
-        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
-        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
-        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
-        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
-      }
-      tick(); setInterval(tick,1000);
-    })();
-  </script>
-
 
 </body>
 </html>

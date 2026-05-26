@@ -6,34 +6,15 @@
   <title>Astra — Terms of Service</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* announce-bar v2 */
-    .announce-bar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
-      height: 36px; background: var(--ink); color: var(--paper);
-      display: flex; align-items: center; justify-content: center; gap: 16px;
-      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
-    }
-    .announce-bar .ab-label { opacity: 0.55; }
-    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; font-size: 18px; }
-    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
-    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
-    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
-    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
-    .nav-v2 { top: 36px !important; }
-    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
-    .links .hide-sm { }
-    @media (max-width: 800px) { .links .hide-sm { display: none; } }
-  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <style>
     .legal-wrap {
       max-width: 780px;
       margin: 0 auto;
-      padding: 140px var(--gutter) 100px;
+      padding: 140px 32px 100px;
       position: relative;
       z-index: 2;
     }
@@ -43,7 +24,7 @@
       border-radius: 10px;
       padding: 18px 22px;
       margin-bottom: 48px;
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.04em;
       line-height: 1.6;
@@ -52,17 +33,17 @@
     .draft-banner strong { display: block; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 6px; color: rgb(245,180,50); }
     .legal-wrap h1 { font-size: clamp(36px,5vw,56px); letter-spacing:-0.02em; margin-bottom:8px; }
     .legal-meta {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
       margin-bottom: 48px;
       padding-bottom: 24px;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: 1px solid var(--hair);
     }
     .legal-wrap h2 {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -71,7 +52,7 @@
       font-weight: 500;
     }
     .legal-wrap h3 {
-      font-family: var(--font-sans);
+      font-family: 'Inter Tight', system-ui, sans-serif;
       font-size: 16px;
       font-weight: 600;
       color: var(--ink);
@@ -93,40 +74,26 @@
       color: var(--ink);
       line-height: 1.65;
       background: rgba(255,255,255,0.03);
-      border: 1px solid var(--rule);
+      border: 1px solid var(--hair);
       border-radius: 8px;
       padding: 16px 18px;
       margin-bottom: 14px;
     }
-    .divider { height:1px; background: var(--rule); margin: 40px 0; }
+    .divider { height:1px; background: var(--hair); margin: 40px 0; }
   </style>
 </head>
 <body>
 
-
-
-  <div class="announce-bar">
-    <span class="ab-label">Cohort One opens in</span>
-    <span class="ab-countdown">
-      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
-    </span>
-    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
-  </div>
-
-  <nav class="nav-v2">
-    <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:40px;width:auto;mix-blend-mode:multiply;"></a>
-    <div class="links">
-      <a href="index.html">Overview</a>
-      <a href="agents.html">Agents</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
+  <nav class="nav">
+    <div class="nav-inner wrap">
+      <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="agents.html" class="nav-link">Agents</a>
+        <a href="demo.html" class="nav-link">Demo</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="waitlist.html" class="nav-cta">Join waitlist →</a>
+      </div>
     </div>
   </nav>
 
@@ -218,61 +185,16 @@
     <p>Questions about these Terms may be directed to Astra LLC through the contact form on our waitlist page.</p>
   </div>
 
-  <footer class="footer-v2">
-    <div class="grid">
-      <div>
-        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
+  <footer>
+    <div class="foot-inner wrap">
+      <span class="mono">© 2026 Astra Technologies Inc.</span>
+      <div style="display:flex;gap:24px;">
+        <a href="terms.html" class="mono" style="color:var(--mute)">Terms</a>
+        <a href="privacy.html" class="mono" style="color:var(--mute)">Privacy</a>
+        <a href="mailto:hello@astracreates.com" class="mono" style="color:var(--mute)">hello@astracreates.com</a>
       </div>
-      <div>
-        <h5>Product</h5>
-        <ul>
-          <li><a href="index.html">Overview</a></li>
-          <li><a href="agents.html">Agents</a></li>
-          <li><a href="demo.html">Demo</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <ul>
-          <li><a href="waitlist.html">Waitlist</a></li>
-          <li><a href="waitlist.html">Contact</a></li>
-          <li><a href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="legal.html" class="active">Terms</a></li>
-          <li><a href="legal.html">Privacy</a></li>
-          <li><a href="legal.html">Disclosures</a></li>
-          <li><a href="legal.html">Cloud Service Agreement</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom">
-      <span>© 2026 Astra LLC</span>
-      <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
 
-
-  <script>
-    (function(){
-      var target = new Date('2026-06-01T00:00:00');
-      function tick(){
-        var diff = target - new Date();
-        if(diff <= 0){ return; }
-        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
-            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
-        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
-        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
-        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
-        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
-      }
-      tick(); setInterval(tick,1000);
-    })();
-  </script>
 </body>
 </html>

@@ -6,28 +6,9 @@
   <title>Astra — Agents</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
-  <style>
-    /* announce-bar v2 */
-    .announce-bar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
-      height: 36px; background: var(--ink); color: var(--paper);
-      display: flex; align-items: center; justify-content: center; gap: 16px;
-      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
-    }
-    .announce-bar .ab-label { opacity: 0.55; }
-    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; font-size: 18px; }
-    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
-    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
-    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
-    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
-    .nav-v2 { top: 36px !important; }
-    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
-    .links .hide-sm { }
-    @media (max-width: 800px) { .links .hide-sm { display: none; } }
-  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <link rel="prefetch" href="index.html">
   <link rel="prefetch" href="demo.html">
@@ -35,15 +16,15 @@
   <link rel="prefetch" href="waitlist.html">
   <style>
     .page-hero {
-      padding: 160px var(--gutter) 80px;
+      padding: 160px 32px 80px;
       min-height: 100vh;
       position: relative;
       z-index: 2;
       text-align: center;
     }
-    
-    .page-hero .wrap, .page-hero .wrap-v2 { max-width: 900px; margin: 0 auto; }
-    .page-hero .lede-v2 { margin: 0 auto; text-align: center; }
+
+    .page-hero .wrap { max-width: 1100px; margin: 0 auto; }
+    .page-hero .lede { margin: 0 auto; text-align: center; }
     .page-hero h1 {
       font-size: clamp(56px, 7.5vw, 110px);
       line-height: 1.04;
@@ -59,21 +40,21 @@
 
     /* agents */
     .agents-section {
-      padding: 100px var(--gutter) 100px;
+      padding: 100px 32px 100px;
       position: relative;
       z-index: 2;
     }
     .agent-grid {
-      max-width: var(--max);
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1px;
-      background: var(--rule);
-      border: 1px solid var(--rule);
+      background: var(--hair);
+      border: 1px solid var(--hair);
     }
     .agent-card {
-      background: var(--paper);
+      background: var(--bg);
       padding: 40px 36px 32px;
       min-height: 380px;
       display: flex;
@@ -84,8 +65,7 @@
       cursor: default;
     }
     .agent-card::after { display: none; }
-    .agent-card:hover { background: var(--paper-2); }
-    .agent-card:hover::after { opacity: 1; }
+    .agent-card:hover { background: var(--bg); filter: brightness(0.97); }
     .agent-card-head {
       display: flex;
       align-items: flex-start;
@@ -97,28 +77,27 @@
       width: 48px;
       height: 48px;
       flex-shrink: 0;
-      color: var(--ink-soft);
+      color: var(--ink-2);
       transition: transform 0.4s ease, filter 0.4s ease;
     }
     .agent-card:hover .glyph {
       transform: scale(1.08);
-      
     }
     .agent-card .glyph svg { width: 100%; height: 100%; }
     .agent-card .num {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.18em;
-      color: var(--mute-2);
+      color: var(--mute);
       text-align: right;
       padding-top: 6px;
     }
     .agent-card .role {
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
     }
     .agent-card h3 {
       font-size: clamp(28px, 2.6vw, 36px);
@@ -134,11 +113,11 @@
     .agent-card .tools {
       margin-top: auto;
       padding-top: 24px;
-      font-family: var(--font-mono);
+      font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--mute-2);
+      color: var(--mute);
       display: flex;
       flex-wrap: wrap;
       gap: 6px 14px;
@@ -152,12 +131,12 @@
 
     /* the shared-mind explainer */
     .shared-mind {
-      padding: 80px var(--gutter) 100px;
+      padding: 80px 32px 100px;
       position: relative;
       z-index: 2;
     }
     .shared-mind-inner {
-      max-width: var(--max);
+      max-width: 1280px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1.4fr;
@@ -185,7 +164,7 @@
       overflow: visible;
     }
     .const-orbit {
-      stroke: var(--rule-2);
+      stroke: var(--hair-2);
       fill: none;
       stroke-dasharray: 2 5;
     }
@@ -194,7 +173,7 @@
       stroke-width: 0.5;
       fill: none;
     }
-    /* energy pulses — a single bright dot travels along each line toward the core */
+    /* energy pulses */
     .const-energy {
       stroke: oklch(0.80 0 0);
       stroke-width: 2;
@@ -224,7 +203,7 @@
     }
     .const-label {
       fill: var(--mute);
-      font-family: var(--font-serif);
+      font-family: 'Inter Tight', system-ui, sans-serif;
       font-size: 13px;
       font-style: italic;
       letter-spacing: 0.01em;
@@ -233,11 +212,11 @@
 
     /* CTA */
     .cta {
-      padding: 100px var(--gutter);
+      padding: 100px 32px;
       text-align: center;
       position: relative;
     }
-    .cta-inner { max-width: 800px; margin: 0 auto; }
+    .cta-inner { max-width: 1000px; margin: 0 auto; }
     .cta h2 { margin-bottom: 24px; }
     .cta p { color: var(--mute); margin-bottom: 32px; }
     .cta .btn-row { display: inline-flex; gap: 14px; }
@@ -252,47 +231,31 @@
     @media (max-width: 700px) {
       .page-hero { padding-top: 140px; }
       .agent-grid { grid-template-columns: 1fr; }
-      .shared-mind { padding: 50px var(--gutter); }
+      .shared-mind { padding: 50px 32px; }
     }
   </style>
 </head>
 <body>
 
-
-
-
-  <div class="announce-bar">
-    <span class="ab-label">Cohort One opens in</span>
-    <span class="ab-countdown">
-      <span class="ab-unit"><span id="cd-days">--</span><em>d</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-hrs">--</span><em>h</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-min">--</span><em>m</em></span>
-      <span class="ab-sep">:</span>
-      <span class="ab-unit"><span id="cd-sec">--</span><em>s</em></span>
-    </span>
-    <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
-  </div>
-
-  <nav class="nav-v2">
-    <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:40px;width:auto;mix-blend-mode:multiply;"></a>
-    <div class="links">
-      <a href="index.html">Overview</a>
-      <a href="agents.html" class="active">Agents</a>
-      <a href="demo.html" class="hide-sm">Demo</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
+  <nav class="nav">
+    <div class="nav-inner wrap">
+      <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="agents.html" class="nav-link active">Agents</a>
+        <a href="demo.html" class="nav-link">Demo</a>
+        <a href="pricing.html" class="nav-link">Pricing</a>
+        <a href="waitlist.html" class="nav-cta">Join waitlist →</a>
+      </div>
     </div>
   </nav>
 
   <!-- ============================== HERO ============================== -->
   <section class="page-hero" data-screen-label="Agents hero">
-    <div class="wrap-v2">
-      <div class="eyebrow-v2 r" style="--d:0; justify-content: center; margin-bottom: 28px;">The stack</div>
-      <h1 class="r" style="--d:1">Eight specialists,<br /><em>one shared mind.</em></h1>
-      <p class="lede-v2 r" style="--d:2">
+    <div class="wrap">
+      <div class="mono section-label" style="display:flex;justify-content:center;margin-bottom:28px;">The stack</div>
+      <h1>Eight specialists,<br /><em>one shared mind.</em></h1>
+      <p class="lead">
         Each agent owns its domain completely. Each one builds on what the others produce through a shared memory store. Together, they form a founding team that operates around the clock.
       </p>
     </div>
@@ -303,7 +266,7 @@
     <div class="agent-grid">
 
       <!-- 01 Research -->
-      <div class="agent-card r" style="--d:0">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -321,7 +284,7 @@
       </div>
 
       <!-- 02 Web -->
-      <div class="agent-card r" style="--d:1">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -339,7 +302,7 @@
       </div>
 
       <!-- 03 Marketing -->
-      <div class="agent-card r" style="--d:2">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -357,7 +320,7 @@
       </div>
 
       <!-- 04 Technical -->
-      <div class="agent-card r" style="--d:3">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
@@ -374,7 +337,7 @@
       </div>
 
       <!-- 05 Legal -->
-      <div class="agent-card r" style="--d:0">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
@@ -391,7 +354,7 @@
       </div>
 
       <!-- 06 Ops -->
-      <div class="agent-card r" style="--d:1">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="0.8">
@@ -416,7 +379,7 @@
       </div>
 
       <!-- 07 Sales -->
-      <div class="agent-card r" style="--d:2">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
@@ -432,7 +395,7 @@
       </div>
 
       <!-- 08 Design -->
-      <div class="agent-card r" style="--d:3">
+      <div class="agent-card">
         <div class="agent-card-head">
           <div class="glyph" aria-hidden="true">
             <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
@@ -452,33 +415,26 @@
     </div>
   </section>
 
-  <div class="rule-v2"></div>
-
   <!-- ============================== SHARED MIND ============================== -->
   <section class="shared-mind" data-screen-label="Shared mind">
     <div class="shared-mind-inner">
       <div>
-        <div class="eyebrow-v2 r" style="--d:0">The shared mind</div>
-        <h2 class="r" style="--d:1">Not eight chatbots.<br /><em>One company.</em></h2>
-        <p class="r" style="--d:2">
+        <div class="mono section-label" style="margin-bottom:16px;">The shared mind</div>
+        <h2>Not eight chatbots.<br /><em>One company.</em></h2>
+        <p>
           Every agent reads from and writes to the same vector store — every decision, document, campaign, and conversation lives in one persistent memory. When Sales enriches a lead, Marketing already knows it. When Technical ships a feature, Ops files it in the weekly digest. When Design delivers specs, Web builds from them. When Legal redlines a contract, the others learn from the change.
         </p>
-        <p class="r" style="--d:3">
+        <p>
           After ninety days, Astra knows your company better than any human consultant could — and that memory belongs to you.
         </p>
       </div>
 
       <!-- Animated constellation diagram -->
-      <div class="constellation r" style="--d:1">
+      <div class="constellation">
         <svg viewBox="-260 -260 520 520" aria-hidden="true">
           <!-- orbital rings -->
           <circle class="const-orbit" cx="0" cy="0" r="200" />
           <circle class="const-orbit" cx="0" cy="0" r="130" />
-
-          <!-- 8 nodes at 45° intervals, r=200 -->
-          <!-- top=0°, top-right=45°, right=90°, bottom-right=135°, bottom=180°, bottom-left=225°, left=270°, top-left=315° -->
-          <!-- (x,y) = (200·sin θ, −200·cos θ) -->
-          <!-- 0°(0,−200) 45°(141,−141) 90°(200,0) 135°(141,141) 180°(0,200) 225°(−141,141) 270°(−200,0) 315°(−141,−141) -->
 
           <g>
             <!-- static lines -->
@@ -544,94 +500,30 @@
     </div>
   </section>
 
-  <div class="rule-v2"></div>
-
   <!-- ============================== CTA ============================== -->
   <section class="cta" data-screen-label="CTA">
     <div class="cta-inner">
-      <div class="eyebrow-v2 r" style="--d:0; justify-content: center;">Ready</div>
-      <h2 class="r" style="--d:1; margin-top: 22px;">Type the idea.<br /><em class="display-italic">We'll handle everything else.</em></h2>
-      <p class="lede-v2 r" style="--d:2; margin: 28px auto 0;">The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open June 1st.</p>
-      <div class="btn-row r" style="--d:3; margin-top: 36px;">
-        <a href="waitlist.html" class="btn-v2">Join the waitlist <span class="arrow">→</span></a>
-        <a href="pricing.html" class="btn-v2 ghost">See pricing</a>
+      <div class="mono section-label" style="display:flex;justify-content:center;margin-bottom:22px;">Ready</div>
+      <h2>Type the idea.<br /><em>We'll handle everything else.</em></h2>
+      <p class="lead" style="margin: 28px auto 0;">The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open June 1st.</p>
+      <div class="btn-row" style="margin-top: 36px;">
+        <a href="waitlist.html" class="btn-primary">Join the waitlist →</a>
+        <a href="pricing.html" class="btn-secondary">See pricing</a>
       </div>
     </div>
   </section>
 
   <!-- ============================== FOOTER ============================== -->
-  <footer class="footer-v2">
-    <div class="grid">
-      <div>
-        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
+  <footer>
+    <div class="foot-inner wrap">
+      <span class="mono">© 2026 Astra Technologies Inc.</span>
+      <div style="display:flex;gap:24px;">
+        <a href="terms.html" class="mono" style="color:var(--mute)">Terms</a>
+        <a href="privacy.html" class="mono" style="color:var(--mute)">Privacy</a>
+        <a href="mailto:hello@astracreates.com" class="mono" style="color:var(--mute)">hello@astracreates.com</a>
       </div>
-      <div>
-        <h5>Product</h5>
-        <ul>
-          <li><a href="index.html">Overview</a></li>
-          <li><a href="agents.html">Agents</a></li>
-          <li><a href="demo.html">Demo</a></li>
-          <li><a href="index.html#how">How it works</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <ul>
-          <li><a href="waitlist.html">Waitlist</a></li>
-          <li><a href="waitlist.html">Contact</a></li>
-          <li><a href="careers.html">Careers</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Legal</h5>
-        <ul>
-          <li><a href="legal.html">Terms</a></li>
-          <li><a href="legal.html">Privacy</a></li>
-          <li><a href="legal.html">Disclosures</a></li>
-          <li><a href="legal.html">Cloud Service Agreement</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom">
-      <span>© 2026 Astra LLC</span>
-      <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
-
-
-  <script>
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          
-        }
-      });
-    }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.r').forEach(el => io.observe(el));
-  </script>
-  <script>
-    (function(){
-      var target = new Date('2026-06-01T00:00:00');
-      function tick(){
-        var diff = target - new Date();
-        if(diff <= 0){
-          var bar = document.querySelector('.announce-bar');
-          if(bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
-          return;
-        }
-        var d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
-            m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
-        document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
-        document.getElementById('cd-hrs').textContent=String(h).padStart(2,'0');
-        document.getElementById('cd-min').textContent=String(m).padStart(2,'0');
-        document.getElementById('cd-sec').textContent=String(s).padStart(2,'0');
-      }
-      tick(); setInterval(tick,1000);
-    })();
-  </script>
 
 </body>
 </html>
