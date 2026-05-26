@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,9 +6,28 @@
   <title>Astra — Watch it work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* announce-bar v2 */
+    .announce-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
+      height: 36px; background: var(--ink); color: var(--paper);
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
+    }
+    .announce-bar .ab-label { opacity: 0.55; }
+    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; }
+    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
+    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
+    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
+    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
+    .nav-v2 { top: 36px !important; }
+    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
+    .links .hide-sm { }
+    @media (max-width: 800px) { .links .hide-sm { display: none; } }
+  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <link rel="prefetch" href="index.html">
   <link rel="prefetch" href="agents.html">
@@ -22,23 +41,7 @@
       z-index: 2;
       text-align: center;
     }
-    .page-hero::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 60%;
-      transform: translate(-50%, -50%);
-      width: min(800px, 90vw);
-      height: 420px;
-      background:
-        radial-gradient(closest-side,
-          oklch(0.62 0.24 240 / 0.16),
-          oklch(0.42 0.22 240 / 0.08) 40%,
-          transparent 70%);
-      filter: blur(10px);
-      pointer-events: none;
-      z-index: -1;
-    }
+    
     .page-hero .wrap { max-width: 900px; margin: 0 auto; }
     .page-hero h1 {
       font-size: clamp(56px, 7.5vw, 110px);
@@ -46,7 +49,7 @@
       letter-spacing: -0.025em;
       margin-bottom: 24px;
     }
-    .page-hero h1 em { color: var(--fg-dim); }
+    .page-hero h1 em { color: var(--mute); }
     .page-hero .lede { margin: 0 auto; text-align: center; max-width: 56ch; }
 
     /* ============ MAIN PLAYER ============ */
@@ -62,11 +65,11 @@
       aspect-ratio: 16 / 9;
       border-radius: 20px;
       overflow: hidden;
-      border: 1px solid var(--line-2);
-      background: linear-gradient(180deg, var(--ink-2), var(--ink));
+      border: 1px solid var(--rule-2);
+      background: linear-gradient(180deg, var(--paper-2), var(--ink));
       box-shadow:
-        0 0 0 1px var(--line),
-        0 0 80px oklch(0.62 0.24 240 / 0.20),
+        0 0 0 1px var(--rule),
+        0 0 80px oklch(0.62 0 0 / 0.20),
         0 40px 120px rgba(0,0,0,0.55);
     }
     .player::before {
@@ -74,8 +77,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(60% 50% at 50% 50%, oklch(0.38 0.22 240 / 0.16), transparent 70%),
-        radial-gradient(80% 80% at 50% 100%, oklch(0.38 0.22 240 / 0.10), transparent 70%);
+        radial-gradient(60% 50% at 50% 50%, oklch(0.38 0 0 / 0.16), transparent 70%),
+        radial-gradient(80% 80% at 50% 100%, oklch(0.38 0 0 / 0.10), transparent 70%);
       pointer-events: none;
     }
     /* faint grid texture */
@@ -109,9 +112,9 @@
       height: 116px;
       border-radius: 50%;
       background: rgba(246, 246, 248, 0.04);
-      border: 1px solid var(--line-2);
+      border: 1px solid var(--rule-2);
       backdrop-filter: blur(14px);
-      color: var(--fg);
+      color: var(--ink);
       cursor: pointer;
       display: grid;
       place-items: center;
@@ -124,14 +127,14 @@
       position: absolute;
       inset: -8px;
       border-radius: 50%;
-      border: 1px solid var(--line);
+      border: 1px solid var(--rule);
       opacity: 0.6;
       transition: transform 0.5s cubic-bezier(.16,1,.3,1), opacity 0.4s;
     }
     .play-btn:hover {
       transform: scale(1.06);
-      border-color: var(--star);
-      box-shadow: 0 0 40px oklch(0.62 0.24 240 / 0.45);
+      border-color: var(--accent);
+      box-shadow: 0 0 40px oklch(0.62 0 0 / 0.45);
     }
     .play-btn:hover::before {
       transform: scale(1.15);
@@ -144,7 +147,7 @@
       font-size: 11px;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -153,20 +156,20 @@
       content: "";
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--star);
-      box-shadow: 0 0 10px var(--star);
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
       animation: pulseDot 1.6s ease-in-out infinite;
     }
     @keyframes pulseDot { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
     .player-hint {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: clamp(22px, 2.4vw, 32px);
       font-style: italic;
-      color: var(--fg);
+      color: var(--ink);
       letter-spacing: -0.005em;
       text-align: center;
     }
-    .player-hint span { display: block; font-style: normal; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-mute); margin-top: 10px; }
+    .player-hint span { display: block; font-style: normal; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute-2); margin-top: 10px; }
 
     /* live <video> element style — use when you swap in the file */
     .demo-video {
@@ -191,10 +194,10 @@
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
     }
     .player-strip .group { display: flex; gap: 28px; }
-    .player-strip span span { color: var(--fg); margin-left: 8px; }
+    .player-strip span span { color: var(--ink); margin-left: 8px; }
 
     /* ============ CHAPTERS ============ */
     .chapters {
@@ -217,13 +220,13 @@
       line-height: 1.05;
       margin-bottom: 18px;
     }
-    .chapters-head p { color: var(--fg-dim); max-width: 38ch; }
+    .chapters-head p { color: var(--mute); max-width: 38ch; }
 
     .chapter-list {
       list-style: none;
       padding: 0;
       margin: 0;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--rule);
     }
     .chapter-list li {
       display: grid;
@@ -231,7 +234,7 @@
       align-items: center;
       gap: 28px;
       padding: 22px 8px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--rule);
       cursor: pointer;
       transition: background 0.25s ease, padding 0.3s cubic-bezier(.16,1,.3,1);
     }
@@ -243,22 +246,22 @@
       font-family: var(--font-mono);
       font-size: 13px;
       letter-spacing: 0.1em;
-      color: var(--star);
+      color: var(--accent);
     }
     .chapter-list .desc {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: clamp(19px, 1.9vw, 24px);
       letter-spacing: -0.005em;
-      color: var(--fg);
+      color: var(--ink);
     }
-    .chapter-list .desc em { color: var(--fg-dim); }
+    .chapter-list .desc em { color: var(--mute); }
     .chapter-list .arrow {
-      color: var(--fg-mute);
+      color: var(--mute-2);
       transition: transform 0.3s cubic-bezier(.16,1,.3,1), color 0.2s ease;
       font-family: var(--font-mono);
     }
     .chapter-list li:hover .arrow {
-      color: var(--fg);
+      color: var(--ink);
       transform: translateX(6px);
     }
 
@@ -282,7 +285,7 @@
       line-height: 1.05;
     }
     .more-head .eyebrow { margin-bottom: 14px; }
-    .more-head .right { color: var(--fg-mute); font-size: 13px; max-width: 36ch; font-family: var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
+    .more-head .right { color: var(--mute-2); font-size: 13px; max-width: 36ch; font-family: var(--font-mono); letter-spacing: 0.04em; text-transform: uppercase; font-size: 11px; }
     .mini-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -298,8 +301,8 @@
     .mini-frame {
       aspect-ratio: 16 / 10;
       border-radius: 12px;
-      border: 1px solid var(--line-2);
-      background: linear-gradient(180deg, var(--ink-2), var(--ink));
+      border: 1px solid var(--rule-2);
+      background: linear-gradient(180deg, var(--paper-2), var(--ink));
       position: relative;
       overflow: hidden;
       display: grid;
@@ -310,22 +313,22 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(50% 50% at 50% 50%, oklch(0.38 0.22 240 / 0.16), transparent 70%);
+      background: radial-gradient(50% 50% at 50% 50%, oklch(0.38 0 0 / 0.16), transparent 70%);
       opacity: 0.5;
       transition: opacity 0.4s;
     }
     .mini:hover .mini-frame {
       transform: translateY(-4px);
-      border-color: oklch(0.62 0.24 240 / 0.6);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px oklch(0.62 0.24 240 / 0.18);
+      border-color: oklch(0.62 0 0 / 0.6);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px oklch(0.62 0 0 / 0.18);
     }
     .mini:hover .mini-frame::before { opacity: 1; }
 
     .mini-glyph {
       width: 56px;
       height: 56px;
-      color: var(--star);
-      filter: drop-shadow(0 0 12px oklch(0.62 0.24 240 / 0.5));
+      color: var(--accent);
+      filter: drop-shadow(0 0 12px oklch(0.62 0 0 / 0.5));
       position: relative;
       z-index: 1;
     }
@@ -335,15 +338,15 @@
       right: 14px;
       width: 32px; height: 32px;
       border-radius: 50%;
-      background: rgba(5, 6, 10, 0.65);
-      border: 1px solid var(--line-2);
+      background: rgba(0,0,0,0.06);
+      border: 1px solid var(--rule-2);
       display: grid;
       place-items: center;
-      color: var(--fg-dim);
+      color: var(--mute);
       backdrop-filter: blur(8px);
       transition: color 0.3s;
     }
-    .mini:hover .mini-frame .mini-play { color: var(--fg); }
+    .mini:hover .mini-frame .mini-play { color: var(--ink); }
     .mini-frame .mini-play svg { width: 12px; height: 12px; transform: translateX(1px); }
 
     .mini-meta {
@@ -356,20 +359,20 @@
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--star);
+      color: var(--accent);
     }
     .mini-title {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: 20px;
       letter-spacing: -0.005em;
-      color: var(--fg);
+      color: var(--ink);
     }
     .mini-duration {
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin-top: 2px;
     }
 
@@ -394,9 +397,9 @@
       line-height: 1.05;
       margin: 0 0 24px;
     }
-    .cta-inner h2 em { color: var(--fg-dim); font-style: italic; }
+    .cta-inner h2 em { color: var(--mute); font-style: italic; }
     .cta-inner p {
-      color: var(--fg-dim);
+      color: var(--mute);
       max-width: 56ch;
       margin: 0 0 32px;
       font-size: clamp(17px, 1.5vw, 20px);
@@ -426,8 +429,8 @@
 </head>
 <body>
 
-  <div class="nebula"></div>
-  <canvas class="starfield" id="starfield"></canvas>
+
+
 
   <div class="announce-bar">
     <span class="ab-label">Cohort One opens in</span>
@@ -443,27 +446,24 @@
     <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
   </div>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-brand">
-      <img src="brand_assets/favicon.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
-
-    </a>
-    <div class="nav-links">
+  <nav class="nav-v2">
+    <a href="index.html" class="brand"><div class="brand-mark">A</div>Astra</a>
+    <div class="links">
       <a href="index.html">Overview</a>
       <a href="agents.html">Agents</a>
       <a href="demo.html" class="active">Demo</a>
       <a href="pricing.html">Pricing</a>
-      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-app">Open app ↗</a>
+      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
+      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
     </div>
   </nav>
 
   <!-- ============================== HERO ============================== -->
   <section class="page-hero" data-screen-label="Demo hero">
-    <div class="wrap">
-      <div class="eyebrow reveal" style="--d:0; justify-content: center; margin-bottom: 28px;">Watch it work</div>
-      <h1 class="reveal" style="--d:1">Watch a company<br /><em>assemble itself.</em></h1>
-      <p class="lede reveal" style="--d:2">
+    <div class="wrap-v2">
+      <div class="eyebrow-v2 r" style="--d:0; justify-content: center; margin-bottom: 28px;">Watch it work</div>
+      <h1 class="r" style="--d:1">Watch a company<br /><em>assemble itself.</em></h1>
+      <p class="lede-v2 r" style="--d:2">
         Seventy-two hours condensed to a few minutes. A founder types an idea — the agents do everything else. The clip below is a preview of what the full run looks like.
       </p>
     </div>
@@ -473,7 +473,7 @@
   <section class="stage" data-screen-label="Demo player">
     <div class="stage-inner">
 
-      <div class="player reveal" style="--d:0">
+      <div class="player r" style="--d:0">
         <!--
           ── TO ADD YOUR DEMO VIDEO ──────────────────────────────────────
           1. Drop the file at:   assets/demo.mp4
@@ -507,22 +507,22 @@
     </div>
   </section>
 
-  <div class="line-reveal"></div>
+  <div class="rule-v2"></div>
 
   <!-- ============================== MORE DEMOS ============================== -->
   <section class="more-demos" data-screen-label="More demos">
     <div class="more-demos-inner">
       <div class="more-head">
         <div>
-          <div class="eyebrow reveal" style="--d:0">Look inside each agent</div>
-          <h2 class="reveal" style="--d:1">Eight shorter clips,<br /><em class="display-italic">one per specialist.</em></h2>
+          <div class="eyebrow-v2 r" style="--d:0">Look inside each agent</div>
+          <h2 class="r" style="--d:1">Eight shorter clips,<br /><em class="display-italic">one per specialist.</em></h2>
         </div>
-        <div class="right reveal" style="--d:2">Each clip is a tight focus on one agent working through a real task from cohort one.</div>
+        <div class="right r" style="--d:2">Each clip is a tight focus on one agent working through a real task from cohort one.</div>
       </div>
 
       <div class="mini-grid">
 
-        <a href="#" class="mini reveal" style="--d:0">
+        <a href="#" class="mini r" style="--d:0">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
               <rect x="8" y="8" width="28" height="28" rx="2" />
@@ -538,7 +538,7 @@
           </div>
         </a>
 
-        <a href="#" class="mini reveal" style="--d:1">
+        <a href="#" class="mini r" style="--d:1">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
               <circle cx="22" cy="22" r="14" />
@@ -555,7 +555,7 @@
           </div>
         </a>
 
-        <a href="#" class="mini reveal" style="--d:2">
+        <a href="#" class="mini r" style="--d:2">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
               <circle cx="22" cy="22" r="13" />
@@ -572,7 +572,7 @@
           </div>
         </a>
 
-        <a href="#" class="mini reveal" style="--d:0">
+        <a href="#" class="mini r" style="--d:0">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2">
               <path d="M8 32 Q16 30, 22 22 T36 8" />
@@ -589,7 +589,7 @@
           </div>
         </a>
 
-        <a href="#" class="mini reveal" style="--d:1">
+        <a href="#" class="mini r" style="--d:1">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="16,14 6,22 16,30" />
@@ -605,7 +605,7 @@
           </div>
         </a>
 
-        <a href="#" class="mini reveal" style="--d:2">
+        <a href="#" class="mini r" style="--d:2">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="0.8">
               <line x1="22" y1="22" x2="9" y2="10" />
@@ -629,7 +629,7 @@
           </div>
         </a>
 
-        <a href="#" class="mini reveal" style="--d:3">
+        <a href="#" class="mini r" style="--d:3">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M7 10 L37 10 L27 23 L27 35 L17 35 L17 23 Z" />
@@ -644,7 +644,7 @@
           </div>
         </a>
 
-        <a href="#" class="mini reveal" style="--d:0">
+        <a href="#" class="mini r" style="--d:0">
           <div class="mini-frame">
             <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
               <rect x="6" y="6" width="13" height="9" rx="1.5" />
@@ -665,26 +665,26 @@
     </div>
   </section>
 
-  <div class="line-reveal"></div>
+  <div class="rule-v2"></div>
 
   <!-- ============================== CTA ============================== -->
   <section class="cta" data-screen-label="CTA">
     <div class="cta-inner">
-      <div class="eyebrow reveal" style="--d:0">Ready</div>
-      <h2 class="reveal" style="--d:1">Stop watching.<br /><em>Start shipping.</em></h2>
-      <p class="reveal" style="--d:2">The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open June 1st.</p>
-      <div class="btn-row reveal" style="--d:3">
-        <a href="waitlist.html" class="btn btn-primary">Join the waitlist <span class="arrow">→</span></a>
+      <div class="eyebrow-v2 r" style="--d:0">Ready</div>
+      <h2 class="r" style="--d:1">Stop watching.<br /><em>Start shipping.</em></h2>
+      <p class="r" style="--d:2">The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open June 1st.</p>
+      <div class="btn-row r" style="--d:3">
+        <a href="waitlist.html" class="btn-v2">Join the waitlist <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
   <!-- ============================== FOOTER ============================== -->
-  <footer class="footer">
-    <div class="footer-grid">
+  <footer class="footer-v2">
+    <div class="grid">
       <div>
-        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
+        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
       </div>
       <div>
         <h5>Product</h5>
@@ -713,23 +713,23 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="bottom">
       <span>© 2026 Astra LLC</span>
       <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
 
-  <script src="starfield.js"></script>
+
   <script>
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.classList.add('animating', 'in');
-          e.target.addEventListener('transitionend', () => e.target.classList.remove('animating'), { once: true });
+          e.target.classList.add('in');
+          
         }
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal, .line-reveal').forEach(el => io.observe(el));
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
   </script>
   <script>
     (function(){

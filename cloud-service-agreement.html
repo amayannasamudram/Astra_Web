@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,9 +6,28 @@
   <title>Astra — Cloud Service Agreement</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* announce-bar v2 */
+    .announce-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
+      height: 36px; background: var(--ink); color: var(--paper);
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
+    }
+    .announce-bar .ab-label { opacity: 0.55; }
+    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; }
+    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
+    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
+    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
+    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
+    .nav-v2 { top: 36px !important; }
+    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
+    .links .hide-sm { }
+    @media (max-width: 800px) { .links .hide-sm { display: none; } }
+  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <style>
     .legal-wrap {
@@ -37,25 +56,25 @@
       font-size: 11px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin-bottom: 48px;
       padding-bottom: 24px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--rule);
     }
     .legal-wrap h2 {
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--star);
+      color: var(--accent);
       margin: 40px 0 12px;
       font-weight: 500;
     }
     .legal-wrap h3 {
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       font-size: 16px;
       font-weight: 600;
-      color: var(--fg);
+      color: var(--ink);
       margin: 24px 0 8px;
       letter-spacing: 0;
       line-height: 1.4;
@@ -63,7 +82,7 @@
     .legal-wrap p, .legal-wrap li {
       font-size: 15px;
       line-height: 1.7;
-      color: var(--fg-dim);
+      color: var(--mute);
       margin-bottom: 14px;
     }
     .legal-wrap ul, .legal-wrap ol { padding-left: 22px; margin-bottom: 14px; }
@@ -71,15 +90,15 @@
     .legal-wrap .caps {
       font-size: 13px;
       font-weight: 500;
-      color: var(--fg);
+      color: var(--ink);
       line-height: 1.65;
       background: rgba(255,255,255,0.03);
-      border: 1px solid var(--line);
+      border: 1px solid var(--rule);
       border-radius: 8px;
       padding: 16px 18px;
       margin-bottom: 14px;
     }
-    .divider { height:1px; background: var(--line); margin: 40px 0; }
+    .divider { height:1px; background: var(--rule); margin: 40px 0; }
     .key-terms-table {
       width: 100%;
       border-collapse: collapse;
@@ -88,30 +107,30 @@
     }
     .key-terms-table td {
       padding: 12px 14px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--rule);
       vertical-align: top;
       line-height: 1.6;
-      color: var(--fg-dim);
+      color: var(--mute);
     }
     .key-terms-table td:first-child {
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       white-space: nowrap;
       width: 30%;
     }
     .sig-block {
       background: rgba(255,255,255,0.02);
-      border: 1px solid var(--line);
+      border: 1px solid var(--rule);
       border-radius: 10px;
       padding: 24px 26px;
       margin-bottom: 20px;
     }
     .sig-block h3 { margin-top: 0; }
     .sig-line {
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--rule);
       margin: 20px 0 8px;
       height: 32px;
     }
@@ -120,13 +139,13 @@
       font-size: 10px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
     }
   </style>
 </head>
 <body>
-  <div class="nebula"></div>
-  <canvas class="starfield" id="starfield"></canvas>
+
+
 
   <div class="announce-bar">
     <span class="ab-label">Cohort One opens in</span>
@@ -142,17 +161,14 @@
     <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
   </div>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-brand">
-      <img src="brand_assets/favicon.png" alt="" width="36" height="36" style="display:block;" />
-
-    </a>
-    <div class="nav-links">
+  <nav class="nav-v2">
+    <a href="index.html" class="brand"><div class="brand-mark">A</div>Astra</a>
+    <div class="links">
       <a href="index.html">Overview</a>
       <a href="agents.html">Agents</a>
       <a href="pricing.html">Pricing</a>
-      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-app">Open app ↗</a>
+      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
+      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
     </div>
   </nav>
 
@@ -192,7 +208,7 @@
     <table class="key-terms-table">
       <tr><td>Subscription Period</td><td>One (1) calendar month, beginning on the Order Date, automatically renewing for successive one-month periods unless either party provides notice of non-renewal before the Non-Renewal Notice Date.</td></tr>
       <tr><td>Non-Renewal Notice Date</td><td>The date that is thirty (30) days before the end of the then-current Subscription Period.</td></tr>
-      <tr><td>Fees</td><td>Per Customer's selected plan at time of subscription. Current pricing is available on our <a href="pricing.html" style="color:var(--star);">pricing page</a>. Fees are exclusive of taxes. Unused credits roll over while the account is active.</td></tr>
+      <tr><td>Fees</td><td>Per Customer's selected plan at time of subscription. Current pricing is available on our <a href="pricing.html" style="color:var(--accent);">pricing page</a>. Fees are exclusive of taxes. Unused credits roll over while the account is active.</td></tr>
       <tr><td>Payment Process</td><td>Automatic payment. Provider will automatically charge the payment method on file via Stripe, Inc. at the start of each Subscription Period. Customer authorizes all such charges.</td></tr>
       <tr><td>Currency</td><td>U.S. Dollars (USD)</td></tr>
     </table>
@@ -393,15 +409,15 @@
     <p><strong>"Usage Data"</strong> means data and information about the provision, use, and performance of the Product based on Customer's or User's use of the Product.</p>
     <p><strong>"User"</strong> means any individual who uses the Product on Customer's behalf or through Customer's account.</p>
 
-    <div class="divider"></div>
-    <p style="font-size:13px; color:var(--fg-mute); line-height:1.6;">This document incorporates the Common Paper Cloud Service Agreement Standard Terms Version 2.1. Common Paper is not a law firm and does not provide legal advice. Astra LLC has customized the variable terms above for its specific business. Review with qualified legal counsel before execution.</p>
+    <div class="rule-v2"></div>
+    <p style="font-size:13px; color:var(--mute-2); line-height:1.6;">This document incorporates the Common Paper Cloud Service Agreement Standard Terms Version 2.1. Common Paper is not a law firm and does not provide legal advice. Astra LLC has customized the variable terms above for its specific business. Review with qualified legal counsel before execution.</p>
   </div>
 
-  <footer class="footer">
-    <div class="footer-grid">
+  <footer class="footer-v2">
+    <div class="grid">
       <div>
-        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
+        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
       </div>
       <div>
         <h5>Product</h5>
@@ -430,13 +446,13 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="bottom">
       <span>© 2026 Astra LLC</span>
       <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
 
-  <script src="starfield.js"></script>
+
   <script>
     (function(){
       var target = new Date('2026-06-01T00:00:00');

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,9 +6,28 @@
   <title>Astra — Pricing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* announce-bar v2 */
+    .announce-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
+      height: 36px; background: var(--ink); color: var(--paper);
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
+    }
+    .announce-bar .ab-label { opacity: 0.55; }
+    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; }
+    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
+    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
+    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
+    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
+    .nav-v2 { top: 36px !important; }
+    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
+    .links .hide-sm { }
+    @media (max-width: 800px) { .links .hide-sm { display: none; } }
+  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <link rel="prefetch" href="index.html">
   <link rel="prefetch" href="agents.html">
@@ -21,23 +40,7 @@
       z-index: 2;
       text-align: center;
     }
-    .page-hero::before {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 60%;
-      transform: translate(-50%, -50%);
-      width: min(800px, 90vw);
-      height: 440px;
-      background:
-        radial-gradient(closest-side,
-          oklch(0.62 0.24 240 / 0.16),
-          oklch(0.42 0.22 240 / 0.08) 40%,
-          transparent 70%);
-      filter: blur(10px);
-      pointer-events: none;
-      z-index: -1;
-    }
+    
     .page-hero .wrap { max-width: 900px; margin: 0 auto; }
     .page-hero h1 {
       font-size: clamp(56px, 8vw, 120px);
@@ -45,7 +48,7 @@
       letter-spacing: -0.025em;
       margin-bottom: 24px;
     }
-    .page-hero h1 em { color: var(--fg-dim); }
+    .page-hero h1 em { color: var(--mute); }
     .page-hero .lede {
       margin: 0 auto;
       text-align: center;
@@ -64,8 +67,8 @@
       display: inline-flex;
       padding: 4px;
       border-radius: 16px;
-      background: rgba(5, 6, 10, 0.65);
-      border: 1px solid var(--line-2);
+      background: rgba(0,0,0,0.06);
+      border: 1px solid var(--rule-2);
       backdrop-filter: blur(10px);
       gap: 4px;
     }
@@ -73,7 +76,7 @@
       padding: 13px 28px;
       border: 1px solid transparent;
       background: transparent;
-      color: var(--fg-dim);
+      color: var(--mute);
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.16em;
@@ -84,10 +87,10 @@
     }
     .audience-switch button.active {
       background: rgba(246, 246, 248, 0.07);
-      border-color: var(--line-2);
-      color: var(--fg);
+      border-color: var(--rule-2);
+      color: var(--ink);
     }
-    .audience-switch button:not(.active):hover { color: var(--fg); }
+    .audience-switch button:not(.active):hover { color: var(--ink); }
     .audience-switch .aud-label {
       display: flex;
       flex-direction: column;
@@ -97,7 +100,7 @@
     .audience-switch .aud-sub {
       font-size: 9px;
       letter-spacing: 0.1em;
-      color: var(--star);
+      color: var(--accent);
       opacity: 0;
       transition: opacity 0.25s;
     }
@@ -109,8 +112,8 @@
       margin: 32px auto 0;
       padding: 18px 28px;
       border-radius: 14px;
-      border: 1px solid var(--line-2);
-      background: rgba(246, 246, 248, 0.025);
+      border: 1px solid var(--rule-2);
+      background: var(--paper-2);
       display: flex;
       align-items: center;
       gap: 24px;
@@ -123,14 +126,14 @@
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--star);
+      color: var(--accent);
       white-space: nowrap;
     }
     .setup-bar .price {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: 36px;
       line-height: 1;
-      color: var(--fg);
+      color: var(--ink);
       letter-spacing: -0.01em;
       white-space: nowrap;
       transition: opacity 0.2s;
@@ -138,18 +141,18 @@
     .setup-bar .price.swap { opacity: 0.3; }
     .setup-bar .price .small {
       font-size: 14px;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin-left: 6px;
       letter-spacing: 0;
     }
     .setup-bar .sep {
       width: 1px;
       align-self: stretch;
-      background: var(--line);
+      background: var(--rule);
     }
     .setup-bar p {
       margin: 0;
-      color: var(--fg-dim);
+      color: var(--mute);
       font-size: 13px;
       line-height: 1.45;
     }
@@ -166,8 +169,8 @@
       display: inline-flex;
       padding: 4px;
       border-radius: 999px;
-      background: rgba(5, 6, 10, 0.6);
-      border: 1px solid var(--line-2);
+      background: rgba(0,0,0,0.06);
+      border: 1px solid var(--rule-2);
       backdrop-filter: blur(8px);
       position: relative;
     }
@@ -177,7 +180,7 @@
       padding: 10px 22px;
       background: transparent;
       border: 0;
-      color: var(--fg-dim);
+      color: var(--mute);
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.18em;
@@ -189,29 +192,29 @@
       align-items: center;
       gap: 10px;
     }
-    .billing-switch button.active { color: var(--ink); }
-    .billing-switch button:not(.active):hover { color: var(--fg); }
+    .billing-switch button.active { color: var(--paper); }
+    .billing-switch button:not(.active):hover { color: var(--ink); }
     .billing-switch .indicator {
       position: absolute;
       top: 4px;
       left: 4px;
       height: calc(100% - 8px);
       border-radius: 999px;
-      background: var(--fg);
+      background: var(--ink);
       transition: transform 0.35s cubic-bezier(.4, 0, .2, 1), width 0.35s cubic-bezier(.4, 0, .2, 1);
       z-index: 1;
     }
     .billing-switch .save-badge {
       padding: 2px 8px;
       border-radius: 999px;
-      background: oklch(0.62 0.24 240 / 0.16);
-      color: var(--star);
+      background: var(--rule-2);
+      color: var(--accent);
       font-size: 9px;
       letter-spacing: 0.16em;
     }
     .billing-switch button.active .save-badge {
-      background: oklch(0.38 0.22 240 / 0.25);
-      color: var(--star);
+      background: var(--rule);
+      color: var(--accent);
     }
 
     /* pricing tiers */
@@ -229,28 +232,18 @@
       position: relative;
       padding: 40px 36px 36px;
       border-radius: 18px;
-      background: linear-gradient(180deg, rgba(16,20,32,0.7), rgba(8,10,18,0.6));
-      border: 1px solid var(--line-2);
+      background: var(--paper);
+      border: 1px solid var(--rule-2);
       display: flex;
       flex-direction: column;
       overflow: hidden;
       backdrop-filter: blur(8px);
     }
     .tier.featured {
-      border-color: oklch(0.62 0.24 240 / 0.55);
-      box-shadow:
-        0 0 0 1px oklch(0.62 0.24 240 / 0.2),
-        0 0 60px oklch(0.62 0.24 240 / 0.15),
-        0 0 200px oklch(0.38 0.22 240 / 0.18);
+      border-color: var(--rule-2);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
     }
-    .tier.featured::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(80% 60% at 50% 0%, oklch(0.62 0.24 240 / 0.18), transparent 60%);
-      pointer-events: none;
-    }
+    .tier.featured::before { display: none; }
     .tier-tag {
       display: inline-flex;
       align-items: center;
@@ -259,19 +252,19 @@
       font-size: 10px;
       letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin-bottom: 24px;
     }
-    .tier.featured .tier-tag { color: var(--star); }
+    .tier.featured .tier-tag { color: var(--accent); }
     .tier.featured .tier-tag::before {
       content: "";
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--star);
-      box-shadow: 0 0 10px var(--star);
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
     }
     .tier-name {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: 48px;
       line-height: 1;
       margin-bottom: 18px;
@@ -283,12 +276,12 @@
       margin-bottom: 6px;
     }
     .tier-price .currency {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: 28px;
-      color: var(--fg-dim);
+      color: var(--mute);
     }
     .tier-price .amount {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: 76px;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -300,7 +293,7 @@
       font-size: 12px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--mute);
       margin-left: 6px;
     }
     .tier-subtitle {
@@ -308,13 +301,13 @@
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin-bottom: 28px;
       padding-bottom: 24px;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--rule);
     }
     .tier-subtitle .save-inline {
-      color: var(--star);
+      color: var(--accent);
       margin-left: 8px;
       letter-spacing: 0.16em;
     }
@@ -328,7 +321,7 @@
     }
     .tier ul li {
       font-size: 14px;
-      color: var(--fg-dim);
+      color: var(--mute);
       display: flex;
       align-items: flex-start;
       gap: 12px;
@@ -340,8 +333,8 @@
       width: 5px; height: 5px;
       margin-top: 8px;
       border-radius: 50%;
-      background: var(--star);
-      box-shadow: 0 0 6px oklch(0.62 0.24 240 / 0.7);
+      background: var(--accent);
+      box-shadow: 0 0 6px oklch(0.62 0 0 / 0.7);
     }
     .tier .cta-row { margin-top: auto; }
     .tier .btn { width: 100%; justify-content: center; }
@@ -356,9 +349,9 @@
     }
     .faq h2 { font-size: clamp(40px, 5vw, 64px); margin-bottom: 8px; }
     .faq > .eyebrow { margin-bottom: 18px; }
-    .faq-list { margin-top: 48px; border-top: 1px solid var(--line); }
+    .faq-list { margin-top: 48px; border-top: 1px solid var(--rule); }
     details.faq-item {
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--rule);
       padding: 24px 0;
     }
     details.faq-item summary {
@@ -368,10 +361,10 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: clamp(20px, 2vw, 26px);
       letter-spacing: -0.005em;
-      color: var(--fg);
+      color: var(--ink);
     }
     details.faq-item summary::-webkit-details-marker { display: none; }
     details.faq-item .sign {
@@ -383,17 +376,17 @@
     details.faq-item .sign::after {
       content: "";
       position: absolute;
-      background: var(--fg-dim);
+      background: var(--mute);
       transition: transform 0.3s, background 0.3s;
     }
     details.faq-item .sign::before { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-0.5px); }
     details.faq-item .sign::after { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-0.5px); }
     details.faq-item[open] .sign::after { transform: translateX(-0.5px) rotate(90deg); }
     details.faq-item[open] .sign::before,
-    details.faq-item[open] .sign::after { background: var(--star); }
+    details.faq-item[open] .sign::after { background: var(--accent); }
     details.faq-item .answer {
       margin-top: 18px;
-      color: var(--fg-dim);
+      color: var(--mute);
       font-size: 15px;
       line-height: 1.6;
       max-width: 70ch;
@@ -420,9 +413,9 @@
       line-height: 1.05;
       margin: 0 0 24px;
     }
-    .cta-inner h2 em { color: var(--fg-dim); font-style: italic; }
+    .cta-inner h2 em { color: var(--mute); font-style: italic; }
     .cta-inner p {
-      color: var(--fg-dim);
+      color: var(--mute);
       max-width: 56ch;
       margin: 0 0 32px;
       font-size: clamp(17px, 1.5vw, 20px);
@@ -445,8 +438,8 @@
 </head>
 <body>
 
-  <div class="nebula"></div>
-  <canvas class="starfield" id="starfield"></canvas>
+
+
 
   <div class="announce-bar">
     <span class="ab-label">Cohort One opens in</span>
@@ -462,34 +455,31 @@
     <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
   </div>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-brand">
-      <img src="brand_assets/favicon.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
-
-    </a>
-    <div class="nav-links">
+  <nav class="nav-v2">
+    <a href="index.html" class="brand"><div class="brand-mark">A</div>Astra</a>
+    <div class="links">
       <a href="index.html">Overview</a>
       <a href="agents.html">Agents</a>
       <a href="demo.html" class="hide-sm">Demo</a>
       <a href="pricing.html" class="active">Pricing</a>
-      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-app">Open app ↗</a>
+      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
+      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="page-hero">
-    <div class="wrap">
-      <div class="eyebrow reveal" style="--d:0; justify-content: center; margin-bottom: 28px;">Pricing</div>
-      <h1 class="reveal" style="--d:1">Two paths.<br /><em>One team behind you.</em></h1>
-      <p class="lede reveal" style="--d:2; text-align: center; margin: 24px auto 0;">
+    <div class="wrap-v2">
+      <div class="eyebrow-v2 r" style="--d:0; justify-content: center; margin-bottom: 28px;">Pricing</div>
+      <h1 class="r" style="--d:1">Two paths.<br /><em>One team behind you.</em></h1>
+      <p class="lede-v2 r" style="--d:2; text-align: center; margin: 24px auto 0;">
         Whether you're turning an idea into a company or already running one — Astra has a plan sized for where you are. Both paths include the same eight agents, working around the clock.
       </p>
     </div>
   </section>
 
   <!-- AUDIENCE TABS -->
-  <div class="audience-wrap reveal" style="--d:3">
+  <div class="audience-wrap r" style="--d:3">
     <div class="audience-switch" id="audienceSwitch">
       <button class="active" data-audience="startup">
         <span class="aud-label">
@@ -507,7 +497,7 @@
   </div>
 
   <!-- SETUP FEE CALLOUT -->
-  <div class="setup-bar reveal" style="--d:0">
+  <div class="setup-bar r" style="--d:0">
     <div>
       <div class="k">Setup · one-time</div>
       <div class="price" id="setupPrice">$300<span class="small">at signup</span></div>
@@ -517,7 +507,7 @@
   </div>
 
   <!-- BILLING SWITCH -->
-  <div class="billing-switch-wrap reveal" style="--d:1">
+  <div class="billing-switch-wrap r" style="--d:1">
     <div class="billing-switch" id="billingSwitch">
       <div class="indicator" id="switchIndicator"></div>
       <button class="active" data-period="monthly">Monthly</button>
@@ -528,7 +518,7 @@
   <!-- TIERS -->
   <section class="tiers">
 
-    <div class="tier reveal" style="--d:0" data-plan="build">
+    <div class="tier r" style="--d:0" data-plan="build">
       <div class="tier-tag">Build</div>
       <div class="tier-name">Build</div>
       <div class="tier-price">
@@ -548,11 +538,11 @@
         <li>Agent chat interface</li>
       </ul>
       <div class="cta-row">
-        <a href="waitlist.html" class="btn btn-ghost">Start with Build <span class="arrow">→</span></a>
+        <a href="waitlist.html" class="btn-v2 ghost">Start with Build <span class="arrow">→</span></a>
       </div>
     </div>
 
-    <div class="tier featured reveal" style="--d:1" data-plan="scale">
+    <div class="tier featured r" style="--d:1" data-plan="scale">
       <div class="tier-tag">Most popular</div>
       <div class="tier-name">Scale</div>
       <div class="tier-price">
@@ -572,29 +562,29 @@
         <li>Early access to new agents</li>
       </ul>
       <div class="cta-row">
-        <a href="waitlist.html" class="btn btn-primary">Start with Scale <span class="arrow">→</span></a>
+        <a href="waitlist.html" class="btn-v2">Start with Scale <span class="arrow">→</span></a>
       </div>
     </div>
 
   </section>
 
-  <div class="divider"></div>
+  <div class="rule-v2"></div>
 
   <!-- MATH -->
   <section class="cta-section">
     <div class="cta-inner">
-      <div class="eyebrow reveal" style="--d:0">The math, once more</div>
-      <p class="reveal" style="--d:1; font-family: var(--font-display); font-size: clamp(28px, 3.6vw, 48px); line-height: 1.25; letter-spacing: -0.01em; margin: 16px 0 0; color: var(--fg);">
-        Specialists for one month: <span style="color: var(--fg-mute); text-decoration: line-through; text-decoration-color: oklch(0.58 0.22 240 / 0.6); font-style: italic;">$7,300</span>.<br />
-        Astra for a new founder: <span style="color: var(--star);">from $40/mo</span>.<br />
-        Astra for a business owner: <span style="color: var(--star);">from $35/mo</span>.
+      <div class="eyebrow-v2 r" style="--d:0">The math, once more</div>
+      <p class="r" style="--d:1; font-family: var(--font-serif); font-size: clamp(28px, 3.6vw, 48px); line-height: 1.25; letter-spacing: -0.01em; margin: 16px 0 0; color: var(--ink);">
+        Specialists for one month: <span style="color: var(--mute-2); text-decoration: line-through; text-decoration-color: oklch(0.58 0 0 / 0.6); font-style: italic;">$7,300</span>.<br />
+        Astra for a new founder: <span style="color: var(--accent);">from $40/mo</span>.<br />
+        Astra for a business owner: <span style="color: var(--accent);">from $35/mo</span>.
       </p>
     </div>
   </section>
 
   <!-- FAQ -->
   <section class="faq">
-    <div class="eyebrow">FAQ</div>
+    <div class="eyebrow-v2">FAQ</div>
     <h2>Honest answers.</h2>
 
     <div class="faq-list">
@@ -629,25 +619,25 @@
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="rule-v2"></div>
 
   <!-- CTA -->
   <section class="cta-section">
     <div class="cta-inner">
-      <div class="eyebrow reveal" style="--d:0">Cohort One · Opening June 1st</div>
-      <h2 class="reveal" style="--d:1">The Founding Cohort —<br /><em>limited to 25.</em></h2>
-      <p class="reveal" style="--d:2">The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study. Cohort One launches June 1st — applications are open now.</p>
-      <div class="btn-row reveal" style="--d:3">
-        <a href="waitlist.html" class="btn btn-primary">Join the waitlist <span class="arrow">→</span></a>
+      <div class="eyebrow-v2 r" style="--d:0">Cohort One · Opening June 1st</div>
+      <h2 class="r" style="--d:1">The Founding Cohort —<br /><em>limited to 25.</em></h2>
+      <p class="r" style="--d:2">The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study. Cohort One launches June 1st — applications are open now.</p>
+      <div class="btn-row r" style="--d:3">
+        <a href="waitlist.html" class="btn-v2">Join the waitlist <span class="arrow">→</span></a>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="footer-grid">
+  <footer class="footer-v2">
+    <div class="grid">
       <div>
-        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
+        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
       </div>
       <div>
         <h5>Product</h5>
@@ -677,13 +667,13 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="bottom">
       <span>© 2026 Astra LLC</span>
       <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
 
-  <script src="starfield.js"></script>
+
   <script>
     const prices = {
       startup: {
@@ -787,12 +777,12 @@
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
-          e.target.classList.add('animating', 'in');
-          e.target.addEventListener('transitionend', () => e.target.classList.remove('animating'), { once: true });
+          e.target.classList.add('in');
+          
         }
       });
     }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    document.querySelectorAll('.r').forEach(el => io.observe(el));
   </script>
   <script>
     (function(){

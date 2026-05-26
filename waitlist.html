@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,9 +6,28 @@
   <title>Astra — Waitlist</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* announce-bar v2 */
+    .announce-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 102;
+      height: 36px; background: var(--ink); color: var(--paper);
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: .10em; text-transform: uppercase;
+    }
+    .announce-bar .ab-label { opacity: 0.55; }
+    .announce-bar .ab-countdown { display: flex; align-items: center; gap: 4px; font-weight: 500; }
+    .announce-bar .ab-unit em { font-style: normal; font-size: 8px; opacity: 0.45; margin-left: 1px; }
+    .announce-bar .ab-sep { opacity: 0.28; margin: 0 1px; }
+    .announce-bar .ab-cta { padding: 3px 10px; border: 1px solid rgba(246,244,238,0.22); border-radius: 2px; color: var(--paper); font-size: 10px; transition: border-color .2s; }
+    .announce-bar .ab-cta:hover { border-color: rgba(246,244,238,0.55); }
+    .nav-v2 { top: 36px !important; }
+    @media (max-width: 640px) { .announce-bar .ab-label, .announce-bar .ab-cta { display: none; } }
+    .links .hide-sm { }
+    @media (max-width: 800px) { .links .hide-sm { display: none; } }
+  </style>
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <link rel="prefetch" href="index.html">
   <link rel="prefetch" href="agents.html">
@@ -36,14 +55,14 @@
       margin-bottom: 28px;
       letter-spacing: -0.02em;
     }
-    .wait-left h1 em { color: var(--fg-dim); }
+    .wait-left h1 em { color: var(--mute); }
     .wait-left p { margin-bottom: 12px; max-width: 50ch; }
 
     .counter {
       margin-top: 56px;
       padding: 32px 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
@@ -53,11 +72,11 @@
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin-bottom: 12px;
     }
     .counter-cell .v {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: 52px;
       line-height: 1;
       letter-spacing: -0.02em;
@@ -65,8 +84,8 @@
       align-items: baseline;
       gap: 6px;
     }
-    .counter-cell .v .of { color: var(--fg-mute); font-size: 0.4em; letter-spacing: 0; }
-    .counter-cell .v.live { color: var(--star); }
+    .counter-cell .v .of { color: var(--mute-2); font-size: 0.4em; letter-spacing: 0; }
+    .counter-cell .v.live { color: var(--accent); }
     .counter-cell .v.live::before {
       content: "●";
       font-size: 0.4em;
@@ -79,7 +98,7 @@
       margin-top: 24px;
       height: 1px;
       width: 100%;
-      background: var(--line);
+      background: var(--rule);
       position: relative;
       overflow: hidden;
     }
@@ -88,7 +107,7 @@
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 67%;
-      background: linear-gradient(to right, transparent, var(--star) 50%, transparent);
+      background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
       animation: scan 3s ease-in-out infinite;
     }
     @keyframes scan {
@@ -99,8 +118,8 @@
     .progress-fill {
       height: 100%;
       width: 32%;
-      background: linear-gradient(to right, oklch(0.52 0.22 240), var(--star));
-      box-shadow: 0 0 12px oklch(0.62 0.24 240 / 0.6);
+      background: linear-gradient(to right, oklch(0.52 0 0), var(--accent));
+      box-shadow: 0 0 12px oklch(0.62 0 0 / 0.6);
       transition: width 0.6s cubic-bezier(.16,1,.3,1);
     }
 
@@ -115,7 +134,7 @@
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin: 0 0 4px;
       font-weight: 400;
     }
@@ -124,51 +143,38 @@
       gap: 14px;
       align-items: center;
       padding: 10px 0;
-      border-bottom: 1px solid var(--line);
+      border-bottom: 1px solid var(--rule);
       font-family: var(--font-mono);
       font-size: 12px;
-      color: var(--fg-dim);
+      color: var(--mute);
       letter-spacing: 0.02em;
     }
     .recent-item .star {
-      color: var(--star);
+      color: var(--accent);
       width: 12px;
       text-align: center;
     }
     .recent-item .grow { flex: 1; }
-    .recent-item .when { color: var(--fg-mute); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
+    .recent-item .when { color: var(--mute-2); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
 
     /* ============ RIGHT — form card ============ */
     .form-card {
       position: relative;
       padding: 48px 44px;
       border-radius: 20px;
-      background: linear-gradient(180deg, rgba(16,20,32,0.78), rgba(8,10,18,0.86));
-      border: 1px solid var(--line-2);
-      backdrop-filter: blur(12px);
-      box-shadow:
-        0 0 0 1px oklch(0.62 0.24 240 / 0.06),
-        0 30px 100px rgba(0,0,0,0.5),
-        inset 0 1px 0 rgba(255,255,255,0.04);
+      background: var(--paper-2);
+      border: 1px solid var(--rule);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
       overflow: hidden;
     }
-    .form-card::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background:
-        radial-gradient(60% 60% at 50% 0%, oklch(0.62 0.24 240 / 0.12), transparent 60%),
-        radial-gradient(60% 60% at 50% 100%, oklch(0.42 0.22 240 / 0.10), transparent 60%);
-      pointer-events: none;
-      border-radius: 20px;
-    }
+    .form-card::before { display: none; }
     .form-card .tag {
       position: relative;
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--star);
+      color: var(--accent);
       margin-bottom: 8px;
       display: flex;
       align-items: center;
@@ -178,8 +184,8 @@
       content: "";
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--star);
-      box-shadow: 0 0 10px var(--star);
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
       animation: pulse 1.6s ease-in-out infinite;
     }
     .form-card h2 {
@@ -190,7 +196,7 @@
     }
     .form-card .sub {
       position: relative;
-      color: var(--fg-dim);
+      color: var(--mute);
       font-size: 15px;
       line-height: 1.5;
       margin-bottom: 36px;
@@ -203,37 +209,37 @@
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
     }
     .field label .opt {
       font-style: italic;
       letter-spacing: 0.04em;
       text-transform: none;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin-left: 6px;
     }
     .field input, .field textarea, .field select {
       width: 100%;
       max-width: 100%;
-      background: rgba(5,6,10,0.6);
-      border: 1px solid var(--line-2);
-      color: var(--fg);
+      background: rgba(0,0,0,0.06);
+      border: 1px solid var(--rule-2);
+      color: var(--ink);
       padding: 14px 16px;
       border-radius: 10px;
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       font-size: 15px;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .field input::placeholder, .field textarea::placeholder { color: var(--fg-mute); }
+    .field input::placeholder, .field textarea::placeholder { color: var(--mute-2); }
     .field input:focus, .field textarea:focus, .field select:focus {
-      border-color: var(--star);
-      box-shadow: 0 0 0 3px oklch(0.62 0.24 240 / 0.15);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px oklch(0.62 0 0 / 0.15);
     }
     .field textarea {
       resize: vertical;
       min-height: 120px;
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       line-height: 1.5;
     }
     .field-row {
@@ -251,21 +257,21 @@
     .chip {
       padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid var(--line-2);
+      border: 1px solid var(--rule-2);
       background: rgba(246,246,248,0.02);
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--mute);
       cursor: pointer;
       transition: all 0.2s;
     }
-    .chip:hover { color: var(--fg); border-color: var(--line-2); background: rgba(246,246,248,0.04); }
+    .chip:hover { color: var(--ink); border-color: var(--rule-2); background: rgba(246,246,248,0.04); }
     .chip.on {
-      color: var(--ink);
-      background: var(--fg);
-      border-color: var(--fg);
+      color: var(--paper);
+      background: var(--ink);
+      border-color: var(--ink);
     }
 
     .submit-row {
@@ -279,7 +285,7 @@
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.06em;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       max-width: 26ch;
       line-height: 1.4;
     }
@@ -300,14 +306,14 @@
       height: 64px;
       margin: 0 auto 20px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, #fff, var(--star) 60%, transparent 90%);
-      box-shadow: 0 0 30px var(--star), 0 0 80px oklch(0.62 0.24 240 / 0.5);
+      background: radial-gradient(circle at 30% 30%, #fff, var(--accent) 60%, transparent 90%);
+      box-shadow: 0 0 30px var(--accent), 0 0 80px oklch(0.62 0 0 / 0.5);
     }
     .form-success h3 {
       font-size: 36px;
       margin-bottom: 12px;
     }
-    .form-success p { color: var(--fg-dim); font-size: 15px; }
+    .form-success p { color: var(--mute); font-size: 15px; }
     .form-success .ticket {
       margin-top: 24px;
       display: inline-flex;
@@ -315,27 +321,27 @@
       padding: 10px 16px;
       border-radius: 999px;
       background: rgba(246,246,248,0.04);
-      border: 1px solid var(--line-2);
+      border: 1px solid var(--rule-2);
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--fg);
+      color: var(--ink);
     }
-    .form-success .ticket .num { color: var(--star); }
+    .form-success .ticket .num { color: var(--accent); }
 
     /* contact alt */
     .contact-alt {
       margin-top: 40px;
       padding-top: 32px;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid var(--rule);
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
     }
     .contact-card {
       padding: 24px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--rule);
       border-radius: 14px;
       background: rgba(246,246,248,0.015);
     }
@@ -344,20 +350,20 @@
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--fg-mute);
+      color: var(--mute-2);
       margin: 0 0 8px;
       font-weight: 400;
     }
     .contact-card .v {
-      font-family: var(--font-display);
+      font-family: var(--font-serif);
       font-size: 22px;
       letter-spacing: -0.005em;
-      color: var(--fg);
+      color: var(--ink);
     }
     .contact-card .meta {
       margin-top: 8px;
       font-size: 13px;
-      color: var(--fg-dim);
+      color: var(--mute);
     }
 
     @media (max-width: 1000px) {
@@ -371,8 +377,8 @@
 </head>
 <body>
 
-  <div class="nebula"></div>
-  <canvas class="starfield" id="starfield"></canvas>
+
+
 
   <div class="announce-bar">
     <span class="ab-label">Cohort One opens in</span>
@@ -388,18 +394,15 @@
     <a href="waitlist.html" class="ab-cta">Reserve your spot →</a>
   </div>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-brand">
-      <img src="brand_assets/favicon.png" alt="" width="36" height="36" style="border-radius:8px; display:block;" />
-
-    </a>
-    <div class="nav-links">
+  <nav class="nav-v2">
+    <a href="index.html" class="brand"><div class="brand-mark">A</div>Astra</a>
+    <div class="links">
       <a href="index.html">Overview</a>
       <a href="agents.html">Agents</a>
       <a href="demo.html" class="hide-sm">Demo</a>
       <a href="pricing.html">Pricing</a>
-      <a href="waitlist.html" class="btn btn-primary">Join waitlist <span class="arrow">→</span></a>
-      <a href="https://app.astracreates.com" class="btn-app">Open app ↗</a>
+      <a href="waitlist.html" class="btn-v2">Join waitlist <span class="arrow">→</span></a>
+      <a href="https://app.astracreates.com" class="btn-v2 ghost">Open app ↗</a>
     </div>
   </nav>
 
@@ -407,12 +410,12 @@
 
     <!-- ============ LEFT ============ -->
     <div class="wait-left">
-      <div class="eyebrow">Cohort One · Opening June 1st</div>
+      <div class="eyebrow-v2">Cohort One · Opening June 1st</div>
       <h1>Bring an idea.<br /><em>Get a company.</em></h1>
-      <p class="lede">
+      <p class="lede-v2">
         The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study.
       </p>
-      <p class="lede" style="color: var(--fg-mute);">
+      <p class="lede-v2" style="color: var(--mute-2);">
         Cohort One launches June 1st. Accepted founders ship within seventy-two hours of kickoff.
       </p>
 
@@ -433,7 +436,7 @@
     <!-- ============ RIGHT — form ============ -->
     <div class="form-card">
       <div class="tag" id="formTag">Application · Opens June 1st</div>
-      <h2 id="formTitle">Applications open<br /><em style="color: var(--fg-dim);">June 1st.</em></h2>
+      <h2 id="formTitle">Applications open<br /><em style="color: var(--mute);">June 1st.</em></h2>
       <p class="sub" id="formSub">Drop your idea below — we'll unlock submissions the moment the countdown hits zero.</p>
 
       <form class="form" id="form" novalidate>
@@ -468,7 +471,7 @@
           <p class="legal">
             By applying you agree to occasional emails about the cohort. We never share your idea.
           </p>
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn-v2">
             Apply <span class="arrow">→</span>
           </button>
         </div>
@@ -486,11 +489,11 @@
     </div>
   </div>
 
-  <footer class="footer">
-    <div class="footer-grid">
+  <footer class="footer-v2">
+    <div class="grid">
       <div>
-        <div class="footer-tag">You bring the idea.<br /><em style="color: var(--fg-dim);">Astra handles everything else.</em></div>
-        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fg-mute);">Astra LLC · Cohort One, 2026</div>
+        <div class="tag">You bring the idea.<br /><em style="color: var(--mute);">Astra handles everything else.</em></div>
+        <div style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute-2);">Astra LLC · Cohort One, 2026</div>
       </div>
       <div>
         <h5>Product</h5>
@@ -520,13 +523,13 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="bottom">
       <span>© 2026 Astra LLC</span>
       <span>Made by Astra, in 72 hours.</span>
     </div>
   </footer>
 
-  <script src="starfield.js"></script>
+
   <script>
     // chip selector
     const chips = document.querySelectorAll('#stageChips .chip');
@@ -638,7 +641,7 @@
         submitBtn.style.opacity = '';
         submitBtn.style.cursor = '';
         formTag.textContent = 'Application · 4 fields';
-        formTitle.innerHTML = 'Type the idea.<br /><em style="color: var(--fg-dim);">We\'ll take it from there.</em>';
+        formTitle.innerHTML = 'Type the idea.<br /><em style="color: var(--mute);">We\'ll take it from there.</em>';
         formSub.textContent = 'No business plan, no pitch deck. A few sentences in plain English is all we need to dispatch the agents.';
         var bar = document.querySelector('.announce-bar');
         if (bar) bar.innerHTML = '<a href="waitlist.html" style="color:#fff;letter-spacing:0.12em;font-family:var(--font-mono);font-size:11px;text-transform:uppercase;">Applications are now open — Reserve your spot →</a>';
