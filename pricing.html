@@ -7,101 +7,158 @@
   <title>Astra — Pricing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
-  <link rel="prefetch" href="index.html">
-  <link rel="prefetch" href="agents.html">
-  <link rel="prefetch" href="demo.html">
-  <link rel="prefetch" href="waitlist.html">
   <style>
+
+    /* ── HERO ─────────────────────────────────────────────────────────── */
     .page-hero {
-      padding: 160px 32px 56px;
-      position: relative;
-      z-index: 2;
-      text-align: center;
+      padding: 110px 0 72px;
+      border-bottom: 1px solid var(--hair);
     }
-
-    .page-hero .wrap { max-width: 1100px; margin: 0 auto; }
+    .page-hero .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 28px;
+    }
     .page-hero h1 {
-      font-size: clamp(56px, 8vw, 120px);
-      line-height: 1.04;
-      letter-spacing: -0.025em;
-      margin-bottom: 24px;
+      font-size: clamp(42px, 6.2vw, 86px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      font-weight: 400;
+      margin: 0 0 28px;
     }
-    .page-hero h1 em { color: var(--accent); font-style: italic; }
-    .page-hero .lede {
-      margin: 0 auto;
-      text-align: center;
+    .h1-gray { color: var(--mute); }
+    .hero-lede {
       max-width: 56ch;
+      font-size: clamp(15px, 1.25vw, 17px);
+      color: var(--mute);
+      line-height: 1.65;
+      margin: 0;
     }
 
-    /* audience tabs */
-    .audience-wrap {
+    /* ── CONTROLS ROW ─────────────────────────────────────────────────── */
+    .controls-row {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 52px 48px 0;
       display: flex;
-      justify-content: center;
-      margin: 60px auto 0;
-      position: relative;
-      z-index: 2;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
     }
+
+    /* Audience switch */
     .audience-switch {
       display: inline-flex;
-      padding: 4px;
-      border-radius: 16px;
-      background: rgba(0,0,0,0.06);
-      border: 1px solid var(--hair-2);
-      backdrop-filter: blur(10px);
-      gap: 4px;
+      padding: 3px;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid var(--hair);
+      gap: 2px;
     }
     .audience-switch button {
-      padding: 13px 28px;
+      padding: 10px 22px;
       border: 1px solid transparent;
       background: transparent;
+      color: var(--mute);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 9px;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .audience-switch button.active {
+      background: #fff;
+      border-color: var(--hair);
+      color: var(--ink);
+    }
+    .audience-switch button:not(.active):hover { color: var(--ink); }
+    .aud-label { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+    .aud-sub {
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .audience-switch button.active .aud-sub { opacity: 1; }
+
+    .controls-sep {
+      width: 1px;
+      height: 32px;
+      background: var(--hair);
+    }
+
+    /* Billing switch */
+    .billing-switch {
+      display: inline-flex;
+      padding: 3px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--hair);
+      position: relative;
+    }
+    .billing-switch button {
+      position: relative;
+      z-index: 2;
+      padding: 9px 18px;
+      background: transparent;
+      border: 0;
       color: var(--mute);
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       cursor: pointer;
-      border-radius: 12px;
-      transition: color 0.25s, background 0.25s, border-color 0.25s;
+      border-radius: 999px;
+      transition: color 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
-    .audience-switch button.active {
-      background: rgba(246, 246, 248, 0.07);
-      border-color: var(--hair-2);
-      color: var(--ink);
+    .billing-switch button.active { color: #fff; }
+    .billing-switch button:not(.active):hover { color: var(--ink); }
+    .billing-switch .indicator {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      height: calc(100% - 6px);
+      border-radius: 999px;
+      background: var(--ink);
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1);
+      z-index: 1;
     }
-    .audience-switch button:not(.active):hover { color: var(--ink); }
-    .audience-switch .aud-label {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-    }
-    .audience-switch .aud-sub {
-      font-size: 9px;
-      letter-spacing: 0.1em;
+    .billing-switch .save-badge {
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(33,97,255,0.1);
       color: var(--accent);
-      opacity: 0;
-      transition: opacity 0.25s;
+      font-size: 9px;
+      letter-spacing: 0.12em;
     }
-    .audience-switch button.active .aud-sub { opacity: 1; }
+    .billing-switch button.active .save-badge {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+    }
 
-    /* setup-fee callout */
+    /* Setup bar */
     .setup-bar {
-      max-width: 960px;
-      margin: 32px auto 0;
-      padding: 18px 28px;
-      border-radius: 14px;
-      border: 1px solid var(--hair-2);
-      background: var(--bg);
+      max-width: 1280px;
+      margin: 28px auto 0;
+      padding: 20px 48px;
+      border-top: 1px solid var(--hair);
+      border-bottom: 1px solid var(--hair);
       display: flex;
       align-items: center;
-      gap: 24px;
-      backdrop-filter: blur(10px);
-      position: relative;
-      z-index: 2;
+      gap: 32px;
     }
     .setup-bar .k {
       font-family: 'JetBrains Mono', monospace;
@@ -109,163 +166,76 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent);
-      white-space: nowrap;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .setup-bar .price {
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 36px;
-      line-height: 1;
-      color: var(--ink);
+      font-size: 32px;
+      font-weight: 400;
       letter-spacing: -0.01em;
-      white-space: nowrap;
+      color: var(--ink);
       transition: opacity 0.2s;
+      line-height: 1;
     }
     .setup-bar .price.swap { opacity: 0.3; }
-    .setup-bar .price .small {
-      font-size: 14px;
-      color: var(--mute);
-      margin-left: 6px;
-      letter-spacing: 0;
-    }
-    .setup-bar .sep {
-      width: 1px;
-      align-self: stretch;
-      background: var(--hair);
-    }
-    .setup-bar p {
-      margin: 0;
-      color: var(--mute);
-      font-size: 13px;
-      line-height: 1.45;
-    }
+    .setup-bar .price .small { font-size: 13px; color: var(--mute); margin-left: 6px; letter-spacing: 0; }
+    .setup-bar .sep { width: 1px; align-self: stretch; background: var(--hair); }
+    .setup-bar p { margin: 0; color: var(--mute); font-size: 14px; line-height: 1.5; max-width: 52ch; }
 
-    /* billing switch */
-    .billing-switch-wrap {
-      display: flex;
-      justify-content: center;
-      margin: 40px auto 0;
-      position: relative;
-      z-index: 2;
-    }
-    .billing-switch {
-      display: inline-flex;
-      padding: 4px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.06);
-      border: 1px solid var(--hair-2);
-      backdrop-filter: blur(8px);
-      position: relative;
-    }
-    .billing-switch button {
-      position: relative;
-      z-index: 2;
-      padding: 10px 22px;
-      background: transparent;
-      border: 0;
-      color: var(--mute);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      border-radius: 999px;
-      transition: color 0.25s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .billing-switch button.active { color: var(--bg); }
-    .billing-switch button:not(.active):hover { color: var(--ink); }
-    .billing-switch .indicator {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      height: calc(100% - 8px);
-      border-radius: 999px;
-      background: var(--ink);
-      transition: transform 0.35s cubic-bezier(.4, 0, .2, 1), width 0.35s cubic-bezier(.4, 0, .2, 1);
-      z-index: 1;
-    }
-    .billing-switch .save-badge {
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--hair-2);
-      color: var(--accent);
-      font-size: 9px;
-      letter-spacing: 0.16em;
-    }
-    .billing-switch button.active .save-badge {
-      background: var(--hair);
-      color: var(--accent);
-    }
-
-    /* pricing tiers */
+    /* ── TIER CARDS ───────────────────────────────────────────────────── */
     .tiers {
-      max-width: 1080px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 40px 32px 40px;
+      padding: 48px 48px 0;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      position: relative;
-      z-index: 2;
     }
     .tier {
-      position: relative;
       padding: 40px 36px 36px;
-      border-radius: 18px;
-      background: var(--bg);
-      border: 1px solid var(--hair-2);
+      border-radius: 4px;
+      background: #fff;
+      border: 1px solid var(--hair);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      backdrop-filter: blur(8px);
     }
     .tier.featured {
       border-color: var(--hair-2);
-      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
     }
-    .tier.featured::before { display: none; }
     .tier-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: var(--mute);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .tier.featured .tier-tag { color: var(--accent); }
     .tier.featured .tier-tag::before {
       content: "";
-      width: 6px; height: 6px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 10px var(--accent);
     }
     .tier-name {
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 48px;
+      font-size: 44px;
+      font-weight: 400;
       line-height: 1;
-      margin-bottom: 18px;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
     }
     .tier-price {
       display: flex;
       align-items: baseline;
-      gap: 4px;
-      margin-bottom: 6px;
+      gap: 2px;
+      margin-bottom: 4px;
     }
-    .tier-price .currency {
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 28px;
-      color: var(--mute);
-    }
+    .tier-price .currency { font-size: 24px; color: var(--mute); }
     .tier-price .amount {
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 76px;
+      font-size: 72px;
       line-height: 1;
       letter-spacing: -0.02em;
       transition: opacity 0.2s ease;
@@ -273,7 +243,7 @@
     .tier-price .amount.swap { opacity: 0.3; }
     .tier-price .unit {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-size: 11px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--mute);
@@ -282,60 +252,86 @@
     .tier-subtitle {
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--mute);
       margin-bottom: 28px;
-      padding-bottom: 24px;
+      padding-bottom: 22px;
       border-bottom: 1px solid var(--hair);
     }
-    .tier-subtitle .save-inline {
-      color: var(--accent);
-      margin-left: 8px;
-      letter-spacing: 0.16em;
-    }
+    .tier-subtitle .save-inline { color: var(--accent); margin-left: 8px; }
     .tier ul {
       list-style: none;
       padding: 0;
       margin: 0 0 32px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 11px;
     }
     .tier ul li {
       font-size: 14px;
       color: var(--mute);
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      line-height: 1.45;
+      gap: 10px;
+      line-height: 1.5;
     }
     .tier ul li::before {
       content: "";
       flex-shrink: 0;
-      width: 5px; height: 5px;
-      margin-top: 8px;
+      width: 4px; height: 4px;
+      margin-top: 7px;
       border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 6px oklch(0.62 0 0 / 0.7);
     }
     .tier .cta-row { margin-top: auto; }
     .tier .btn { width: 100%; justify-content: center; }
 
-    /* FAQ */
-    .faq {
-      max-width: 1100px;
+    /* ── MATH ─────────────────────────────────────────────────────────── */
+    .math-section {
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 80px 32px 100px;
-      position: relative;
-      z-index: 2;
+      padding: 72px 48px;
+      border-top: 1px solid var(--hair);
     }
-    .faq h2 { font-size: clamp(40px, 5vw, 64px); margin-bottom: 8px; }
-    .faq > .eyebrow { margin-bottom: 18px; }
-    .faq-list { margin-top: 48px; border-top: 1px solid var(--hair); }
+    .math-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 22px;
+    }
+    .math-text {
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+    .math-text .strike { color: var(--mute); text-decoration: line-through; text-decoration-color: var(--hair-2); font-style: italic; }
+    .math-text .blue { color: var(--accent); }
+
+    /* ── FAQ ──────────────────────────────────────────────────────────── */
+    .faq {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 48px 80px;
+      border-top: 1px solid var(--hair);
+    }
+    .faq-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 56px 0 20px;
+    }
+    .faq h2 { font-size: clamp(36px, 4.5vw, 56px); font-weight: 400; letter-spacing: -0.02em; margin: 0 0 48px; }
+    .faq-list { border-top: 1px solid var(--hair); }
     details.faq-item {
       border-bottom: 1px solid var(--hair);
-      padding: 24px 0;
+      padding: 22px 0;
     }
     details.faq-item summary {
       list-style: none;
@@ -344,8 +340,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: clamp(20px, 2vw, 26px);
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 400;
       letter-spacing: -0.005em;
       color: var(--ink);
     }
@@ -355,12 +351,11 @@
       flex-shrink: 0;
       position: relative;
     }
-    details.faq-item .sign::before,
-    details.faq-item .sign::after {
+    details.faq-item .sign::before, details.faq-item .sign::after {
       content: "";
       position: absolute;
       background: var(--mute);
-      transition: transform 0.3s, background 0.3s;
+      transition: transform 0.25s, background 0.25s;
     }
     details.faq-item .sign::before { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-0.5px); }
     details.faq-item .sign::after { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-0.5px); }
@@ -368,51 +363,59 @@
     details.faq-item[open] .sign::before,
     details.faq-item[open] .sign::after { background: var(--accent); }
     details.faq-item .answer {
-      margin-top: 18px;
+      margin-top: 16px;
       color: var(--mute);
       font-size: 15px;
-      line-height: 1.6;
-      max-width: 70ch;
+      line-height: 1.65;
+      max-width: 68ch;
     }
 
-    /* CTA */
+    /* ── CTA ──────────────────────────────────────────────────────────── */
     .cta-section {
-      padding: 100px 32px;
-      position: relative;
-      z-index: 2;
+      padding: 100px 48px;
+      border-top: 1px solid var(--hair);
     }
-    .cta-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .cta-inner .eyebrow { margin-bottom: 22px; }
-    .cta-inner h2 {
-      font-size: clamp(40px, 5.6vw, 78px);
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin: 0 0 24px;
-    }
-    .cta-inner h2 em { color: var(--mute); font-style: italic; }
-    .cta-inner p {
+    .cta-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
       color: var(--mute);
-      max-width: 56ch;
-      margin: 0 0 32px;
-      font-size: clamp(17px, 1.5vw, 20px);
-      line-height: 1.5;
+      margin: 0 0 44px;
     }
-    .cta-inner .btn-row { display: inline-flex; gap: 14px; }
+    .cta-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+    .cta-grid h2 {
+      font-size: clamp(34px, 4.2vw, 58px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0;
+    }
+    .cta-grid h2 em { font-style: italic; color: var(--mute); }
+    .cta-right { display: flex; flex-direction: column; gap: 28px; align-items: flex-start; }
+    .cta-right p { font-size: 16px; color: var(--mute); line-height: 1.65; max-width: 44ch; margin: 0; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    @media (max-width: 1100px) {
+    /* ── RESPONSIVE ───────────────────────────────────────────────────── */
+    @media (max-width: 1000px) {
       .tiers { grid-template-columns: 1fr; }
-      .page-hero { padding-top: 160px; }
-      .setup-bar { flex-direction: column; align-items: flex-start; gap: 12px; padding: 20px; }
+      .cta-grid { grid-template-columns: 1fr; gap: 32px; }
+      .controls-row { flex-direction: column; align-items: flex-start; }
+      .controls-sep { display: none; }
+      .setup-bar { flex-direction: column; align-items: flex-start; }
       .setup-bar .sep { display: none; }
-      .audience-switch { flex-direction: column; width: calc(100% - 64px); max-width: 400px; }
-      .audience-switch button { text-align: left; }
+    }
+    @media (max-width: 700px) {
+      .page-hero { padding-top: 90px; }
+      .page-hero .wrap, .controls-row, .tiers, .math-section, .faq, .cta-section { padding-left: 24px; padding-right: 24px; }
+      .setup-bar { padding: 20px 24px; }
     }
   </style>
 </head>
@@ -420,9 +423,9 @@
 
   <nav class="nav">
     <div class="nav-inner wrap">
-      <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
+      <a href="home.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">Overview</a>
+        <a href="home.html" class="nav-link">Overview</a>
         <a href="agents.html" class="nav-link">Agents</a>
         <a href="demo.html" class="nav-link">Demo</a>
         <a href="pricing.html" class="nav-link active">Pricing</a>
@@ -434,16 +437,14 @@
   <!-- HERO -->
   <section class="page-hero">
     <div class="wrap">
-      <div class="mono section-label" style="display:flex;justify-content:center;margin-bottom:28px;">Pricing</div>
-      <h1>Two paths.<br /><em>One team behind you.</em></h1>
-      <p class="lede" style="text-align: center; margin: 24px auto 0;">
-        Whether you're turning an idea into a company or already running one — Astra has a plan sized for where you are. Both paths include the same eight agents, working around the clock.
-      </p>
+      <p class="hero-eyebrow">Pricing</p>
+      <h1>Two paths.<br><span class="h1-gray">One team behind you.</span></h1>
+      <p class="hero-lede">Whether you're turning an idea into a company or already running one — Astra has a plan sized for where you are. Both paths include the same eight agents, working around the clock.</p>
     </div>
   </section>
 
-  <!-- AUDIENCE TABS -->
-  <div class="audience-wrap">
+  <!-- CONTROLS -->
+  <div class="controls-row">
     <div class="audience-switch" id="audienceSwitch">
       <button class="active" data-audience="startup">
         <span class="aud-label">
@@ -458,9 +459,17 @@
         </span>
       </button>
     </div>
+
+    <div class="controls-sep"></div>
+
+    <div class="billing-switch" id="billingSwitch">
+      <div class="indicator" id="switchIndicator"></div>
+      <button class="active" data-period="monthly">Monthly</button>
+      <button data-period="yearly">Yearly <span class="save-badge">save 15%</span></button>
+    </div>
   </div>
 
-  <!-- SETUP FEE CALLOUT -->
+  <!-- SETUP BAR -->
   <div class="setup-bar">
     <div>
       <div class="k">Setup · one-time</div>
@@ -468,15 +477,6 @@
     </div>
     <div class="sep"></div>
     <p id="setupDesc">Entity formation, EIN, founder agreements, and your first landing page — included with every plan. Non-recurring.</p>
-  </div>
-
-  <!-- BILLING SWITCH -->
-  <div class="billing-switch-wrap">
-    <div class="billing-switch" id="billingSwitch">
-      <div class="indicator" id="switchIndicator"></div>
-      <button class="active" data-period="monthly">Monthly</button>
-      <button data-period="yearly">Yearly <span class="save-badge">save 15%</span></button>
-    </div>
   </div>
 
   <!-- TIERS -->
@@ -502,7 +502,7 @@
         <li>Agent chat interface</li>
       </ul>
       <div class="cta-row">
-        <a href="waitlist.html" class="btn-secondary" style="width:100%;justify-content:center;">Start with Build →</a>
+        <a href="waitlist.html" class="btn-secondary btn" style="width:100%;justify-content:center;">Start with Build →</a>
       </div>
     </div>
 
@@ -526,29 +526,26 @@
         <li>Early access to new agents</li>
       </ul>
       <div class="cta-row">
-        <a href="waitlist.html" class="btn-primary" style="width:100%;justify-content:center;">Start with Scale →</a>
+        <a href="waitlist.html" class="btn-primary btn" style="width:100%;justify-content:center;">Start with Scale →</a>
       </div>
     </div>
 
   </section>
 
   <!-- MATH -->
-  <section class="cta-section">
-    <div class="cta-inner">
-      <div class="mono section-label" style="margin-bottom:16px;">The math, once more</div>
-      <p style="font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(28px, 3.6vw, 48px); line-height: 1.25; letter-spacing: -0.01em; margin: 16px 0 0; color: var(--ink);">
-        Specialists for one month: <span style="color: var(--mute); text-decoration: line-through; text-decoration-color: oklch(0.58 0 0 / 0.6); font-style: italic;">$7,300</span>.<br />
-        Astra for a new founder: <span style="color: var(--accent);">from $40/mo</span>.<br />
-        Astra for a business owner: <span style="color: var(--accent);">from $35/mo</span>.
-      </p>
-    </div>
-  </section>
+  <div class="math-section">
+    <p class="math-eyebrow">The math, once more</p>
+    <p class="math-text">
+      Specialists for one month: <span class="strike">$7,300</span>.<br>
+      Astra for a new founder: <span class="blue">from $40/mo</span>.<br>
+      Astra for a business owner: <span class="blue">from $35/mo</span>.
+    </p>
+  </div>
 
   <!-- FAQ -->
   <section class="faq">
-    <div class="mono section-label" style="margin-bottom:18px;">FAQ</div>
+    <p class="faq-eyebrow">FAQ</p>
     <h2>Honest answers.</h2>
-
     <div class="faq-list">
       <details class="faq-item">
         <summary>What's included in the one-time setup fee? <span class="sign"></span></summary>
@@ -583,12 +580,14 @@
 
   <!-- CTA -->
   <section class="cta-section">
-    <div class="cta-inner">
-      <div class="mono section-label" style="margin-bottom:22px;">Cohort One · Opening June 1st</div>
-      <h2>The Founding Cohort —<br /><em>limited to 25.</em></h2>
-      <p>The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study. Cohort One launches June 1st — applications are open now.</p>
-      <div class="btn-row">
-        <a href="waitlist.html" class="btn-primary">Join the waitlist →</a>
+    <p class="cta-eyebrow">Cohort One · Opening June 1st</p>
+    <div class="cta-grid">
+      <h2>The Founding Cohort —<br><em>limited to 25.</em></h2>
+      <div class="cta-right">
+        <p>The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study. Applications are open now.</p>
+        <div class="btn-row">
+          <a href="waitlist.html" class="btn-primary">Join the waitlist →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -604,33 +603,31 @@
     </div>
   </footer>
 
-
   <script>
     const prices = {
       startup: {
         setup: 300,
         setupDesc: 'Entity formation, EIN, founder agreements, and your first landing page — included with every plan. Non-recurring.',
-        build:  { monthly: 40,  yearly: 34 },
-        scale:  { monthly: 60,  yearly: 51 }
+        build:  { monthly: 40, yearly: 34 },
+        scale:  { monthly: 60, yearly: 51 }
       },
       business: {
         setup: 50,
         setupDesc: 'Onboarding, brand configuration, and initial agent setup tailored to your existing company. Non-recurring.',
-        build:  { monthly: 35,  yearly: 30 },
-        scale:  { monthly: 55,  yearly: 47 }
+        build:  { monthly: 35, yearly: 30 },
+        scale:  { monthly: 55, yearly: 47 }
       }
     };
 
     let currentAudience = 'startup';
     let currentPeriod   = 'monthly';
 
-    const tierEls    = document.querySelectorAll('.tier');
-    const setupPriceEl = document.getElementById('setupPrice');
-    const setupDescEl  = document.getElementById('setupDesc');
+    const tierEls       = document.querySelectorAll('.tier');
+    const setupPriceEl  = document.getElementById('setupPrice');
+    const setupDescEl   = document.getElementById('setupDesc');
 
     function updatePrices(animateSetup) {
       const aud = prices[currentAudience];
-
       if (animateSetup) {
         setupPriceEl.classList.add('swap');
         setTimeout(() => {
@@ -639,53 +636,47 @@
           setupPriceEl.classList.remove('swap');
         }, 120);
       }
-
       tierEls.forEach(tier => {
-        const plan    = tier.dataset.plan;
+        const plan     = tier.dataset.plan;
         const amountEl = tier.querySelector('.amount');
         const unitEl   = tier.querySelector('.unit');
         const saveEl   = tier.querySelector('.save-inline');
         const newAmt   = aud[plan][currentPeriod];
-
         amountEl.classList.add('swap');
         setTimeout(() => {
           amountEl.textContent = newAmt;
           unitEl.textContent   = currentPeriod === 'monthly' ? '/ month' : '/ mo, billed yearly';
           if (saveEl) {
-            if (currentPeriod === 'yearly') {
-              const saved = (aud[plan].monthly - aud[plan].yearly) * 12;
-              saveEl.textContent = '· $' + saved + ' saved / yr';
-            } else {
-              saveEl.textContent = '';
-            }
+            saveEl.textContent = currentPeriod === 'yearly'
+              ? '· $' + (aud[plan].monthly - aud[plan].yearly) * 12 + ' saved / yr'
+              : '';
           }
           amountEl.classList.remove('swap');
         }, 120);
       });
     }
 
-    /* audience switch */
+    // Audience switch
     const audienceSwitch = document.getElementById('audienceSwitch');
-    const audBtns = audienceSwitch.querySelectorAll('button');
-    audBtns.forEach(btn => {
+    audienceSwitch.querySelectorAll('button').forEach(btn => {
       btn.addEventListener('click', () => {
-        audBtns.forEach(b => b.classList.remove('active'));
+        audienceSwitch.querySelectorAll('button').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentAudience = btn.dataset.audience;
         updatePrices(true);
       });
     });
 
-    /* billing switch */
+    // Billing switch
     const switchEl  = document.getElementById('billingSwitch');
     const indicator = document.getElementById('switchIndicator');
     const billBtns  = switchEl.querySelectorAll('button');
 
     function positionIndicator(btn) {
-      const switchRect = switchEl.getBoundingClientRect();
-      const btnRect    = btn.getBoundingClientRect();
-      indicator.style.width     = btnRect.width + 'px';
-      indicator.style.transform = `translateX(${btnRect.left - switchRect.left - 4}px)`;
+      const sr = switchEl.getBoundingClientRect();
+      const br = btn.getBoundingClientRect();
+      indicator.style.width     = br.width + 'px';
+      indicator.style.transform = `translateX(${br.left - sr.left - 3}px)`;
     }
 
     billBtns.forEach(btn => {
@@ -704,6 +695,5 @@
       if (active) positionIndicator(active);
     });
   </script>
-
 </body>
 </html>

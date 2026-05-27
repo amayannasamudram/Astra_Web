@@ -7,53 +7,107 @@
   <title>Astra — Careers</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
   <style>
-    .careers-wrap {
-      min-height: 100vh;
+
+    /* ── HERO ─────────────────────────────────────────────────────────── */
+    .page-hero {
+      padding: 110px 0 72px;
+      border-bottom: 1px solid var(--hair);
+    }
+    .page-hero .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 28px;
+    }
+    .page-hero h1 {
+      font-size: clamp(42px, 6.2vw, 86px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      font-weight: 400;
+      margin: 0 0 0;
+    }
+    .h1-blue { color: var(--accent); }
+    .h1-gray { color: var(--mute); }
+
+    /* ── BODY ─────────────────────────────────────────────────────────── */
+    .careers-body {
+      padding: 80px 0 100px;
+    }
+    .careers-body .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+    .careers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 100px;
+      align-items: start;
+    }
+
+    .careers-lede {
+      font-size: clamp(16px, 1.4vw, 18px);
+      color: var(--mute);
+      line-height: 1.7;
+      max-width: 48ch;
+      margin: 0 0 40px;
+    }
+    .careers-lede strong { color: var(--ink); font-weight: 500; }
+
+    .careers-cta-block {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 140px 32px 80px;
-      position: relative;
-      z-index: 2;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .careers-wrap .eyebrow { justify-content: center; margin-bottom: 36px; }
-    .careers-wrap h1 {
-      font-size: clamp(48px, 7vw, 96px);
-      line-height: 1.02;
-      letter-spacing: -0.025em;
-      margin-bottom: 4px;
-    }
-    .careers-wrap h1 em { color: var(--mute); }
-    .careers-wrap .body {
-      font-size: clamp(16px, 1.4vw, 19px);
-      color: var(--mute);
-      line-height: 1.65;
-      max-width: 52ch;
-      margin: 0 auto 48px;
-    }
-    .careers-wrap .body strong { color: var(--ink); font-weight: 500; }
-    .divider-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--hair-2), transparent);
-      margin: 0 auto 40px;
+      gap: 16px;
+      align-items: flex-start;
     }
     .careers-note {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mute);
+    }
+
+    /* Right side: the "just build" statement */
+    .careers-punch {
+      padding: 52px 48px;
+      border: 1px solid var(--hair);
+      border-radius: 4px;
+      background: #fff;
+    }
+    .careers-punch-eyebrow {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--mute);
-      margin-top: 24px;
+      margin: 0 0 24px;
+    }
+    .careers-punch h2 {
+      font-size: clamp(36px, 4.5vw, 64px);
+      font-weight: 400;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin: 0 0 16px;
+    }
+    .careers-punch h2 em { color: var(--accent); font-style: italic; }
+    .careers-punch p {
+      color: var(--mute);
+      font-size: 15px;
+      line-height: 1.65;
+      max-width: 44ch;
+      margin: 0 0 32px;
+    }
+
+    @media (max-width: 900px) {
+      .page-hero .wrap { padding: 0 24px; }
+      .careers-body .wrap { padding: 0 24px; }
+      .careers-grid { grid-template-columns: 1fr; gap: 48px; }
+      .page-hero { padding-top: 90px; }
     }
   </style>
 </head>
@@ -61,9 +115,9 @@
 
   <nav class="nav">
     <div class="nav-inner wrap">
-      <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
+      <a href="home.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">Overview</a>
+        <a href="home.html" class="nav-link">Overview</a>
         <a href="agents.html" class="nav-link">Agents</a>
         <a href="demo.html" class="nav-link">Demo</a>
         <a href="pricing.html" class="nav-link">Pricing</a>
@@ -72,30 +126,41 @@
     </div>
   </nav>
 
-  <div class="careers-wrap">
-    <div class="mono section-label" style="display:flex;justify-content:center;margin-bottom:36px;">Careers at Astra</div>
-
-    <h1>Why are you<br /><em>looking for a job?</em></h1>
-
-    <div style="margin: 0 0 48px; font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(52px, 8vw, 110px); line-height: 1; letter-spacing: -0.03em; color: var(--ink);">
-      Just build<br /><em style="color: var(--accent);">with Astra.</em>
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="hero-eyebrow">Careers at Astra</p>
+      <h1>Why are you<br><span class="h1-gray">looking for a job?</span></h1>
     </div>
+  </section>
 
-    <p class="body">
-      Seriously. You found us — which means you have the drive to build something.
-      <strong>That's exactly the kind of person Astra was made for.</strong><br /><br />
-      Instead of sending a résumé somewhere, why not send your idea here?
-      We'll spin up a full founding team around it — legal, design, engineering, marketing —
-      and have you live within 72 hours. No co-founder needed. No runway required.
-      Just the idea you've been sitting on.
-    </p>
+  <!-- BODY -->
+  <section class="careers-body">
+    <div class="wrap">
+      <div class="careers-grid">
+        <div>
+          <p class="careers-lede">
+            Seriously. You found us — which means you have the drive to build something.
+            <strong>That's exactly the kind of person Astra was made for.</strong>
+          </p>
+          <p class="careers-lede" style="margin-top: -20px;">
+            Instead of sending a résumé somewhere, why not send your idea here? We'll spin up a full founding team around it — legal, design, engineering, marketing — and have you live within 72 hours. No co-founder needed. No runway required. Just the idea you've been sitting on.
+          </p>
+          <div class="careers-cta-block">
+            <a href="waitlist.html" class="btn-primary">Reserve your spot →</a>
+            <p class="careers-note">Applications open June 1st · 25 founding spots</p>
+          </div>
+        </div>
 
-    <a href="waitlist.html" class="btn-primary" style="font-size: 15px; padding: 14px 28px;">
-      Reserve your spot →
-    </a>
-
-    <p class="careers-note">Applications open June 1st · 25 founding spots</p>
-  </div>
+        <div class="careers-punch">
+          <p class="careers-punch-eyebrow">The better move</p>
+          <h2>Just build<br><em>with Astra.</em></h2>
+          <p>Eight specialists. One shared memory. Your idea, live within 72 hours. The same quality of founding team that costs $7,300 a month — starting from $40.</p>
+          <a href="pricing.html" class="btn-secondary">See pricing →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <div class="foot-inner wrap">

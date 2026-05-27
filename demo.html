@@ -7,74 +7,69 @@
   <title>Astra — Watch it work</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" href="brand_assets/favicon.png" />
-  <link rel="prefetch" href="index.html">
-  <link rel="prefetch" href="agents.html">
-  <link rel="prefetch" href="pricing.html">
-  <link rel="prefetch" href="waitlist.html">
   <style>
-    /* ============ HERO ============ */
+
+    /* ── HERO ─────────────────────────────────────────────────────────── */
     .page-hero {
-      padding: 160px 32px 56px;
-      min-height: 100vh;
-      position: relative;
-      z-index: 2;
-      text-align: center;
+      padding: 110px 0 72px;
+      border-bottom: 1px solid var(--hair);
     }
-
-    .page-hero .wrap { max-width: 1100px; margin: 0 auto; }
+    .page-hero .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 28px;
+    }
     .page-hero h1 {
-      font-size: clamp(56px, 7.5vw, 110px);
-      line-height: 1.04;
-      letter-spacing: -0.025em;
-      margin-bottom: 24px;
+      font-size: clamp(42px, 6.2vw, 86px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      font-weight: 400;
+      margin: 0 0 28px;
     }
-    .page-hero h1 em { color: var(--accent); font-style: italic; }
-    .page-hero .lede { margin: 0 auto; text-align: center; max-width: 56ch; }
+    .h1-blue { color: var(--accent); }
+    .h1-gray { color: var(--mute); }
+    .hero-lede {
+      max-width: 54ch;
+      font-size: clamp(15px, 1.25vw, 17px);
+      color: var(--mute);
+      line-height: 1.65;
+      margin: 0;
+    }
 
-    /* ============ MAIN PLAYER ============ */
+    /* ── PLAYER STAGE ─────────────────────────────────────────────────── */
     .stage {
-      padding: 40px 32px 80px;
-      position: relative;
-      z-index: 2;
+      padding: 80px 48px;
+      border-bottom: 1px solid var(--hair);
     }
-    .stage-inner { max-width: 1240px; margin: 0 auto; }
+    .stage-inner { max-width: 1280px; margin: 0 auto; }
 
     .player {
       position: relative;
       aspect-ratio: 16 / 9;
-      border-radius: 20px;
+      border-radius: 0;
       overflow: hidden;
-      border: 1px solid var(--hair-2);
-      background: linear-gradient(180deg, var(--bg), var(--ink));
-      box-shadow:
-        0 0 0 1px var(--hair),
-        0 0 80px oklch(0.62 0 0 / 0.20),
-        0 40px 120px rgba(0,0,0,0.55);
+      border: 1px solid var(--hair);
+      background: #fff;
     }
+    /* Subtle grid overlay */
     .player::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(60% 50% at 50% 50%, oklch(0.38 0 0 / 0.16), transparent 70%),
-        radial-gradient(80% 80% at 50% 100%, oklch(0.38 0 0 / 0.10), transparent 70%);
-      pointer-events: none;
-    }
-    /* faint grid texture */
-    .player::after {
-      content: "";
-      position: absolute;
-      inset: 0;
       background-image:
-        linear-gradient(rgba(246,246,248,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(246,246,248,0.025) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(closest-side at 50% 50%, black 0%, transparent 80%);
-      -webkit-mask-image: radial-gradient(closest-side at 50% 50%, black 0%, transparent 80%);
+        linear-gradient(to right, var(--hair) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--hair) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 90%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 90%);
+      opacity: 0.6;
       pointer-events: none;
     }
 
@@ -85,76 +80,49 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      gap: 20px;
       z-index: 1;
     }
 
     .play-btn {
-      position: relative;
-      width: 116px;
-      height: 116px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
-      background: rgba(246, 246, 248, 0.04);
+      background: #fff;
       border: 1px solid var(--hair-2);
-      backdrop-filter: blur(14px);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
       color: var(--ink);
       cursor: pointer;
       display: grid;
       place-items: center;
-      transition: transform 0.4s cubic-bezier(.16,1,.3,1),
-                  border-color 0.3s ease,
-                  box-shadow 0.4s ease;
-    }
-    .play-btn::before {
-      content: "";
-      position: absolute;
-      inset: -8px;
-      border-radius: 50%;
-      border: 1px solid var(--hair);
-      opacity: 0.6;
-      transition: transform 0.5s cubic-bezier(.16,1,.3,1), opacity 0.4s;
+      transition: transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.3s ease, border-color 0.3s ease;
     }
     .play-btn:hover {
       transform: scale(1.06);
       border-color: var(--accent);
-      box-shadow: 0 0 40px oklch(0.62 0 0 / 0.45);
+      box-shadow: 0 4px 32px rgba(33,97,255,0.12);
     }
-    .play-btn:hover::before {
-      transform: scale(1.15);
-      opacity: 1;
-    }
-    .play-btn svg { width: 36px; height: 36px; transform: translateX(2px); }
+    .play-btn svg { width: 32px; height: 32px; transform: translateX(2px); }
 
-    .player-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--mute);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .player-label::before {
-      content: "";
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent);
-      animation: pulseDot 1.6s ease-in-out infinite;
-    }
-    @keyframes pulseDot { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
     .player-hint {
       font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: clamp(22px, 2.4vw, 32px);
+      font-size: clamp(18px, 2vw, 26px);
       font-style: italic;
       color: var(--ink);
       letter-spacing: -0.005em;
       text-align: center;
     }
-    .player-hint span { display: block; font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); margin-top: 10px; }
+    .player-hint span {
+      display: block;
+      font-style: normal;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin-top: 10px;
+    }
 
-    /* live <video> element style */
     .demo-video {
       position: absolute;
       inset: 0;
@@ -162,117 +130,64 @@
       height: 100%;
       object-fit: cover;
       z-index: 2;
-      background: var(--ink);
     }
 
-    /* control strip below player */
     .player-strip {
-      max-width: 1240px;
-      margin: 22px auto 0;
+      max-width: 1280px;
+      margin: 20px auto 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
+      font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--mute);
     }
-    .player-strip .group { display: flex; gap: 28px; }
+    .player-strip .group { display: flex; gap: 32px; }
     .player-strip span span { color: var(--ink); margin-left: 8px; }
 
-    /* ============ CHAPTERS ============ */
-    .chapters {
-      padding: 80px 32px;
-      position: relative;
-      z-index: 2;
-    }
-    .chapters-inner {
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 80px;
-      align-items: start;
-    }
-    .chapters-head .eyebrow { margin-bottom: 22px; }
-    .chapters-head h2 {
-      font-size: clamp(36px, 4.4vw, 56px);
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin-bottom: 18px;
-    }
-    .chapters-head p { color: var(--mute); max-width: 38ch; }
-
-    .chapter-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      border-top: 1px solid var(--hair);
-    }
-    .chapter-list li {
-      display: grid;
-      grid-template-columns: 80px 1fr 24px;
-      align-items: center;
-      gap: 28px;
-      padding: 22px 8px;
-      border-bottom: 1px solid var(--hair);
-      cursor: pointer;
-      transition: background 0.25s ease, padding 0.3s cubic-bezier(.16,1,.3,1);
-    }
-    .chapter-list li:hover {
-      background: rgba(246,246,248,0.02);
-      padding-left: 14px;
-    }
-    .chapter-list .time {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-    }
-    .chapter-list .desc {
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: clamp(19px, 1.9vw, 24px);
-      letter-spacing: -0.005em;
-      color: var(--ink);
-    }
-    .chapter-list .desc em { color: var(--mute); }
-    .chapter-list .arrow {
-      color: var(--mute);
-      transition: transform 0.3s cubic-bezier(.16,1,.3,1), color 0.2s ease;
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .chapter-list li:hover .arrow {
-      color: var(--ink);
-      transform: translateX(6px);
-    }
-
-    /* ============ MINI DEMOS ============ */
+    /* ── MINI DEMOS GRID ──────────────────────────────────────────────── */
     .more-demos {
-      padding: 70px 32px 100px;
-      position: relative;
-      z-index: 2;
+      padding: 80px 48px 100px;
+      border-bottom: 1px solid var(--hair);
     }
     .more-demos-inner { max-width: 1280px; margin: 0 auto; }
+
     .more-head {
-      margin-bottom: 40px;
-      display: flex;
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       align-items: end;
-      justify-content: space-between;
-      gap: 32px;
+      gap: 40px;
+    }
+    .more-head-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 16px;
     }
     .more-head h2 {
-      font-size: clamp(32px, 3.6vw, 48px);
+      font-size: clamp(30px, 3.5vw, 46px);
+      font-weight: 400;
       letter-spacing: -0.02em;
-      line-height: 1.05;
+      line-height: 1.08;
+      margin: 0;
     }
-    .more-head .eyebrow { margin-bottom: 14px; }
-    .more-head .right { color: var(--mute); font-size: 11px; max-width: 36ch; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; text-transform: uppercase; }
+    .more-head .right {
+      color: var(--mute);
+      font-size: 15px;
+      line-height: 1.65;
+      max-width: 38ch;
+    }
+
     .mini-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
+      gap: 24px;
     }
     .mini {
       display: flex;
@@ -283,60 +198,55 @@
     }
     .mini-frame {
       aspect-ratio: 16 / 10;
-      border-radius: 12px;
-      border: 1px solid var(--hair-2);
-      background: linear-gradient(180deg, var(--bg), var(--ink));
+      border-radius: 4px;
+      border: 1px solid var(--hair);
+      background: #fff;
       position: relative;
       overflow: hidden;
       display: grid;
       place-items: center;
-      transition: border-color 0.3s ease, transform 0.4s cubic-bezier(.16,1,.3,1), box-shadow 0.4s ease;
+      transition: border-color 0.3s ease, transform 0.35s cubic-bezier(.16,1,.3,1), box-shadow 0.3s ease;
     }
     .mini-frame::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(50% 50% at 50% 50%, oklch(0.38 0 0 / 0.16), transparent 70%);
+      background-image:
+        linear-gradient(to right, var(--hair) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--hair) 1px, transparent 1px);
+      background-size: 32px 32px;
       opacity: 0.5;
-      transition: opacity 0.4s;
     }
     .mini:hover .mini-frame {
-      transform: translateY(-4px);
-      border-color: oklch(0.62 0 0 / 0.6);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px oklch(0.62 0 0 / 0.18);
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(33,97,255,0.08);
     }
-    .mini:hover .mini-frame::before { opacity: 1; }
-
     .mini-glyph {
-      width: 56px;
-      height: 56px;
+      width: 40px;
+      height: 40px;
       color: var(--accent);
-      filter: drop-shadow(0 0 12px oklch(0.62 0 0 / 0.5));
       position: relative;
       z-index: 1;
     }
-    .mini-frame .mini-play {
+    .mini-play {
       position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 32px; height: 32px;
+      top: 10px;
+      right: 10px;
+      width: 28px; height: 28px;
       border-radius: 50%;
-      background: rgba(0,0,0,0.06);
-      border: 1px solid var(--hair-2);
+      background: #fff;
+      border: 1px solid var(--hair);
       display: grid;
       place-items: center;
       color: var(--mute);
-      backdrop-filter: blur(8px);
-      transition: color 0.3s;
+      z-index: 2;
+      transition: color 0.2s, border-color 0.2s;
     }
-    .mini:hover .mini-frame .mini-play { color: var(--ink); }
-    .mini-frame .mini-play svg { width: 12px; height: 12px; transform: translateX(1px); }
+    .mini:hover .mini-play { color: var(--ink); border-color: var(--hair-2); }
+    .mini-play svg { width: 10px; height: 10px; transform: translateX(1px); }
 
-    .mini-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
+    .mini-meta { display: flex; flex-direction: column; gap: 3px; }
     .mini-role {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
@@ -346,64 +256,74 @@
     }
     .mini-title {
       font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       letter-spacing: -0.005em;
       color: var(--ink);
     }
     .mini-duration {
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--mute);
-      margin-top: 2px;
     }
 
-    /* ============ CTA ============ */
-    .cta {
-      padding: 100px 32px;
-      position: relative;
-      z-index: 2;
+    /* ── CTA ──────────────────────────────────────────────────────────── */
+    .cta-section {
+      padding: 100px 48px;
     }
-    .cta-inner {
-      max-width: 960px;
+    .cta-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mute);
+      margin: 0 0 44px;
+    }
+    .cta-grid {
+      max-width: 1280px;
       margin: 0 auto;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+    }
+    .cta-grid h2 {
+      font-size: clamp(34px, 4.2vw, 58px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin: 0;
+    }
+    .cta-grid h2 em { font-style: italic; color: var(--mute); }
+    .cta-right {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      gap: 28px;
+      align-items: flex-start;
     }
-    .cta-inner .eyebrow { margin-bottom: 22px; }
-    .cta-inner h2 {
-      font-size: clamp(40px, 5.6vw, 78px);
-      letter-spacing: -0.02em;
-      line-height: 1.05;
-      margin: 0 0 24px;
-    }
-    .cta-inner h2 em { color: var(--mute); font-style: italic; }
-    .cta-inner p {
+    .cta-right p {
+      font-size: 16px;
       color: var(--mute);
-      max-width: 56ch;
-      margin: 0 0 32px;
-      font-size: clamp(17px, 1.5vw, 20px);
-      line-height: 1.5;
+      line-height: 1.65;
+      max-width: 44ch;
+      margin: 0;
     }
-    .cta-inner .btn-row {
-      display: inline-flex;
-      gap: 14px;
-    }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
 
+    /* ── RESPONSIVE ───────────────────────────────────────────────────── */
     @media (max-width: 1000px) {
-      .chapters-inner { grid-template-columns: 1fr; gap: 40px; }
       .mini-grid { grid-template-columns: repeat(2, 1fr); }
+      .more-head { grid-template-columns: 1fr; gap: 16px; }
+      .cta-grid { grid-template-columns: 1fr; gap: 32px; }
     }
     @media (max-width: 700px) {
-      .page-hero { padding-top: 140px; }
-      .player-strip { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .page-hero { padding-top: 90px; }
+      .page-hero .wrap { padding: 0 24px; }
+      .stage { padding: 48px 24px; }
+      .more-demos { padding: 48px 24px 60px; }
       .mini-grid { grid-template-columns: 1fr; }
-      .more-head { flex-direction: column; align-items: flex-start; }
-      .play-btn { width: 84px; height: 84px; }
-      .play-btn svg { width: 28px; height: 28px; }
+      .cta-section { padding: 60px 24px; }
     }
   </style>
 </head>
@@ -411,9 +331,9 @@
 
   <nav class="nav">
     <div class="nav-inner wrap">
-      <a href="index.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
+      <a href="home.html" class="brand"><img src="brand_assets/favicon.png" alt="Astra" style="height:28px;width:auto;mix-blend-mode:multiply;"></a>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">Overview</a>
+        <a href="home.html" class="nav-link">Overview</a>
         <a href="agents.html" class="nav-link">Agents</a>
         <a href="demo.html" class="nav-link active">Demo</a>
         <a href="pricing.html" class="nav-link">Pricing</a>
@@ -422,36 +342,25 @@
     </div>
   </nav>
 
-  <!-- ============================== HERO ============================== -->
-  <section class="page-hero" data-screen-label="Demo hero">
+  <!-- HERO -->
+  <section class="page-hero">
     <div class="wrap">
-      <div class="mono section-label" style="display:flex;justify-content:center;margin-bottom:28px;">Watch it work</div>
-      <h1>Watch a company<br /><em>assemble itself.</em></h1>
-      <p class="lede">
-        Seventy-two hours condensed to a few minutes. A founder types an idea — the agents do everything else. The clip below is a preview of what the full run looks like.
-      </p>
+      <p class="hero-eyebrow">Watch it work</p>
+      <h1>Watch a company<br><span class="h1-blue">assemble</span> <span class="h1-gray">itself.</span></h1>
+      <p class="hero-lede">Seventy-two hours condensed to a few minutes. A founder types an idea — the agents do everything else. The clip below is a preview of what the full run looks like.</p>
     </div>
   </section>
 
-  <!-- ============================== MAIN PLAYER ============================== -->
-  <section class="stage" data-screen-label="Demo player">
+  <!-- PLAYER -->
+  <section class="stage">
     <div class="stage-inner">
-
       <div class="player">
-        <!--
-          ── TO ADD YOUR DEMO VIDEO ──────────────────────────────────────
-          1. Drop the file at:   assets/demo.mp4
-          2. (optional) poster:   assets/demo-poster.jpg
-          3. Replace the <div class="player-placeholder"> block below with:
-
-             <video class="demo-video" controls preload="metadata" poster="assets/demo-poster.jpg">
-               <source src="assets/demo.mp4" type="video/mp4" />
-             </video>
-
-          (The placeholder block has no <video> element, so nothing 404s.)
-          ─────────────────────────────────────────────────────────────────
-        -->
         <div class="player-placeholder">
+          <div class="play-btn" aria-label="Play demo">
+            <svg viewBox="0 0 32 32" fill="none">
+              <polygon points="10,6 10,26 26,16" fill="var(--ink)" />
+            </svg>
+          </div>
           <div class="player-hint">
             Demo coming soon.
             <span>Full walkthrough drops with Cohort One — June 1st</span>
@@ -467,19 +376,18 @@
           <span>Cohort One<span>Now accepting applications</span></span>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ============================== MORE DEMOS ============================== -->
-  <section class="more-demos" data-screen-label="More demos">
+  <!-- MORE DEMOS -->
+  <section class="more-demos">
     <div class="more-demos-inner">
       <div class="more-head">
         <div>
-          <div class="mono section-label" style="margin-bottom:14px;">Look inside each agent</div>
-          <h2>Eight shorter clips,<br /><em>one per specialist.</em></h2>
+          <p class="more-head-eyebrow">Look inside each agent</p>
+          <h2>Eight shorter clips,<br>one per specialist.</h2>
         </div>
-        <div class="right">Each clip is a tight focus on one agent working through a real task from cohort one.</div>
+        <p class="right">Each clip is a tight focus on one agent working through a real task from cohort one.</p>
       </div>
 
       <div class="mini-grid">
@@ -569,7 +477,7 @@
 
         <a href="#" class="mini">
           <div class="mini-frame">
-            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="0.8">
+            <svg class="mini-glyph" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="0.9">
               <line x1="22" y1="22" x2="9" y2="10" />
               <line x1="22" y1="22" x2="34" y2="9" />
               <line x1="22" y1="22" x2="8" y2="30" />
@@ -627,19 +535,22 @@
     </div>
   </section>
 
-  <!-- ============================== CTA ============================== -->
-  <section class="cta" data-screen-label="CTA">
-    <div class="cta-inner">
-      <div class="mono section-label" style="margin-bottom:22px;">Ready</div>
-      <h2>Stop watching.<br /><em>Start shipping.</em></h2>
-      <p>The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open June 1st.</p>
-      <div class="btn-row">
-        <a href="waitlist.html" class="btn-primary">Join the waitlist →</a>
+  <!-- CTA -->
+  <section class="cta-section">
+    <div style="max-width:1280px;margin:0 auto;">
+      <p class="cta-eyebrow">Ready</p>
+      <div class="cta-grid">
+        <h2>Stop watching.<br><em>Start shipping.</em></h2>
+        <div class="cta-right">
+          <p>The first cohort opens June 1st — 25 spots, founding-rate pricing, and your company live within 72 hours. Applications open now.</p>
+          <div class="btn-row">
+            <a href="waitlist.html" class="btn-primary">Join the waitlist →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================== FOOTER ============================== -->
   <footer>
     <div class="foot-inner wrap">
       <span class="mono">© 2026 Astra Technologies Inc.</span>
