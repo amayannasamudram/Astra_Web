@@ -22,8 +22,8 @@ function MarketingNav() {
         </Link>
         <div className="mkt-nav-links">
           <Link href="/" className="mkt-nav-link">Overview</Link>
-          <Link href="/agents" className="mkt-nav-link">Agents</Link>
-          <Link href="/pricing" className="mkt-nav-link">Pricing</Link>
+          <Link href="/#agents" className="mkt-nav-link">Agents</Link>
+          <Link href="/#pricing" className="mkt-nav-link">Pricing</Link>
           <Link href="/careers" className="mkt-nav-link">Careers</Link>
           <Link href="/waitlist" className="mkt-nav-cta">Join waitlist →</Link>
           <Link href="/dashboard" className="mkt-nav-cta" style={{ marginLeft: 8 }}>Launch app →</Link>
