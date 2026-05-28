@@ -330,7 +330,7 @@ export default function HomePage() {
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <Link href="/waitlist" className="btn-primary">Join the waitlist →</Link>
-            <Link href="/#agents" className="btn-secondary">See the agents</Link>
+            <a href="/#agents" className="btn-secondary">See the agents</a>
           </div>
         </div>
       </section>
@@ -414,7 +414,7 @@ export default function HomePage() {
           </div>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 40, marginTop: 36, paddingTop: 28, borderTop: "1px solid var(--hair)" }}>
             <p style={{ fontSize: 15, color: "var(--mute)", lineHeight: 1.6, maxWidth: "52ch", margin: 0 }}>Whether you&apos;re starting from scratch or already operating — there&apos;s a plan for where you are.</p>
-            <Link href="/#pricing" className="btn-secondary" style={{ flexShrink: 0 }}>See plans →</Link>
+            <a href="/#pricing" className="btn-secondary" style={{ flexShrink: 0 }}>See plans →</a>
           </div>
         </div>
       </section>
@@ -431,7 +431,7 @@ export default function HomePage() {
               <p style={{ fontSize: 16, color: "var(--mute)", lineHeight: 1.65, maxWidth: "44ch", margin: 0 }}>The first cohort opens June 1st — 100 spots, founding-rate pricing, your company live within 72 hours.</p>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                 <Link href="/waitlist" className="btn-primary">Join the waitlist →</Link>
-                <Link href="/#pricing" className="btn-secondary">See pricing</Link>
+                <a href="/#pricing" className="btn-secondary">See pricing</a>
               </div>
             </div>
           </div>

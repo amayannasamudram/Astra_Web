@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    ASTRA — Industrial Glass  /  Dark default · Light via [data-theme="light"]
    ═══════════════════════════════════════════════════════════════ */
