@@ -28,6 +28,11 @@ export default function AppHome() {
 
   return (
     <div className="site-shell" style={{ paddingTop: 48, paddingBottom: 88 }}>
+      <a href="/" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, color: "rgba(255,255,255,0.45)", textDecoration: "none", marginBottom: 16, letterSpacing: "0.02em" }}
+        onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
+        onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}>
+        ← astracreates.com
+      </a>
       <GoalWorkspace
         key={activeSessionId || "new"}
         sessionId={activeSessionId}
