@@ -12,7 +12,7 @@ import LiquidGlass from "@/components/LiquidGlass";
 import CompanyChat from "@/components/CompanyChat";
 import ThemeToggle from "@/components/ThemeToggle";
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 interface AgentTask { id: string; agent: string; instruction: string; }
 

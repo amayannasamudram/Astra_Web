@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import LiquidGlass from "@/components/LiquidGlass";
 import { AGENT_LABELS } from "@/lib/api";
 
-const BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const BASE = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 const AGENT_ICONS: Record<string, string> = {
   research: "🔬", research_competitors: "🏆", research_execution: "📋",
