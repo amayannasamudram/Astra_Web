@@ -49,6 +49,27 @@ export default function SiteNav() {
           </SignUpButton>
         </Show>
 
+        <span
+          title="App access coming soon"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 6,
+            padding: "0 16px",
+            height: 36,
+            borderRadius: 999,
+            border: "1px solid rgba(0,0,0,0.12)",
+            fontSize: 13,
+            fontWeight: 500,
+            color: "rgba(0,0,0,0.3)",
+            cursor: "not-allowed",
+            userSelect: "none",
+            letterSpacing: "0.01em",
+          }}
+        >
+          🔒 Open App
+        </span>
+
         <ThemeToggle />
       </nav>
     </header>
