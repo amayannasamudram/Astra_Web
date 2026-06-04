@@ -1,0 +1,51 @@
+import { useEffect } from "react";
+import { useSession } from "next-auth/react";
+
+function generateId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return "user_" + crypto.randomUUID().replace(/-/g, "").slice(0, 20);
+  }
+  return "user_" + Math.random().toString(36).slice(2, 12) + Math.random().toString(36).slice(2, 12);
+}
+
+export function getOrCreateUserId(): string {
+  if (typeof window === "undefined") return "anon";
+  let id = localStorage.getItem("astra_dev_user_id");
+  if (!id) {
+    id = generateId();
+    localStorage.setItem("astra_dev_user_id", id);
+  }
+  return id;
+}
+
+export function useDevUser() {
+  const { data: session, status } = useSession();
+
+  const isLoading = status === "loading";
+  const isSignedIn = status === "authenticated" && !!session?.user?.email;
+
+  const userId = isSignedIn && session.user.email
+    ? "google_" + session.user.email.replace(/[^a-z0-9]/g, "_")
+    : isLoading
+      ? "anon"
+      : getOrCreateUserId();
+
+  // Keep localStorage in sync so ApiAuthBridge always sends the right founder ID.
+  useEffect(() => {
+    if (isSignedIn && session?.user?.email) {
+      const uid = "google_" + session.user.email.replace(/[^a-z0-9]/g, "_");
+      localStorage.setItem("astra_dev_user_id", uid);
+    }
+  }, [isSignedIn, session?.user?.email]);
+
+  return {
+    userId,
+    isSignedIn,
+    isLoading,
+    user: {
+      id: userId,
+      fullName: session?.user?.name ?? session?.user?.email ?? "Dev User",
+      imageUrl: session?.user?.image ?? null,
+    },
+  };
+}

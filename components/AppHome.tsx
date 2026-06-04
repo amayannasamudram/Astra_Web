@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
-import { useUser } from "@clerk/nextjs";
+import { useDevUser } from "@/lib/use-dev-user";
 import { getSessionSnapshot, subscribeSessions } from "@/lib/history";
 import { GoalWorkspace } from "@/components/GoalWorkspace";
 
@@ -12,7 +12,7 @@ const EMPTY_RECENT_SESSIONS: SessionRecord[] = [];
 
 export default function AppHome() {
   const searchParams = useSearchParams();
-  const { user } = useUser();
+  const { userId } = useDevUser();
   const recentSessions = useSyncExternalStore(
     subscribeSessions,
     getSessionSnapshot,
@@ -20,26 +20,22 @@ export default function AppHome() {
   );
 
   const forceNewGoal = searchParams.get("new") === "1";
+  const fromOnboarding = searchParams.get("from_onboarding") === "1";
   const latestSession = recentSessions[0];
   const activeSessionId = forceNewGoal ? "" : searchParams.get("session") ?? latestSession?.sessionId ?? "";
   const activeInstruction = forceNewGoal ? "" : searchParams.get("instruction") ?? latestSession?.instruction ?? "";
-  const activeFounderId = forceNewGoal ? user?.id ?? "founder_001" : searchParams.get("founder") ?? latestSession?.founderId ?? user?.id ?? "founder_001";
+  const activeFounderId = forceNewGoal ? userId : searchParams.get("founder") ?? latestSession?.founderId ?? userId;
   const activeCompany = forceNewGoal ? "" : searchParams.get("company") ?? latestSession?.companyName ?? "";
 
   return (
-    <div className="site-shell" style={{ paddingTop: 48, paddingBottom: 88 }}>
-      <a href="/" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 13, color: "rgba(255,255,255,0.45)", textDecoration: "none", marginBottom: 16, letterSpacing: "0.02em" }}
-        onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.75)")}
-        onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}>
-        ← astracreates.com
-      </a>
+    <div className="site-shell" style={{ paddingTop: 48, paddingBottom: 88, maxWidth: 1920 }}>
       <GoalWorkspace
         key={activeSessionId || "new"}
         sessionId={activeSessionId}
         instruction={activeInstruction}
         founderId={activeFounderId}
         company={activeCompany}
-        startNew={forceNewGoal || !activeSessionId}
+        startNew={!fromOnboarding && forceNewGoal}
       />
     </div>
   );
