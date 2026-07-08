@@ -45,9 +45,9 @@ function MarketingFooter() {
       <div className="mkt-foot-inner">
         <span className="mono">© 2026 Astra Technologies Inc.</span>
         <div style={{ display: "flex", gap: 24 }}>
-          <Link href="/terms" className="mono" style={{ color: "var(--mute)" }}>Terms</Link>
-          <Link href="/privacy" className="mono" style={{ color: "var(--mute)" }}>Privacy</Link>
-          <a href="mailto:hello@astracreates.com" className="mono" style={{ color: "var(--mute)" }}>hello@astracreates.com</a>
+          <Link href="/terms" className="mono" style={{ color: "var(--text-3)" }}>Terms</Link>
+          <Link href="/privacy" className="mono" style={{ color: "var(--text-3)" }}>Privacy</Link>
+          <a href="mailto:hello@astracreates.com" className="mono" style={{ color: "var(--text-3)" }}>hello@astracreates.com</a>
         </div>
       </div>
     </footer>

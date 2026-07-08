@@ -1120,3 +1120,104 @@ p { margin: 0; }
     transition: none !important;
   }
 }
+
+/* ── Marketing chrome (nav + footer) ─────────────────────────────
+   Real rules for the marketing layout's .mkt-* classes — these were
+   referenced in app/(marketing)/layout.tsx but never actually styled
+   anywhere in this repo, so the nav rendered as unstyled browser
+   defaults (no spacing, no alignment) the first time this site
+   actually deployed successfully. */
+
+.mono {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+.mkt-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(232, 232, 232, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+
+.mkt-nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 18px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+}
+
+.mkt-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+}
+
+.mkt-nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.mkt-nav-link {
+  color: var(--text-3);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: color 0.15s;
+  white-space: nowrap;
+}
+
+.mkt-nav-link:hover {
+  color: var(--text);
+}
+
+.mkt-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: var(--r);
+  background: var(--accent);
+  color: var(--text-invert);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.mkt-nav-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.mkt-footer {
+  border-top: 1px solid var(--border);
+  margin-top: var(--sp-7);
+}
+
+.mkt-foot-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--sp-3) var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  color: var(--text-3);
+  font-size: 12.5px;
+}
