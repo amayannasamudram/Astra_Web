@@ -26,19 +26,13 @@ function MarketingNav() {
           <a href="/#pricing" className="mkt-nav-link">Pricing</a>
           <Link href="/careers" className="mkt-nav-link">Careers</Link>
           <Link href="/waitlist" className="mkt-nav-cta">Join waitlist →</Link>
-          <span
-            title="App access coming soon"
+          <a
+            href="https://app.astracreates.com"
             className="mkt-nav-cta"
-            style={{
-              marginLeft: 8,
-              opacity: 0.4,
-              cursor: "not-allowed",
-              pointerEvents: "none",
-              userSelect: "none",
-            }}
+            style={{ marginLeft: 8 }}
           >
-            🔒 Open app
-          </span>
+            Open app →
+          </a>
         </div>
       </div>
     </nav>

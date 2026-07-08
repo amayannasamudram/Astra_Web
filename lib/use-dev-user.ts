@@ -24,7 +24,7 @@ export function useDevUser() {
   const isLoading = status === "loading";
   const isSignedIn = status === "authenticated" && !!session?.user?.email;
 
-  const userId = isSignedIn && session.user.email
+  const userId = isSignedIn && session?.user?.email
     ? "google_" + session.user.email.replace(/[^a-z0-9]/g, "_")
     : isLoading
       ? "anon"

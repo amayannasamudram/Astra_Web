@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { signIn, signOut } from "next-auth/react";
 import { useDevUser } from "@/lib/use-dev-user";
-import CreditsDisplay from "@/components/CreditsDisplay";
 
 function TeamBadge() {
   const { userId } = useDevUser();
@@ -122,7 +121,6 @@ export default function SiteNav() {
         </a>
 
         <TeamBadge />
-        <CreditsDisplay />
         <Link
           href="/?new=1"
           style={{
