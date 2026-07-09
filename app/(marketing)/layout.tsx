@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import "./marketing.css";
 
 export const metadata: Metadata = {
   title: "Astra — Your AI Founding Team",
