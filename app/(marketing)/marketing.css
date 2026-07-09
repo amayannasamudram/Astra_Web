@@ -3,14 +3,18 @@
    the platform app which has its own design tokens.              */
 
 .marketing-root {
-  --bg:       #FAFAF7;
-  --ink:      #0E0E0C;
-  --ink-2:    #2A2A26;
-  --mute:     #8A8A82;
-  --hair:     #E6E5DF;
-  --hair-2:   #D8D7D0;
-  --accent:   #2161ff;
-  --fd:       #8A8A82;
+  --bg:          #FAFAF7;
+  --ink:         #0E0E0C;
+  --ink-2:       #2A2A26;
+  --mute:        #6B6B62; /* darkened from #8A8A82 → 4.6:1 on --bg */
+  --hair:        #E6E5DF;
+  --hair-2:      #D8D7D0;
+  --accent:      #2161ff;
+  --fd:          #6B6B62;
+  --surface:     #fff;
+  --gold:        #9A6F00;
+  --gold-bg:     rgba(154, 111, 0, 0.05);
+  --gold-border: rgba(154, 111, 0, 0.25);
 
   background: var(--bg);
   color: var(--ink);
@@ -154,6 +158,9 @@
 
 .marketing-root .mkt-nav-link {
   padding: 8px 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
   border-radius: 6px;
   font-size: 14px;
   color: var(--ink-2);
@@ -180,6 +187,51 @@
 
 .marketing-root .mkt-nav-cta:hover { background: var(--accent); color: #fff; }
 
+/* ── Hamburger button ────────────────────────────────────────── */
+.marketing-root .mkt-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: var(--ink);
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Mobile menu drawer ──────────────────────────────────────── */
+.marketing-root .mkt-mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  background: var(--bg);
+  z-index: 49;
+  flex-direction: column;
+  padding: 16px 20px 40px;
+  gap: 0;
+  border-top: 1px solid var(--hair);
+  overflow-y: auto;
+}
+
+.marketing-root .mkt-mobile-menu.open {
+  display: flex;
+}
+
+.marketing-root .mkt-mobile-link {
+  padding: 16px 4px;
+  font-size: 18px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--hair);
+  display: block;
+}
+
+.marketing-root .mkt-mobile-link:last-child {
+  border-bottom: 0;
+}
+
 /* ── Footer ──────────────────────────────────────────────────── */
 .marketing-root .mkt-footer {
   padding: 48px 0 64px;
@@ -195,6 +247,113 @@
   align-items: baseline;
   flex-wrap: wrap;
   gap: 16px;
+}
+
+/* ── Aurora ──────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-layer { animation: none !important; }
+}
+
+/* ── Responsive grid layout classes ─────────────────────────── */
+/* How-it-works intro (heading + description) */
+.marketing-root .mkt-hiw-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+/* Timeline rail + steps column */
+.marketing-root .mkt-timeline-grid {
+  display: grid;
+  grid-template-columns: 148px 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Individual step: text + mock card */
+.marketing-root .mkt-step-article {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* Math comparison: left | divider | right */
+.marketing-root .mkt-math-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Two-column CTA grid */
+.marketing-root .mkt-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+
+/* Agents outer padding wrapper */
+.marketing-root .mkt-agents-outer {
+  padding: 80px 48px;
+}
+
+/* 4-col agent grid */
+.marketing-root .mkt-agents-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--hair);
+  border: 1px solid var(--hair);
+}
+
+/* Shared mind outer padding */
+.marketing-root .mkt-mind-outer {
+  padding: 100px 48px;
+  border-top: 1px solid var(--hair);
+}
+
+/* Shared mind: text | SVG */
+.marketing-root .mkt-mind-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 100px;
+  align-items: center;
+}
+
+/* Pricing inner container (controls, setup bar, math, FAQ) */
+.marketing-root .mkt-pricing-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* Pricing tier cards grid */
+.marketing-root .mkt-tier-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 48px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Pricing final CTA grid */
+.marketing-root .mkt-pricing-cta-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
 }
 
 /* ── Keyframes used in page.tsx ──────────────────────────────── */
@@ -223,16 +382,44 @@
 
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 960px) {
-  .marketing-root .wrap       { padding: 0 28px; }
-  .marketing-root .mkt-nav-inner { padding: 0 28px; }
-  .marketing-root .mkt-foot-inner { padding: 0 28px; }
+  .marketing-root .wrap            { padding: 0 28px; }
+  .marketing-root .mkt-nav-inner   { padding: 0 28px; }
+  .marketing-root .mkt-foot-inner  { padding: 0 28px; }
+  .marketing-root .mkt-agents-grid { grid-template-columns: repeat(2, 1fr); }
+  .marketing-root .mkt-agents-outer { padding: 60px 28px; }
+  .marketing-root .mkt-mind-outer  { padding: 60px 28px; }
+  .marketing-root .mkt-mind-grid   { gap: 60px; }
+  .marketing-root .mkt-pricing-inner { padding: 0 28px; }
+  .marketing-root .mkt-tier-grid   { padding: 48px 28px 0; }
 }
 
 @media (max-width: 720px) {
-  .marketing-root .wrap       { padding: 0 20px; }
-  .marketing-root .mkt-nav-inner { padding: 0 20px; }
-  .marketing-root .mkt-foot-inner { padding: 0 20px; }
-  .marketing-root .section    { padding: 64px 0; }
-  .marketing-root .mkt-nav-links a:not(.mkt-nav-cta) { display: none; }
-  .marketing-root .timeline-rail { display: none; }
+  .marketing-root .wrap            { padding: 0 20px; }
+  .marketing-root .mkt-nav-inner   { padding: 0 20px; }
+  .marketing-root .mkt-foot-inner  { padding: 0 20px; }
+  .marketing-root .section         { padding: 64px 0; }
+
+  /* Show hamburger, hide desktop nav links */
+  .marketing-root .mkt-hamburger   { display: inline-flex; }
+  .marketing-root .mkt-nav-links   { display: none; }
+
+  /* Responsive grids → single column */
+  .marketing-root .mkt-hiw-intro   { grid-template-columns: 1fr; gap: 24px; margin-bottom: 40px; }
+  .marketing-root .mkt-timeline-grid { grid-template-columns: 1fr; }
+  .marketing-root .timeline-rail   { display: none; }
+  .marketing-root .mkt-step-article { grid-template-columns: 1fr; gap: 24px; }
+  .marketing-root .mkt-math-grid   { grid-template-columns: 1fr; }
+  .marketing-root .mkt-math-divider { display: none; }
+  .marketing-root .mkt-cta-grid    { grid-template-columns: 1fr; gap: 32px; }
+  .marketing-root .mkt-agents-outer { padding: 40px 20px; }
+  .marketing-root .mkt-agents-grid { grid-template-columns: repeat(2, 1fr); }
+  .marketing-root .mkt-mind-outer  { padding: 48px 20px; }
+  .marketing-root .mkt-mind-grid   { grid-template-columns: 1fr; gap: 40px; }
+  .marketing-root .mkt-pricing-inner { padding: 0 20px; }
+  .marketing-root .mkt-tier-grid   { grid-template-columns: 1fr; padding: 32px 20px 0; }
+  .marketing-root .mkt-pricing-cta-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+@media (max-width: 480px) {
+  .marketing-root .mkt-agents-grid { grid-template-columns: 1fr; }
 }

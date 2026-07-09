@@ -7,14 +7,15 @@ import { useEffect, useRef, useState } from "react";
 function Aurora() {
   return (
     <div
+      className="aurora-layer"
       style={{
         position: "absolute",
         inset: -10,
         zIndex: 1,
         pointerEvents: "none",
         opacity: 0.55,
-        willChange: "transform",
-        filter: "blur(12px) invert(1)",
+        willChange: "background-position",
+        filter: "blur(8px) invert(1)",
         backgroundImage:
           "repeating-linear-gradient(100deg, #ffffff 0%, #ffffff 7%, transparent 10%, transparent 12%, #ffffff 16%), repeating-linear-gradient(100deg, #3b82f6 10%, #a5b4fc 15%, #93c5fd 20%, #ddd6fe 25%, #60a5fa 30%)",
         backgroundSize: "300%, 200%",
@@ -60,7 +61,7 @@ function TimelineRail({ activeStep }: { activeStep: number }) {
 function MockCard({ children }: { children: React.ReactNode }) {
   return (
     <div style={{
-      aspectRatio: "4/3", borderRadius: 6, background: "#fff",
+      aspectRatio: "4/3", borderRadius: 6, background: "var(--surface)",
       border: "1px solid var(--hair-2)", position: "relative", overflow: "hidden",
     }}>
       <div style={{ position: "absolute", inset: 0, padding: "18px 20px", display: "flex", flexDirection: "column", gap: 9 }}>
@@ -91,9 +92,9 @@ function MockRow({ pill, pillVariant, main, meta }: { pill: string; pillVariant?
   const pillStyle: React.CSSProperties = {
     padding: "2px 7px", borderRadius: 999, border: "1px solid var(--hair-2)",
     fontSize: 8, letterSpacing: "0.14em", textTransform: "uppercase",
-    color: pillVariant === "star" ? "var(--accent)" : pillVariant === "gold" ? "#9A6F00" : "var(--ink-2)",
-    background: pillVariant === "star" ? "rgba(33,97,255,0.05)" : pillVariant === "gold" ? "rgba(154,111,0,0.05)" : undefined,
-    borderColor: pillVariant === "star" ? "rgba(33,97,255,0.25)" : pillVariant === "gold" ? "rgba(154,111,0,0.25)" : undefined,
+    color: pillVariant === "star" ? "var(--accent)" : pillVariant === "gold" ? "var(--gold)" : "var(--ink-2)",
+    background: pillVariant === "star" ? "rgba(33,97,255,0.05)" : pillVariant === "gold" ? "var(--gold-bg)" : undefined,
+    borderColor: pillVariant === "star" ? "rgba(33,97,255,0.25)" : pillVariant === "gold" ? "var(--gold-border)" : undefined,
     flexShrink: 0,
   };
   return (
@@ -320,7 +321,7 @@ export default function HomePage() {
         <Aurora />
         <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
           <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 28px" }}>Your AI Founding Team</p>
-          <h1 style={{ fontSize: "clamp(54px, 6.8vw, 92px)", lineHeight: 1.02, letterSpacing: "-0.035em", fontWeight: 400, margin: "0 0 32px" }}>
+          <h1 aria-label="You bring the idea. Astra handles everything else." style={{ fontSize: "clamp(54px, 6.8vw, 92px)", lineHeight: 1.02, letterSpacing: "-0.035em", fontWeight: 400, margin: "0 0 32px" }}>
             You bring the idea.<br />
             <span style={{ color: "var(--accent)" }}>Astra</span>{" "}
             <span style={{ color: "var(--mute)" }}>handles everything else.</span>
@@ -338,7 +339,7 @@ export default function HomePage() {
       {/* HOW IT WORKS */}
       <section className="section" id="how">
         <div className="wrap">
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, alignItems: "end", marginBottom: 80 }}>
+          <div className="mkt-hiw-intro">
             <div>
               <p className="mono section-label">The flow</p>
               <h2 style={{ fontSize: "clamp(32px, 3.8vw, 52px)", lineHeight: 1.08, letterSpacing: "-0.025em", fontWeight: 400, margin: "12px 0 0" }}>One text box.<br />Three days.</h2>
@@ -348,7 +349,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "148px 1fr", gap: 64, alignItems: "start" }}>
+          <div className="mkt-timeline-grid">
             <TimelineRail activeStep={activeStep} />
             <div style={{ display: "flex", flexDirection: "column", gap: 96 }}>
               {timelineSteps.map((step, i) => (
@@ -356,7 +357,7 @@ export default function HomePage() {
                   key={i}
                   ref={(el) => { stepRefs.current[i] = el; }}
                   data-step={i}
-                  style={{ display: "grid", gridTemplateColumns: "1fr 1.15fr", gap: 64, alignItems: "start" }}
+                  className="mkt-step-article"
                 >
                   <div>
                     <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 18px" }}>{step.label}</p>
@@ -381,7 +382,7 @@ export default function HomePage() {
               Why does hiring a team<br />cost more than a car payment?
             </h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr auto 1fr", border: "1px solid var(--hair)", borderRadius: 4, overflow: "hidden" }}>
+          <div className="mkt-math-grid">
             <div style={{ padding: "44px 52px", background: "var(--bg)", display: "flex", flexDirection: "column" }}>
               <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", marginBottom: 18 }}>Traditional hiring</p>
               <p style={{ fontSize: "clamp(44px, 5vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1, margin: 0, color: "var(--mute)", textDecoration: "line-through", textDecorationColor: "var(--hair-2)" }}>$7,300</p>
@@ -395,10 +396,10 @@ export default function HomePage() {
                 ))}
               </ul>
             </div>
-            <div style={{ width: 1, background: "var(--hair)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div className="mkt-math-divider" style={{ width: 1, background: "var(--hair)", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", background: "var(--hair)", padding: "7px 10px", borderRadius: 999 }}>vs</span>
             </div>
-            <div style={{ padding: "44px 52px", background: "#fff", display: "flex", flexDirection: "column" }}>
+            <div style={{ padding: "44px 52px", background: "var(--surface)", display: "flex", flexDirection: "column" }}>
               <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", marginBottom: 18 }}>Astra</p>
               <p style={{ fontSize: "clamp(44px, 5vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1, margin: 0, color: "var(--accent)" }}>from $40</p>
               <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", margin: "8px 0 28px" }}>/ month</p>
@@ -423,7 +424,7 @@ export default function HomePage() {
       <section style={{ padding: "120px 0" }}>
         <div className="wrap">
           <p className="mono section-label" style={{ marginBottom: 44 }}>Cohort one · Opening June 1st</p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "end" }}>
+          <div className="mkt-cta-grid">
             <h2 style={{ fontSize: "clamp(34px, 4.2vw, 58px)", letterSpacing: "-0.03em", fontWeight: 400, lineHeight: 1.08, margin: 0 }}>
               You bring the idea.<br /><em style={{ fontStyle: "italic", color: "var(--mute)" }}>Astra handles everything else.</em>
             </h2>
@@ -453,8 +454,8 @@ export default function HomePage() {
         </div>
 
         {/* Agent grid */}
-        <div style={{ padding: "80px 48px" }}>
-          <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, background: "var(--hair)", border: "1px solid var(--hair)" }}>
+        <div className="mkt-agents-outer">
+          <div className="mkt-agents-grid">
             {agents.map((agent) => (
               <div key={agent.num} style={{ background: "var(--bg)", padding: "40px 36px 32px", minHeight: 340, display: "flex", flexDirection: "column", gap: 10, transition: "background 0.3s ease" }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = "#fff")}
@@ -473,8 +474,8 @@ export default function HomePage() {
         </div>
 
         {/* Shared mind */}
-        <div style={{ padding: "100px 48px", borderTop: "1px solid var(--hair)" }}>
-          <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 100, alignItems: "center" }}>
+        <div className="mkt-mind-outer">
+          <div className="mkt-mind-grid">
             <div>
               <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 20px" }}>The shared mind</p>
               <h2 style={{ fontSize: "clamp(36px, 4.2vw, 56px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.08, margin: "0 0 24px" }}>
@@ -522,7 +523,7 @@ export default function HomePage() {
         </div>
 
         {/* Controls */}
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "52px 48px 0", display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
+        <div className="mkt-pricing-inner" style={{ paddingTop: 52, display: "flex", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
           <div style={{ display: "inline-flex", padding: 3, borderRadius: 12, background: "var(--bg)", border: "1px solid var(--hair)", gap: 2 }}>
             {(["startup", "business"] as const).map((a) => (
               <button
@@ -530,7 +531,7 @@ export default function HomePage() {
                 onClick={() => switchAudience(a)}
                 style={{
                   padding: "10px 22px", border: `1px solid ${audience === a ? "var(--hair)" : "transparent"}`,
-                  background: audience === a ? "#fff" : "transparent",
+                  background: audience === a ? "var(--surface)" : "transparent",
                   color: audience === a ? "var(--ink)" : "var(--mute)",
                   fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em",
                   textTransform: "uppercase", cursor: "pointer", borderRadius: 9, transition: "all 0.2s",
@@ -547,7 +548,7 @@ export default function HomePage() {
           </div>
           <div style={{ width: 1, height: 32, background: "var(--hair)" }} />
           <div ref={billingSwitchRef} style={{ display: "inline-flex", padding: 3, borderRadius: 999, background: "var(--bg)", border: "1px solid var(--hair)", position: "relative" }}>
-            <div ref={indicatorRef} style={{ position: "absolute", top: 3, left: 3, height: "calc(100% - 6px)", borderRadius: 999, background: "var(--ink)", transition: "transform 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1)", zIndex: 1 }} />
+            <div ref={indicatorRef} style={{ position: "absolute", top: 3, left: 3, height: "calc(100% - 6px)", borderRadius: 999, background: "var(--ink)", transition: "transform 0.3s cubic-bezier(.4,0,.2,1)", zIndex: 1 }} />
             {(["monthly", "yearly"] as const).map((p) => (
               <button
                 key={p}
@@ -564,7 +565,7 @@ export default function HomePage() {
         </div>
 
         {/* Setup bar */}
-        <div style={{ maxWidth: 1280, margin: "28px auto 0", padding: "20px 48px", borderTop: "1px solid var(--hair)", borderBottom: "1px solid var(--hair)", display: "flex", alignItems: "center", gap: 32 }}>
+        <div className="mkt-pricing-inner" style={{ marginTop: 28, paddingTop: 20, paddingBottom: 20, borderTop: "1px solid var(--hair)", borderBottom: "1px solid var(--hair)", display: "flex", alignItems: "center", gap: 32, flexWrap: "wrap" }}>
           <div>
             <div style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 6 }}>Setup · one-time</div>
             <div style={{ fontSize: 32, fontWeight: 400, letterSpacing: "-0.01em", color: "var(--ink)", lineHeight: 1, opacity: animating ? 0.3 : 1, transition: "opacity 0.2s" }}>
@@ -576,12 +577,12 @@ export default function HomePage() {
         </div>
 
         {/* Tiers */}
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "48px 48px 0", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+        <div className="mkt-tier-grid">
           {[
             { key: "build", tag: "Build", name: "Build", featured: false, amt: buildAmt, features: ["All eight agents active 24 / 7", "Features on demand via credits", "Marketing campaigns running autonomously", "Weekly ops digest", "Ongoing legal compliance monitoring", "Website iterations from plain English", "20 credits per month included", "Agent chat interface"] },
             { key: "scale", tag: "Most popular", name: "Scale", featured: true, amt: scaleAmt, features: ["50 credits per month included", "Priority agent processing", "Dedicated persistent memory", "Investor deck generation", "Pitch preparation assistance", "Term-sheet review", "Faster Computer Use queues", "Early access to new agents"] },
           ].map((tier) => (
-            <div key={tier.key} style={{ padding: "40px 36px 36px", borderRadius: 4, background: "#fff", border: `1px solid ${tier.featured ? "var(--hair-2)" : "var(--hair)"}`, display: "flex", flexDirection: "column", boxShadow: tier.featured ? "0 2px 24px rgba(0,0,0,0.06)" : undefined }}>
+            <div key={tier.key} style={{ padding: "40px 36px 36px", borderRadius: 4, background: "var(--surface)", border: `1px solid ${tier.featured ? "var(--hair-2)" : "var(--hair)"}`, display: "flex", flexDirection: "column", boxShadow: tier.featured ? "0 2px 24px rgba(0,0,0,0.06)" : undefined }}>
               <div style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.26em", textTransform: "uppercase", color: tier.featured ? "var(--accent)" : "var(--mute)", marginBottom: 20, display: "flex", alignItems: "center", gap: 8 }}>
                 {tier.featured && <span style={{ width: 5, height: 5, borderRadius: "50%", background: "var(--accent)", display: "inline-block" }} />}
                 {tier.tag}
@@ -614,7 +615,7 @@ export default function HomePage() {
         </div>
 
         {/* Math */}
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "72px 48px", borderTop: "1px solid var(--hair)" }}>
+        <div className="mkt-pricing-inner" style={{ paddingTop: 72, paddingBottom: 72, borderTop: "1px solid var(--hair)" }}>
           <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 22px" }}>The math, once more</p>
           <p style={{ fontSize: "clamp(22px, 3vw, 40px)", fontWeight: 400, lineHeight: 1.4, letterSpacing: "-0.015em", color: "var(--ink)" }}>
             Specialists for one month: <span style={{ color: "var(--mute)", textDecoration: "line-through", textDecorationColor: "var(--hair-2)", fontStyle: "italic" }}>$7,300</span>.<br />
@@ -624,7 +625,7 @@ export default function HomePage() {
         </div>
 
         {/* FAQ */}
-        <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 48px 80px", borderTop: "1px solid var(--hair)" }}>
+        <div className="mkt-pricing-inner" style={{ paddingBottom: 80, borderTop: "1px solid var(--hair)" }}>
           <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "56px 0 20px" }}>FAQ</p>
           <h2 style={{ fontSize: "clamp(36px, 4.5vw, 56px)", fontWeight: 400, letterSpacing: "-0.02em", margin: "0 0 48px" }}>Honest answers.</h2>
           <div style={{ borderTop: "1px solid var(--hair)" }}>
@@ -652,9 +653,9 @@ export default function HomePage() {
         </div>
 
         {/* Pricing CTA */}
-        <div style={{ padding: "100px 48px", borderTop: "1px solid var(--hair)" }}>
+        <div className="mkt-mind-outer">
           <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 44px" }}>Cohort One · Opening June 1st</p>
-          <div style={{ maxWidth: 1280, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "end" }}>
+          <div className="mkt-pricing-cta-grid">
             <h2 style={{ fontSize: "clamp(34px, 4.2vw, 58px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1.08, margin: 0 }}>
               The Founding Cohort —<br /><em style={{ fontStyle: "italic", color: "var(--mute)" }}>limited to 25.</em>
             </h2>

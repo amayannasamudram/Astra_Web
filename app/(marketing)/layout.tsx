@@ -1,44 +1,12 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import "./marketing.css";
+import { MarketingNav } from "./nav";
 
 export const metadata: Metadata = {
   title: "Astra — Your AI Founding Team",
   description:
     "Entity formation, market research, landing page, legal docs, and first customers — handled by eight specialized agents while you sleep.",
 };
-
-function MarketingNav() {
-  return (
-    <nav className="mkt-nav">
-      <div className="mkt-nav-inner">
-        <Link href="/" className="mkt-brand">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/brand_assets/favicon.png"
-            alt="Astra"
-            style={{ height: 26, width: "auto", mixBlendMode: "multiply" }}
-          />
-          <span>Astra</span>
-        </Link>
-        <div className="mkt-nav-links">
-          <Link href="/" className="mkt-nav-link">Overview</Link>
-          <a href="/#agents" className="mkt-nav-link">Agents</a>
-          <a href="/#pricing" className="mkt-nav-link">Pricing</a>
-          <Link href="/careers" className="mkt-nav-link">Careers</Link>
-          <Link href="/waitlist" className="mkt-nav-cta">Join waitlist →</Link>
-          <a
-            href="https://app.astracreates.com"
-            className="mkt-nav-cta"
-            style={{ marginLeft: 8 }}
-          >
-            Open app →
-          </a>
-        </div>
-      </div>
-    </nav>
-  );
-}
 
 function MarketingFooter() {
   return (
