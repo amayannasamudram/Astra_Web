@@ -4,9 +4,9 @@ import "./marketing.css";
 import { MarketingNav } from "./nav";
 
 export const metadata: Metadata = {
-  title: "Astra — Your AI Founding Team",
+  title: "Astra — The AI Operating System for Founders",
   description:
-    "Entity formation, market research, landing page, legal docs, and first customers — handled by eight specialized agents while you sleep.",
+    "Turn a business objective into an executable system with coordinated agents, durable company context, approvals, artifacts, and inspectable runs.",
 };
 
 function MarketingFooter() {

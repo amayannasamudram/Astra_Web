@@ -23,8 +23,9 @@ export function MarketingNav() {
           </Link>
           <div className="mkt-nav-links">
             <Link href="/" className="mkt-nav-link">Overview</Link>
-            <a href="/#agents" className="mkt-nav-link">Agents</a>
-            <a href="/#pricing" className="mkt-nav-link">Pricing</a>
+            <Link href="/#how" className="mkt-nav-link">How it works</Link>
+            <Link href="/#agents" className="mkt-nav-link">Platform</Link>
+            <Link href="/#pricing" className="mkt-nav-link">Pricing</Link>
             <Link href="/careers" className="mkt-nav-link">Careers</Link>
             <Link href="/waitlist" className="mkt-nav-cta">Join waitlist →</Link>
             <a
@@ -58,8 +59,9 @@ export function MarketingNav() {
       </nav>
       <div className={`mkt-mobile-menu${open ? " open" : ""}`} aria-hidden={!open}>
         <Link href="/" className="mkt-mobile-link" onClick={close}>Overview</Link>
-        <a href="/#agents" className="mkt-mobile-link" onClick={close}>Agents</a>
-        <a href="/#pricing" className="mkt-mobile-link" onClick={close}>Pricing</a>
+        <Link href="/#how" className="mkt-mobile-link" onClick={close}>How it works</Link>
+        <Link href="/#agents" className="mkt-mobile-link" onClick={close}>Platform</Link>
+        <Link href="/#pricing" className="mkt-mobile-link" onClick={close}>Pricing</Link>
         <Link href="/careers" className="mkt-mobile-link" onClick={close}>Careers</Link>
         <div style={{ height: 16 }} />
         <Link href="/waitlist" className="btn-primary" onClick={close} style={{ justifyContent: "center" }}>

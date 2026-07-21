@@ -29,7 +29,7 @@ function Aurora() {
 }
 
 /* ── Timeline rail ─────────────────────────────────────────── */
-const STEPS = ["Describe", "Validate", "File", "Launch", "Acquire", "Operate"];
+const STEPS = ["Define", "Plan", "Dispatch", "Approve", "Inspect", "Operate"];
 
 function TimelineRail({ activeStep }: { activeStep: number }) {
   return (
@@ -109,105 +109,96 @@ function MockRow({ pill, pillVariant, main, meta }: { pill: string; pillVariant?
 /* ── Timeline steps data ───────────────────────────────────── */
 const timelineSteps = [
   {
-    label: "00 · Describe", title: "Describe the idea.",
-    desc: "A text box. No form, no template, no structured questionnaire. Astra parses your description and distributes context to all eight agents simultaneously.",
-    agent: "5 min · founder",
+    label: "00 · Define", title: "Give Astra the objective.",
+    desc: "Start with the outcome in plain language. Astra creates a durable run and keeps the company context attached from the first sentence onward.",
+    agent: "Founder goal · durable run",
     mock: (
       <MockCard>
-        <MockHead title="New Company · Untitled" status="Draft" />
+        <MockHead title="New Run · Company Objective" status="Ready" />
         <div style={{ fontFamily: "var(--font-inter-tight, 'Inter Tight', system-ui, sans-serif)", fontSize: 18, lineHeight: 1.4, color: "var(--ink)" }}>
-          <span style={{ color: "var(--mute)" }}>I want to build a tool that helps independent musicians</span> find collaborators in their city — by sound, not just by genre.
+          Build a launch plan for our B2B product, validate the market, and prepare the first customer outreach sequence.
           <span style={{ display: "inline-block", width: 7, height: "1em", background: "var(--accent)", marginLeft: 3, verticalAlign: "-3px", animation: "blink 1s steps(2) infinite" }} />
         </div>
         <div style={{ marginTop: "auto", display: "flex", justifyContent: "space-between", fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 9, color: "var(--mute)", letterSpacing: "0.06em" }}>
-          <span>249 / ∞</span><span>⌘↵ to dispatch agents</span>
+          <span>goal_8F2A · saved</span><span>⌘↵ to run</span>
         </div>
       </MockCard>
     ),
   },
   {
-    label: "01 · Validate", title: "Validate the market.",
-    desc: "Total addressable market, competitor landscape, customer personas, pricing benchmarks, and an honest go/no-go recommendation. Updated weekly as the market shifts.",
-    agent: "2 hr · research agent",
+    label: "01 · Plan", title: "Turn the goal into a plan.",
+    desc: "The planner compiles the objective into a task graph, selects the right specialist stack, and lays out the work in lanes with clear dependencies and outcomes.",
+    agent: "Planner · task DAG",
     mock: (
       <MockCard>
-        <MockHead title="Research Agent · Brief" status="Live" live />
-        <MockRow pill="TAM" pillVariant="star" main="$2.4B addressable" meta="+12% YoY" />
-        <MockRow pill="SAM" pillVariant="star" main="$340M serviceable" meta="31 cities" />
-        <MockRow pill="RIVAL" pillVariant="gold" main="BandLab, Vampr, Splice" meta="3 direct" />
-        <MockRow pill="RIVAL" pillVariant="gold" main="none with audio-fingerprint match" meta="gap" />
-        <MockRow pill="CPL" pillVariant="star" main="$3.20 estimated" meta="Meta, IG" />
+        <MockHead title="Operating Plan · Launch Sprint" status="Compiled" live />
+        <MockRow pill="LANE" pillVariant="star" main="Market evidence + decision brief" meta="Research" />
+        <MockRow pill="LANE" pillVariant="star" main="Offer, positioning, and ICP" meta="Marketing" />
+        <MockRow pill="LANE" pillVariant="gold" main="Customer outreach package" meta="Sales" />
+        <MockRow pill="GATE" pillVariant="gold" main="Review claims before publishing" meta="approval" />
         <div style={{ borderTop: "1px solid var(--hair)", marginTop: 4, paddingTop: 10, display: "flex", gap: 9, alignItems: "center", fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10 }}>
           <span style={{ color: "var(--accent)" }}>●</span>
-          <span style={{ flex: 1, color: "var(--ink)" }}>Recommendation: <em style={{ fontFamily: "var(--font-inter-tight, sans-serif)" }}>proceed.</em></span>
+          <span style={{ flex: 1, color: "var(--ink)" }}>4 lanes · 12 tasks · 3 gates</span>
         </div>
       </MockCard>
     ),
   },
   {
-    label: "02 · File", title: "File the company.",
-    desc: "Delaware LLC filed and registered. EIN pulled from IRS.gov. Founder agreement, NDA, and IP assignment drafted in your specific context. Compliance deadlines tracked thereafter.",
-    agent: "24 hr · legal agent",
+    label: "02 · Dispatch", title: "Dispatch the specialist bench.",
+    desc: "Research, legal, web, technical, finance, ops, sales, and marketing agents work in parallel with shared context, tools, and a live event stream.",
+    agent: "Specialists · shared context",
     mock: (
       <MockCard>
-        <MockHead title="Legal Agent · Approval Queue" status="2 Pending" live />
-        <MockRow pill="FILE" main="Delaware LLC formation" meta="approved 14:02" />
-        <MockRow pill="PAY" main="State filing fee · $110" meta="approved 14:02" />
-        <MockRow pill="EIN" pillVariant="star" main="retrieved from IRS.gov" meta="88-4012984" />
-        <MockRow pill="DRAFT" pillVariant="gold" main="Founder agreement · v2" meta="awaiting review" />
-        <MockRow pill="DRAFT" pillVariant="gold" main="IP assignment, two-founder split" meta="awaiting review" />
+        <MockHead title="Run Stream · Launch Sprint" status="Live" live />
+        <MockRow pill="DONE" pillVariant="star" main="Research brief synthesized" meta="2m ago" />
+        <MockRow pill="RUN" pillVariant="star" main="Technical stack recommendation" meta="streaming" />
+        <MockRow pill="RUN" pillVariant="gold" main="ICP and outreach angles" meta="streaming" />
+        <MockRow pill="WAIT" pillVariant="gold" main="Publish first campaign" meta="approval gate" />
+        <MockRow pill="EVENT" main="agent_action · source captured" meta="replayable" />
       </MockCard>
     ),
   },
   {
-    label: "03 · Launch", title: "Launch the site.",
-    desc: "Headline, value prop, feature highlights, waitlist form, pricing preview — all generated in your brand voice and deployed live to a real domain before day two ends.",
-    agent: "48 hr · web agent",
+    label: "03 · Approve", title: "Keep risky actions in your hands.",
+    desc: "Deployments, emails, account actions, and production changes pause at explicit approval gates. You can steer, cancel, or resume the run without losing the trail.",
+    agent: "Founder control · approval queue",
     mock: (
       <MockCard>
-        <MockHead title="resonant.fm" status="Deployed" live />
-        <div style={{ fontFamily: "var(--font-inter-tight, 'Inter Tight', system-ui, sans-serif)", fontSize: 20, lineHeight: 1.2, color: "var(--ink)" }}>
-          Find your sound,<br /><em style={{ color: "var(--mute)", fontStyle: "italic" }}>in your city.</em>
-        </div>
-        <div style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 9, color: "var(--mute)", letterSpacing: "0.06em", marginTop: 6 }}>
-          A collaborator network for independent musicians — matched by what you actually play.
-        </div>
-        <div style={{ display: "flex", gap: 8, marginTop: "auto" }}>
-          <div style={{ flex: 1, padding: "7px 10px", border: "1px solid var(--hair-2)", borderRadius: 5, fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, color: "var(--mute)" }}>you@studio.com</div>
-          <div style={{ padding: "7px 14px", background: "var(--accent)", color: "#fff", borderRadius: 5, fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.08em", textTransform: "uppercase" }}>Get in</div>
-        </div>
+        <MockHead title="Approval Queue · Run goal_8F2A" status="2 Pending" live />
+        <MockRow pill="EMAIL" pillVariant="gold" main="Send 48 customer invites" meta="review" />
+        <MockRow pill="DEPLOY" pillVariant="gold" main="Publish staging → production" meta="review" />
+        <MockRow pill="READY" pillVariant="star" main="Market brief · 11 sources" meta="verified" />
+        <MockRow pill="AUDIT" main="Guardrail check passed" meta="safe" />
       </MockCard>
     ),
   },
   {
-    label: "04 · Acquire", title: "Acquire customers.",
-    desc: "Cold email sequences to the personas Research identified. Google and Meta ad campaigns inside your budget. Social posts across platforms. Adjusts autonomously on what converts.",
-    agent: "Ongoing · marketing agent",
+    label: "04 · Inspect", title: "Leave with artifacts, not answers.",
+    desc: "Astra turns the run into briefs, files, receipts, workboards, and deployment records you can review, download, reuse, and hand to the next initiative.",
+    agent: "Artifacts · receipts · replay",
     mock: (
       <MockCard>
-        <MockHead title="Marketing Agent · 7-day window" status="Running" live />
-        <MockRow pill="SENT" pillVariant="star" main="Cold sequence · cohort A" meta="487 / 500" />
-        <MockRow pill="OPEN" pillVariant="star" main="Open rate" meta="38.4%" />
-        <MockRow pill="REPLY" pillVariant="star" main="Replied" meta="12.1%" />
-        <MockRow pill="ADS" pillVariant="gold" main="Meta · creative B winning" meta="$2.84 CPL" />
-        <MockRow pill="SOCIAL" pillVariant="gold" main="9 posts queued · IG, X, TikTok" meta="auto-publish" />
+        <MockHead title="Run Receipt · Completed" status="Verified" live />
+        <MockRow pill="BRIEF" pillVariant="star" main="Market decision brief.md" meta="download" />
+        <MockRow pill="PLAN" main="Execution blueprint.json" meta="12 tasks" />
+        <MockRow pill="FILE" main="Outbound sequence.pptx" meta="library" />
+        <MockRow pill="TRACE" pillVariant="gold" main="Completion audit" meta="passed" />
+        <div style={{ marginTop: "auto", fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 9, color: "var(--mute)", letterSpacing: "0.06em" }}>all events replayable · 0 errors</div>
       </MockCard>
     ),
   },
   {
-    label: "05 · Operate", title: "Run everything else.",
-    desc: "Your task list, the approval queue, the weekly digest, every routine email response, and a persistent memory of every decision your company has ever made.",
-    agent: "Always · ops agent",
+    label: "05 · Operate", title: "Keep the company operating.",
+    desc: "Company context, initiatives, missions, automations, approvals, and recurring work persist after the run. Ask a follow-up and Astra routes it to the right operating thread.",
+    agent: "Company OS · always on",
     mock: (
       <MockCard>
-        <MockHead title="Weekly Digest · Week 06" status="Draft" />
-        <div style={{ fontFamily: "var(--font-inter-tight, 'Inter Tight', system-ui, sans-serif)", fontSize: 16, lineHeight: 1.45, color: "var(--ink)" }}>
-          This week the company hit <span style={{ color: "var(--accent)" }}>214 signups</span> — a 38% jump on last week&apos;s pace.
-        </div>
-        <MockRow pill="DECIDED" main="Hold pricing at $9 / mo" />
-        <MockRow pill="SHIPPED" main="Audio-fingerprint v0 onboarding" />
-        <MockRow pill="DECIDE" pillVariant="gold" main="Open up Berlin or wait?" />
-        <div style={{ marginTop: "auto", fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 9, color: "var(--mute)", letterSpacing: "0.06em" }}>3 items need you · 0 are urgent</div>
+        <MockHead title="Company OS · Today" status="Current" />
+        <MockRow pill="INIT" pillVariant="star" main="Launch B2B offer" meta="on track" />
+        <MockRow pill="BRAIN" main="Synced 4 connected sources" meta="Slack · GitHub" />
+        <MockRow pill="FLOW" pillVariant="gold" main="Lead enrichment automation" meta="running" />
+        <MockRow pill="NEXT" main="Review Friday decision brief" meta="you" />
+        <div style={{ marginTop: "auto", fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 9, color: "var(--mute)", letterSpacing: "0.06em" }}>state replayed from event log · healthy</div>
       </MockCard>
     ),
   },
@@ -215,14 +206,14 @@ const timelineSteps = [
 
 /* ── Agents section data ────────────────────────────────────── */
 const agents = [
-  { num: "01", role: "Research", title: "Validates the market.", desc: "Full TAM/SAM/SOM, competitor landscape, customer personas, pricing benchmarks, and a go/no-go summary. Real-time grounding — not training-cutoff data. Flags patent conflicts before you build.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><circle cx="22" cy="22" r="13" /><circle cx="22" cy="22" r="6" /><path d="M22 4 L22 13 M22 31 L22 40 M4 22 L13 22 M31 22 L40 22" strokeWidth="1" /><circle cx="22" cy="22" r="1.6" fill="currentColor" stroke="none" /></svg>) },
-  { num: "02", role: "Web", title: "Ships the site.", desc: "Generates copy, layout, and the waitlist flow from your one-paragraph pitch. Deploys live via Vercel with PostHog and Clarity analytics wired in. Iterates from plain-English feedback.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><circle cx="22" cy="22" r="14" /><path d="M8 22 L36 22" strokeWidth="1" /><path d="M22 8 C28 12, 28 32, 22 36 C16 32, 16 12, 22 8 Z" strokeWidth="1" /><circle cx="22" cy="22" r="2.4" fill="currentColor" stroke="none" /></svg>) },
-  { num: "03", role: "Marketing", title: "Runs the campaigns.", desc: "Creates social posts, reels, TikTok packages, and Meta ads. Builds and sends email sequences via Gmail and LinkedIn integrations. Adjusts autonomously on what converts.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M8 32 Q16 30, 22 22 T36 8" /><path d="M28 8 L36 8 L36 16" strokeLinecap="round" /><circle cx="8" cy="32" r="2.5" fill="currentColor" stroke="none" /><circle cx="22" cy="22" r="1.8" fill="currentColor" stroke="none" /></svg>) },
-  { num: "04", role: "Technical", title: "Builds the product.", desc: "Provisions GitHub repos, Supabase databases, and Clerk auth. Scaffolds real app code with Claude Code and deploys to Vercel. Creates Linear issues and Notion docs for follow-up.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16,14 6,22 16,30" /><polyline points="28,14 38,22 28,30" /><line x1="26" y1="10" x2="18" y2="34" /></svg>) },
-  { num: "05", role: "Legal", title: "Files the company.", desc: "Drafts NDAs, privacy policies, terms, and founder agreements as PDFs. Files Delaware LLCs and retrieves the EIN directly from IRS.gov. Monitors ongoing compliance.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><rect x="8" y="8" width="28" height="28" rx="2" /><path d="M14 16 L30 16 M14 22 L26 22 M14 28 L24 28" strokeWidth="1" /><circle cx="32" cy="32" r="3.2" fill="currentColor" stroke="none" /></svg>) },
-  { num: "06", role: "Ops", title: "Keeps it moving.", desc: "Creates Linear tasks, documents SOPs and OKRs in Notion, sends investor emails, books calendar events, and synthesizes all agent outputs into a weekly executive digest.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="0.9"><line x1="22" y1="22" x2="9" y2="10" /><line x1="22" y1="22" x2="34" y2="9" /><line x1="22" y1="22" x2="8" y2="30" /><line x1="22" y1="22" x2="36" y2="32" /><line x1="22" y1="22" x2="22" y2="38" /><circle cx="22" cy="22" r="2.6" fill="currentColor" stroke="none" /><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none" /><circle cx="34" cy="9" r="1.6" fill="currentColor" stroke="none" /><circle cx="8" cy="30" r="1.6" fill="currentColor" stroke="none" /><circle cx="36" cy="32" r="1.6" fill="currentColor" stroke="none" /><circle cx="22" cy="38" r="1.6" fill="currentColor" stroke="none" /></svg>) },
-  { num: "07", role: "Sales", title: "Fills the pipeline.", desc: "Discovers and enriches leads, builds outreach sequences, sets up inbox warming and SPF/DKIM, creates CRM contacts, and tracks every touchpoint from first email to close.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 10 L37 10 L27 23 L27 35 L17 35 L17 23 Z" /><circle cx="22" cy="10" r="2.4" fill="currentColor" stroke="none" /></svg>) },
-  { num: "08", role: "Design", title: "Shapes the product.", desc: "Creates wireframes, color palettes, design specs, and logo briefs. Researches visual inspiration and produces the UX direction that Technical and Web build from.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="6" width="13" height="9" rx="1.5" /><rect x="25" y="6" width="13" height="9" rx="1.5" /><rect x="6" y="20" width="13" height="18" rx="1.5" /><rect x="25" y="20" width="13" height="18" rx="1.5" /></svg>) },
+  { num: "01", role: "Research", title: "Builds the evidence.", desc: "Market, regulatory, and financial research grounded in live sources, synthesized into decision briefs you can inspect and reuse.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><circle cx="22" cy="22" r="13" /><circle cx="22" cy="22" r="6" /><path d="M22 4 L22 13 M22 31 L22 40 M4 22 L13 22 M31 22 L40 22" strokeWidth="1" /><circle cx="22" cy="22" r="1.6" fill="currentColor" stroke="none" /></svg>) },
+  { num: "02", role: "Legal", title: "Makes the work reviewable.", desc: "Entity, document, and IP workflows with clear context, approval gates, and durable records for the decisions that matter.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><rect x="8" y="8" width="28" height="28" rx="2" /><path d="M14 16 L30 16 M14 22 L26 22 M14 28 L24 28" strokeWidth="1" /><circle cx="32" cy="32" r="3.2" fill="currentColor" stroke="none" /></svg>) },
+  { num: "03", role: "Web", title: "Ships the surface.", desc: "Creates sites and web experiences from a business objective, then connects deployment records and verification back to the run.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><circle cx="22" cy="22" r="14" /><path d="M8 22 L36 22" strokeWidth="1" /><path d="M22 8 C28 12, 28 32, 22 36 C16 32, 16 12, 22 8 Z" strokeWidth="1" /><circle cx="22" cy="22" r="2.4" fill="currentColor" stroke="none" /></svg>) },
+  { num: "04", role: "Technical", title: "Builds the system.", desc: "Scaffolds applications, data, and infrastructure; coordinates technical work in a plan with dependencies, checks, and handoffs.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16,14 6,22 16,30" /><polyline points="28,14 38,22 28,30" /><line x1="26" y1="10" x2="18" y2="34" /></svg>) },
+  { num: "05", role: "Finance", title: "Models the decisions.", desc: "Fundraise, financial modeling, and operating scenarios that turn assumptions into artifacts the team can challenge and act on.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><rect x="6" y="6" width="32" height="32" rx="2" /><path d="M12 29 L18 23 L23 27 L32 15" /><path d="M28 15 H32 V19" /></svg>) },
+  { num: "06", role: "Ops", title: "Keeps state current.", desc: "Initiatives, squads, missions, tasks, digests, and recurring work stay durable in a company operating layer that can replay to current state.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="0.9"><line x1="22" y1="22" x2="9" y2="10" /><line x1="22" y1="22" x2="34" y2="9" /><line x1="22" y1="22" x2="8" y2="30" /><line x1="22" y1="22" x2="36" y2="32" /><line x1="22" y1="22" x2="22" y2="38" /><circle cx="22" cy="22" r="2.6" fill="currentColor" stroke="none" /><circle cx="9" cy="10" r="1.6" fill="currentColor" stroke="none" /><circle cx="34" cy="9" r="1.6" fill="currentColor" stroke="none" /><circle cx="8" cy="30" r="1.6" fill="currentColor" stroke="none" /><circle cx="36" cy="32" r="1.6" fill="currentColor" stroke="none" /><circle cx="22" cy="38" r="1.6" fill="currentColor" stroke="none" /></svg>) },
+  { num: "07", role: "Sales", title: "Moves the pipeline.", desc: "Prospecting, enrichment, pipeline, and enablement work from the same company context, with outreach held behind the right approvals.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 10 L37 10 L27 23 L27 35 L17 35 L17 23 Z" /><circle cx="22" cy="10" r="2.4" fill="currentColor" stroke="none" /></svg>) },
+  { num: "08", role: "Marketing", title: "Creates demand.", desc: "Content, paid, SEO, and outreach packages tied to objectives, evidence, and measurable execution rather than one-off prompts.", icon: (<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="1.2"><path d="M8 32 Q16 30, 22 22 T36 8" /><path d="M28 8 L36 8 L36 16" strokeLinecap="round" /><circle cx="8" cy="32" r="2.5" fill="currentColor" stroke="none" /><circle cx="22" cy="22" r="1.8" fill="currentColor" stroke="none" /></svg>) },
 ];
 
 const energyLines = [
@@ -234,13 +225,13 @@ const energyLines = [
 
 const agentLabels: { x: number; y: number; anchor: "middle" | "start" | "end"; dx: number; dy: number; name: string }[] = [
   { x: 0, y: -200, anchor: "middle", dx: 0, dy: -16, name: "Research" },
-  { x: 141, y: -141, anchor: "start", dx: 14, dy: 5, name: "Web" },
-  { x: 200, y: 0, anchor: "start", dx: 16, dy: 5, name: "Marketing" },
+  { x: 141, y: -141, anchor: "start", dx: 14, dy: 5, name: "Legal" },
+  { x: 200, y: 0, anchor: "start", dx: 16, dy: 5, name: "Web" },
   { x: 141, y: 141, anchor: "start", dx: 14, dy: 5, name: "Technical" },
-  { x: 0, y: 200, anchor: "middle", dx: 0, dy: 22, name: "Legal" },
+  { x: 0, y: 200, anchor: "middle", dx: 0, dy: 22, name: "Finance" },
   { x: -141, y: 141, anchor: "end", dx: -14, dy: 5, name: "Ops" },
   { x: -200, y: 0, anchor: "end", dx: -16, dy: 5, name: "Sales" },
-  { x: -141, y: -141, anchor: "end", dx: -14, dy: 5, name: "Design" },
+  { x: -141, y: -141, anchor: "end", dx: -14, dy: 5, name: "Marketing" },
 ];
 
 /* ── Pricing section data ───────────────────────────────────── */
@@ -320,18 +311,17 @@ export default function HomePage() {
       <section style={{ minHeight: "100vh", padding: "140px 0 80px", position: "relative", overflow: "hidden" }}>
         <Aurora />
         <div className="wrap" style={{ position: "relative", zIndex: 2 }}>
-          <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 28px" }}>Your AI Founding Team</p>
-          <h1 aria-label="You bring the idea. Astra handles everything else." style={{ fontSize: "clamp(54px, 6.8vw, 92px)", lineHeight: 1.02, letterSpacing: "-0.035em", fontWeight: 400, margin: "0 0 32px" }}>
-            You bring the idea.<br />
-            <span style={{ color: "var(--accent)" }}>Astra</span>{" "}
-            <span style={{ color: "var(--mute)" }}>handles everything else.</span>
+          <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 28px" }}>The AI operating system for founders</p>
+          <h1 aria-label="Turn a business objective into an executable system." style={{ fontSize: "clamp(54px, 6.8vw, 92px)", lineHeight: 1.02, letterSpacing: "-0.035em", fontWeight: 400, margin: "0 0 32px" }}>
+            Turn an objective<br />
+            into an <span style={{ color: "var(--accent)" }}>executable system.</span>
           </h1>
           <p style={{ maxWidth: "52ch", fontSize: "clamp(16px, 1.4vw, 19px)", color: "var(--mute)", lineHeight: 1.65, margin: "0 0 40px" }}>
-            Entity formation, market research, landing page, legal docs, and first customers — handled by eight specialized agents while you sleep.
+            Astra plans the work, dispatches specialist agents, streams progress live, produces artifacts, and keeps your company operating layer durable and inspectable.
           </p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Link href="/waitlist" className="btn-primary">Join the waitlist →</Link>
-            <a href="/#agents" className="btn-secondary">See the agents</a>
+            <Link href="/waitlist" className="btn-primary">Start with a goal →</Link>
+            <Link href="/#agents" className="btn-secondary">Explore the stack</Link>
           </div>
         </div>
       </section>
@@ -341,11 +331,11 @@ export default function HomePage() {
         <div className="wrap">
           <div className="mkt-hiw-intro">
             <div>
-              <p className="mono section-label">The flow</p>
-              <h2 style={{ fontSize: "clamp(32px, 3.8vw, 52px)", lineHeight: 1.08, letterSpacing: "-0.025em", fontWeight: 400, margin: "12px 0 0" }}>One text box.<br />Three days.</h2>
+              <p className="mono section-label">The operating run</p>
+              <h2 style={{ fontSize: "clamp(32px, 3.8vw, 52px)", lineHeight: 1.08, letterSpacing: "-0.025em", fontWeight: 400, margin: "12px 0 0" }}>One objective.<br />A durable run.</h2>
             </div>
             <p style={{ color: "var(--mute)", fontSize: 16, lineHeight: 1.65, maxWidth: "48ch", margin: 0 }}>
-              Onboarding is a single conversation. You describe the idea in plain English. Astra extracts the context, distributes it across eight agents, and the company assembles itself.
+              Give Astra a business objective in plain English. It compiles the work into a plan, coordinates the right agents, and records the outcome as an operating asset your company can build on.
             </p>
           </div>
 
@@ -379,16 +369,16 @@ export default function HomePage() {
           <div style={{ marginBottom: 48 }}>
             <p className="mono section-label">The math</p>
             <h2 style={{ fontSize: "clamp(28px, 3.2vw, 44px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.1, margin: "10px 0 0" }}>
-              Why does hiring a team<br />cost more than a car payment?
+              Why stop at an answer<br />when the work still needs doing?
             </h2>
           </div>
           <div className="mkt-math-grid">
             <div style={{ padding: "44px 52px", background: "var(--bg)", display: "flex", flexDirection: "column" }}>
-              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", marginBottom: 18 }}>Traditional hiring</p>
-              <p style={{ fontSize: "clamp(44px, 5vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1, margin: 0, color: "var(--mute)", textDecoration: "line-through", textDecorationColor: "var(--hair-2)" }}>$7,300</p>
-              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", margin: "8px 0 28px" }}>/ month</p>
+              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", marginBottom: 18 }}>A one-off chatbot</p>
+              <p style={{ fontSize: "clamp(44px, 5vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1, margin: 0, color: "var(--mute)", textDecoration: "line-through", textDecorationColor: "var(--hair-2)" }}>An answer</p>
+              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", margin: "8px 0 28px" }}>and then a blank page</p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, borderTop: "1px solid var(--hair)", paddingTop: 22, display: "flex", flexDirection: "column", gap: 10 }}>
-                {["Development team alone", "Legal counsel billed separately", "Design agency retainer", "Marketing freelancer or agency", "$300k+ annualized, full coverage", "6–8 weeks to get started"].map((item) => (
+                {["No durable run or replay", "No shared company context", "No approval boundaries", "No specialist handoffs", "No artifact trail", "No operating state after the chat"].map((item) => (
                   <li key={item} style={{ fontSize: 14, color: "var(--mute)", display: "flex", alignItems: "center", gap: 10, lineHeight: 1.4 }}>
                     <span style={{ width: 4, height: 4, flexShrink: 0, borderRadius: "50%", background: "var(--hair-2)", display: "inline-block" }} />
                     {item}
@@ -401,10 +391,10 @@ export default function HomePage() {
             </div>
             <div style={{ padding: "44px 52px", background: "var(--surface)", display: "flex", flexDirection: "column" }}>
               <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", marginBottom: 18 }}>Astra</p>
-              <p style={{ fontSize: "clamp(44px, 5vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1, margin: 0, color: "var(--accent)" }}>from $40</p>
-              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", margin: "8px 0 28px" }}>/ month</p>
+              <p style={{ fontSize: "clamp(44px, 5vw, 72px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1, margin: 0, color: "var(--accent)" }}>A system</p>
+              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", margin: "8px 0 28px" }}>that keeps executing</p>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, borderTop: "1px solid var(--hair)", paddingTop: 22, display: "flex", flexDirection: "column", gap: 10 }}>
-                {["Legal, technical, web, research", "Marketing and ops included", "Eight agents, shared memory", "Autonomous approval queue", "No retainer, no hiring overhead", "Live within 72 hours"].map((item) => (
+                {["Goal-to-run orchestration", "Specialist stacks in parallel", "Company Brain + durable context", "Approvals for risky actions", "Artifacts, receipts, and replays", "Automations that keep running"].map((item) => (
                   <li key={item} style={{ fontSize: 14, color: "var(--mute)", display: "flex", alignItems: "center", gap: 10, lineHeight: 1.4 }}>
                     <span style={{ width: 4, height: 4, flexShrink: 0, borderRadius: "50%", background: "var(--accent)", display: "inline-block" }} />
                     {item}
@@ -414,8 +404,8 @@ export default function HomePage() {
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 40, marginTop: 36, paddingTop: 28, borderTop: "1px solid var(--hair)" }}>
-            <p style={{ fontSize: 15, color: "var(--mute)", lineHeight: 1.6, maxWidth: "52ch", margin: 0 }}>Whether you&apos;re starting from scratch or already operating — there&apos;s a plan for where you are.</p>
-            <a href="/#pricing" className="btn-secondary" style={{ flexShrink: 0 }}>See plans →</a>
+            <p style={{ fontSize: 15, color: "var(--mute)", lineHeight: 1.6, maxWidth: "52ch", margin: 0 }}>Astra is built for founders, startup teams, and operator-heavy businesses that need the work to stay coordinated after the prompt ends.</p>
+            <Link href="/#agents" className="btn-secondary" style={{ flexShrink: 0 }}>See the platform →</Link>
           </div>
         </div>
       </section>
@@ -423,16 +413,16 @@ export default function HomePage() {
       {/* CTA */}
       <section style={{ padding: "120px 0" }}>
         <div className="wrap">
-          <p className="mono section-label" style={{ marginBottom: 44 }}>Cohort one · Opening June 1st</p>
+          <p className="mono section-label" style={{ marginBottom: 44 }}>The next operating layer</p>
           <div className="mkt-cta-grid">
             <h2 style={{ fontSize: "clamp(34px, 4.2vw, 58px)", letterSpacing: "-0.03em", fontWeight: 400, lineHeight: 1.08, margin: 0 }}>
-              You bring the idea.<br /><em style={{ fontStyle: "italic", color: "var(--mute)" }}>Astra handles everything else.</em>
+              Make the next objective<br /><em style={{ fontStyle: "italic", color: "var(--mute)" }}>executable.</em>
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 28, alignItems: "flex-start" }}>
-              <p style={{ fontSize: 16, color: "var(--mute)", lineHeight: 1.65, maxWidth: "44ch", margin: 0 }}>The first cohort opens June 1st — 100 spots, founding-rate pricing, your company live within 72 hours.</p>
+              <p style={{ fontSize: 16, color: "var(--mute)", lineHeight: 1.65, maxWidth: "44ch", margin: 0 }}>From research missions to deployment checks, Astra turns company objectives into coordinated work with clear evidence, approvals, and durable outcomes.</p>
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                <Link href="/waitlist" className="btn-primary">Join the waitlist →</Link>
-                <a href="/#pricing" className="btn-secondary">See pricing</a>
+                <Link href="/waitlist" className="btn-primary">Start with a goal →</Link>
+                <Link href="/#agents" className="btn-secondary">Explore the stack</Link>
               </div>
             </div>
           </div>
@@ -443,12 +433,12 @@ export default function HomePage() {
       <section id="agents" style={{ borderTop: "1px solid var(--hair)" }}>
         <div style={{ padding: "140px 0 80px", borderBottom: "1px solid var(--hair)" }}>
           <div className="wrap">
-            <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 28px" }}>The stack</p>
+            <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 28px" }}>The specialist bench</p>
             <h2 style={{ fontSize: "clamp(52px, 7.5vw, 104px)", lineHeight: 1.02, letterSpacing: "-0.03em", fontWeight: 400, margin: "0 0 28px" }}>
-              Eight specialists.<br /><span style={{ color: "var(--mute)" }}>One shared </span><span style={{ color: "var(--accent)" }}>mind.</span>
+              Many specialists.<br /><span style={{ color: "var(--mute)" }}>One operating </span><span style={{ color: "var(--accent)" }}>system.</span>
             </h2>
             <p style={{ maxWidth: "54ch", fontSize: "clamp(16px, 1.4vw, 19px)", color: "var(--mute)", lineHeight: 1.65 }}>
-              Each agent owns its domain completely. Each one builds on what the others produce through a shared memory store. Together, they form a founding team that operates around the clock.
+              Astra routes work across dedicated research, legal, web, technical, finance, ops, sales, and marketing surfaces. They share context, produce artifacts, and coordinate through the same durable run.
             </p>
           </div>
         </div>
@@ -477,12 +467,12 @@ export default function HomePage() {
         <div className="mkt-mind-outer">
           <div className="mkt-mind-grid">
             <div>
-              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 20px" }}>The shared mind</p>
+              <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 20px" }}>Company Brain + Company OS</p>
               <h2 style={{ fontSize: "clamp(36px, 4.2vw, 56px)", fontWeight: 400, letterSpacing: "-0.025em", lineHeight: 1.08, margin: "0 0 24px" }}>
-                Not eight chatbots.<br /><em style={{ color: "var(--mute)", fontStyle: "italic" }}>One company.</em>
+                Not loose prompts.<br /><em style={{ color: "var(--mute)", fontStyle: "italic" }}>A durable company layer.</em>
               </h2>
-              <p style={{ color: "var(--mute)", fontSize: 15, lineHeight: 1.7, maxWidth: "52ch", margin: "0 0 14px" }}>Every agent reads from and writes to the same vector store — every decision, document, campaign, and conversation lives in one persistent memory. When Sales enriches a lead, Marketing already knows it. When Technical ships a feature, Ops files it in the weekly digest.</p>
-              <p style={{ color: "var(--mute)", fontSize: 15, lineHeight: 1.7, maxWidth: "52ch", margin: 0 }}>After ninety days, Astra knows your company better than any human consultant could — and that memory belongs to you.</p>
+              <p style={{ color: "var(--mute)", fontSize: 15, lineHeight: 1.7, maxWidth: "52ch", margin: "0 0 14px" }}>Company Brain syncs connected sources such as Slack, GitHub, Notion, Google Workspace, and more into a knowledge layer agents can query. Company OS keeps initiatives, squads, missions, tasks, and artifacts durable as an append-only event log.</p>
+              <p style={{ color: "var(--mute)", fontSize: 15, lineHeight: 1.7, maxWidth: "52ch", margin: 0 }}>The result is a company context that stays inspectable, replayable, and useful across every run — not trapped in a single conversation.</p>
             </div>
             <div style={{ aspectRatio: "1", maxWidth: 480, marginLeft: "auto", width: "100%" }}>
               <svg viewBox="-260 -260 520 520" style={{ width: "100%", height: "100%", overflow: "visible" }} aria-hidden="true">
@@ -514,10 +504,10 @@ export default function HomePage() {
           <div className="wrap">
             <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 28px" }}>Pricing</p>
             <h2 style={{ fontSize: "clamp(52px, 7.5vw, 104px)", lineHeight: 1.02, letterSpacing: "-0.03em", fontWeight: 400, margin: "0 0 28px" }}>
-              Two paths.<br /><span style={{ color: "var(--mute)" }}>One team </span><span style={{ color: "var(--accent)" }}>behind you.</span>
+              Two paths.<br /><span style={{ color: "var(--mute)" }}>One operating </span><span style={{ color: "var(--accent)" }}>layer.</span>
             </h2>
             <p style={{ maxWidth: "56ch", fontSize: "clamp(16px, 1.4vw, 19px)", color: "var(--mute)", lineHeight: 1.65 }}>
-              Whether you&apos;re turning an idea into a company or already running one — Astra has a plan sized for where you are. Both paths include the same eight agents, working around the clock.
+              Whether you&apos;re turning an idea into a company or already running one — Astra gives your team a durable way to plan, execute, and inspect the work. Both paths include the same company operating layer and specialist bench.
             </p>
           </div>
         </div>
@@ -579,8 +569,8 @@ export default function HomePage() {
         {/* Tiers */}
         <div className="mkt-tier-grid">
           {[
-            { key: "build", tag: "Build", name: "Build", featured: false, amt: buildAmt, features: ["All eight agents active 24 / 7", "Features on demand via credits", "Marketing campaigns running autonomously", "Weekly ops digest", "Ongoing legal compliance monitoring", "Website iterations from plain English", "20 credits per month included", "Agent chat interface"] },
-            { key: "scale", tag: "Most popular", name: "Scale", featured: true, amt: scaleAmt, features: ["50 credits per month included", "Priority agent processing", "Dedicated persistent memory", "Investor deck generation", "Pitch preparation assistance", "Term-sheet review", "Faster Computer Use queues", "Early access to new agents"] },
+            { key: "build", tag: "Build", name: "Build", featured: false, amt: buildAmt, features: ["Goal-to-run orchestration", "Specialist agents in parallel", "Company OS with durable state", "Artifacts and reusable files", "Approval gates for risky actions", "Visual automations and integrations", "20 credits per month included", "Live run and event history"] },
+            { key: "scale", tag: "Most popular", name: "Scale", featured: true, amt: scaleAmt, features: ["50 credits per month included", "Priority agent processing", "Company Brain connected sources", "Execution blueprints and verification", "Persistent mission and initiative context", "Deployment and completion receipts", "Faster Computer Use queues", "Early access to new platform surfaces"] },
           ].map((tier) => (
             <div key={tier.key} style={{ padding: "40px 36px 36px", borderRadius: 4, background: "var(--surface)", border: `1px solid ${tier.featured ? "var(--hair-2)" : "var(--hair)"}`, display: "flex", flexDirection: "column", boxShadow: tier.featured ? "0 2px 24px rgba(0,0,0,0.06)" : undefined }}>
               <div style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.26em", textTransform: "uppercase", color: tier.featured ? "var(--accent)" : "var(--mute)", marginBottom: 20, display: "flex", alignItems: "center", gap: 8 }}>
@@ -594,7 +584,7 @@ export default function HomePage() {
                 <span style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", marginLeft: 6 }}>{period === "monthly" ? "/ month" : "/ mo, billed yearly"}</span>
               </div>
               <div style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--mute)", marginBottom: 28, paddingBottom: 22, borderBottom: "1px solid var(--hair)" }}>
-                {tier.key === "build" ? "All eight agents, 24/7" : "Everything in Build, plus"}
+                {tier.key === "build" ? "The operating layer, always on" : "Everything in Build, plus"}
                 {period === "yearly" && <span style={{ color: "var(--accent)", marginLeft: 8 }}>· ${(prices[audience][tier.key as "build" | "scale"].monthly - prices[audience][tier.key as "build" | "scale"].yearly) * 12} saved / yr</span>}
               </div>
               <ul style={{ listStyle: "none", padding: 0, margin: "0 0 32px", display: "flex", flexDirection: "column", gap: 11 }}>
@@ -630,13 +620,13 @@ export default function HomePage() {
           <h2 style={{ fontSize: "clamp(36px, 4.5vw, 56px)", fontWeight: 400, letterSpacing: "-0.02em", margin: "0 0 48px" }}>Honest answers.</h2>
           <div style={{ borderTop: "1px solid var(--hair)" }}>
             {[
-              { q: "What's included in the one-time setup fee?", a: "For new startup founders ($300): entity formation, EIN, founder agreements, IP assignment, and your first landing page deployed to a live domain. For business owners ($50): onboarding, brand configuration, and initial agent setup tailored to your existing company context. Both are charged once at signup and never again." },
-              { q: "Is the LLC actually filed, or is this a template generator?", a: "Actually filed. The Legal Agent uses Computer Use to navigate the Delaware filing system, complete payment, and submit the formation documents directly. The EIN is then retrieved from IRS.gov the same way. You receive the real certificate of formation and EIN letter from the State of Delaware." },
-              { q: "How does yearly billing work?", a: "Yearly is billed once for the year and saves you 15% versus monthly. You can switch back to monthly at renewal. Mid-year cancellation refunds the remaining unused months on a pro-rata basis." },
-              { q: "Is this legal advice?", a: "No. Astra prepares documents and files paperwork autonomously, but every output ships with an explicit disclaimer: AI-generated document preparation, not legal advice. We recommend reviewing important documents with a licensed attorney before signing anything significant." },
-              { q: "Can I cancel?", a: "Yes, any time. The setup fee is non-refundable once filing has begun, but Build and Scale are month-to-month with no commitment. If you cancel, you keep every document, the company entity, and your company memory — exportable on the way out." },
-              { q: "What if I'm not in the US?", a: "Delaware accepts founders from any country — that is one of its longstanding advantages. We handle the registered agent requirement and the EIN is obtained whether or not you have a US Social Security Number." },
-              { q: "Do you have an enterprise plan?", a: "For university accelerators and incubators, yes — we offer cohort pricing starting at $1,500 per cohort of ten founders. Reach out via the contact form on the waitlist page." },
+              { q: "What does Astra do?", a: "You give Astra a business objective. It creates a durable run, plans the work, dispatches specialist agents, streams progress live, produces artifacts, and records the outcome so the company can keep operating from it." },
+              { q: "Is Astra more than a chatbot?", a: "Yes. Astra coordinates work across specialist agents, preserves durable company context, and ties outputs to inspectable runs with events, workboards, receipts, and completion audits." },
+              { q: "How are risky actions handled?", a: "Deployments, emails, account actions, and production changes can pause behind explicit approval gates. Founders can review, approve, steer, cancel, or resume work without losing the event trail." },
+              { q: "What is Company Brain?", a: "Company Brain is Astra's knowledge layer. It can sync connected sources such as Slack, Discord, GitHub, Notion, Google Workspace, and more, then provide that context to the right agents and runs." },
+              { q: "What does Astra produce?", a: "Astra produces decision briefs, execution plans, files, PDFs, decks, deployment records, workboards, receipts, and other reusable artifacts. Outputs stay in your workspace history and Library." },
+              { q: "Can I automate recurring work?", a: "Yes. The visual automation builder connects triggers, agents, actions, conditions, delays, webhooks, and integrations. Flows run through a server-side integration registry and can be reviewed as durable runs." },
+              { q: "How does billing work?", a: "Astra supports plan-based limits, token-to-credit accounting, checkout, and billing webhooks. Build and Scale are month-to-month; annual billing is available with the displayed savings." },
             ].map(({ q, a }) => (
               <details key={q} style={{ borderBottom: "1px solid var(--hair)", padding: "22px 0" }}>
                 <summary style={{ listStyle: "none", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24, fontSize: "clamp(18px, 1.8vw, 24px)", fontWeight: 400, letterSpacing: "-0.005em", color: "var(--ink)" }}>
@@ -654,14 +644,14 @@ export default function HomePage() {
 
         {/* Pricing CTA */}
         <div className="mkt-mind-outer">
-          <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 44px" }}>Cohort One · Opening June 1st</p>
+          <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", margin: "0 0 44px" }}>Build with a durable operating layer</p>
           <div className="mkt-pricing-cta-grid">
             <h2 style={{ fontSize: "clamp(34px, 4.2vw, 58px)", fontWeight: 400, letterSpacing: "-0.03em", lineHeight: 1.08, margin: 0 }}>
-              The Founding Cohort —<br /><em style={{ fontStyle: "italic", color: "var(--mute)" }}>limited to 25.</em>
+              Start with one objective —<br /><em style={{ fontStyle: "italic", color: "var(--mute)" }}>keep the outcome.</em>
             </h2>
             <div style={{ display: "flex", flexDirection: "column", gap: 28, alignItems: "flex-start" }}>
-              <p style={{ fontSize: 16, color: "var(--mute)", lineHeight: 1.65, maxWidth: "44ch", margin: 0 }}>The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study. Applications are open now.</p>
-              <Link href="/waitlist" className="btn-primary">Join the waitlist →</Link>
+              <p style={{ fontSize: 16, color: "var(--mute)", lineHeight: 1.65, maxWidth: "44ch", margin: 0 }}>Give Astra a business objective and get a coordinated run with evidence, artifacts, approvals, and a company context that is ready for what comes next.</p>
+              <Link href="/waitlist" className="btn-primary">Start with a goal →</Link>
             </div>
           </div>
         </div>
