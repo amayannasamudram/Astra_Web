@@ -17,6 +17,7 @@ function MarketingFooter() {
         <div style={{ display: "flex", gap: 24 }}>
           <Link href="/terms" className="mono" style={{ color: "var(--text-3)" }}>Terms</Link>
           <Link href="/privacy" className="mono" style={{ color: "var(--text-3)" }}>Privacy</Link>
+          <Link href="/contact" className="mono" style={{ color: "var(--text-3)" }}>Contact</Link>
           <a href="mailto:hello@astracreates.com" className="mono" style={{ color: "var(--text-3)" }}>hello@astracreates.com</a>
         </div>
       </div>

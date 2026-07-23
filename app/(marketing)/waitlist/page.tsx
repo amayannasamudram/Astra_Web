@@ -1,25 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function WaitlistPage() {
   const [stage, setStage] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [ticketNum, setTicketNum] = useState("#0067");
-  const [unlocked, setUnlocked] = useState(false);
+  const unlocked = true;
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [form, setForm] = useState({ name: "", email: "", idea: "" });
-
-  useEffect(() => {
-    const target = new Date("2026-06-01T00:00:00");
-    function check() {
-      if (new Date() >= target) setUnlocked(true);
-    }
-    check();
-    const id = setInterval(check, 1000);
-    return () => clearInterval(id);
-  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -47,7 +37,7 @@ export default function WaitlistPage() {
     <div style={{ maxWidth: 1280, margin: "0 auto", minHeight: "100vh", padding: "140px 32px 80px", display: "grid", gridTemplateColumns: "1.05fr 1fr", gap: 90, alignItems: "start" }}>
       {/* Left */}
       <div>
-        <div className="mono section-label" style={{ marginBottom: 28 }}>Cohort One · Opening June 1st</div>
+        <div className="mono section-label" style={{ marginBottom: 28 }}>Cohort One · Applications open</div>
         <h1 style={{ fontSize: "clamp(56px, 7.5vw, 110px)", lineHeight: 0.98, marginBottom: 28, letterSpacing: "-0.02em", fontWeight: 400 }}>
           Bring an idea.<br />Get a <span style={{ color: "var(--accent)" }}>company.</span>
         </h1>
@@ -55,7 +45,7 @@ export default function WaitlistPage() {
           The first 25 accepted founders receive founding-rate pricing on the Build plan in exchange for a case study.
         </p>
         <p style={{ fontSize: "clamp(16px, 1.4vw, 19px)", lineHeight: 1.55, maxWidth: "50ch", color: "var(--mute)" }}>
-          Cohort One launches June 1st. Accepted founders ship within seventy-two hours of kickoff.
+          Cohort One applications are open now. Accepted founders ship within seventy-two hours of kickoff.
         </p>
         <div style={{ marginTop: 56, padding: "32px 0", borderTop: "1px solid var(--hair)", borderBottom: "1px solid var(--hair)", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
           <div>
@@ -68,7 +58,7 @@ export default function WaitlistPage() {
             <div style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--mute)", marginBottom: 12 }}>Status</div>
             <div style={{ fontFamily: "var(--font-inter-tight, 'Inter Tight', system-ui, sans-serif)", fontSize: 52, lineHeight: 1, letterSpacing: "-0.02em", color: "var(--accent)", display: "flex", alignItems: "baseline", gap: 6 }}>
               <span style={{ fontSize: "0.4em", marginRight: 8, animation: "waitlistPulse 1.6s ease-in-out infinite" }}>●</span>
-              Coming Soon
+              Open
             </div>
           </div>
         </div>
@@ -84,13 +74,13 @@ export default function WaitlistPage() {
           <>
             <div style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--accent)", marginBottom: 8, display: "flex", alignItems: "center", gap: 10 }}>
               <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent)", boxShadow: "0 0 10px var(--accent)", animation: "waitlistPulse 1.6s ease-in-out infinite", display: "inline-block" }} />
-              {unlocked ? "Application · 4 fields" : "Application · Opens June 1st"}
+              Application · 4 fields
             </div>
             <h2 style={{ fontSize: "clamp(36px, 4vw, 56px)", lineHeight: 1.05, marginBottom: 12 }}>
-              {unlocked ? <>Type the idea.<br /><em style={{ color: "var(--mute)", fontStyle: "italic" }}>We&apos;ll take it from there.</em></> : <>Applications open<br /><em style={{ color: "var(--mute)", fontStyle: "italic" }}>June 1st.</em></>}
+              Type the idea.<br /><em style={{ color: "var(--mute)", fontStyle: "italic" }}>We&apos;ll take it from there.</em>
             </h2>
             <p style={{ color: "var(--mute)", fontSize: 15, lineHeight: 1.5, marginBottom: 36 }}>
-              {unlocked ? "No business plan, no pitch deck. A few sentences in plain English is all we need to dispatch the agents." : "Drop your idea below — we'll unlock submissions the moment the countdown hits zero."}
+              No business plan, no pitch deck. A few sentences in plain English is all we need to dispatch the agents.
             </p>
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 22 }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
@@ -123,7 +113,7 @@ export default function WaitlistPage() {
                 <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.06em", color: "var(--mute)", maxWidth: "26ch", lineHeight: 1.4 }}>By applying you agree to occasional emails about the cohort. We never share your idea.</p>
                 <button type="submit" disabled={!unlocked || submitting}
                   style={{ padding: "14px 24px", fontSize: 14, background: "var(--accent)", color: "#fff", border: "1px solid var(--accent)", borderRadius: 999, fontWeight: 500, cursor: unlocked ? "pointer" : "not-allowed", opacity: unlocked ? 1 : 0.45, transition: "opacity 0.15s" }}>
-                  {submitting ? "Sending…" : unlocked ? "Apply →" : "Opens June 1st"}
+                  {submitting ? "Sending…" : "Apply →"}
                 </button>
               </div>
             </form>

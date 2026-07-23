@@ -27,6 +27,7 @@ export function MarketingNav() {
             <Link href="/#agents" className="mkt-nav-link">Platform</Link>
             <Link href="/#pricing" className="mkt-nav-link">Pricing</Link>
             <Link href="/careers" className="mkt-nav-link">Careers</Link>
+            <Link href="/contact" className="mkt-nav-link">Contact</Link>
             <Link href="/waitlist" className="mkt-nav-cta">Join waitlist →</Link>
             <a
               href="https://app.astracreates.com"
@@ -63,6 +64,7 @@ export function MarketingNav() {
         <Link href="/#agents" className="mkt-mobile-link" onClick={close}>Platform</Link>
         <Link href="/#pricing" className="mkt-mobile-link" onClick={close}>Pricing</Link>
         <Link href="/careers" className="mkt-mobile-link" onClick={close}>Careers</Link>
+        <Link href="/contact" className="mkt-mobile-link" onClick={close}>Contact</Link>
         <div style={{ height: 16 }} />
         <Link href="/waitlist" className="btn-primary" onClick={close} style={{ justifyContent: "center" }}>
           Join waitlist →

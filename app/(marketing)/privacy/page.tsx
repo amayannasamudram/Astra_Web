@@ -3,9 +3,9 @@ export default function PrivacyStatementPage() {
     <div
       dangerouslySetInnerHTML={{
         __html: `<div class="legal-wrap">
-    <div class="draft-banner">
-      <strong>Pre-Release Draft</strong>
-      These documents are pre-release drafts provided for informational and review purposes only. They are not finalized, not executed, and not legally binding. Astra LLC reserves the right to modify any portion of these documents prior to final publication. Do not rely on these drafts for legal, financial, or business decisions.
+    <div class="legal-notice">
+      <strong>Current Privacy Statement</strong>
+      This Privacy Statement is published for the Astra website and platform. Astra LLC may update it from time to time as our services, vendors, and legal requirements change.
     </div>
 
     <h1>Privacy Statement</h1>
@@ -96,6 +96,7 @@ export default function PrivacyStatementPage() {
       <li><strong>Cloud infrastructure provider:</strong> Hosting, vector database, and AI services</li>
       <li><strong>Stripe, Inc.:</strong> Payment processing and subscription management — United States</li>
       <li><strong>Website deployment platforms:</strong> Landing page and product website deployment</li>
+      <li><strong>Google and advertising technology providers:</strong> ad measurement, ad delivery, and related website advertising services</li>
       <li><strong>Email delivery provider:</strong> Dispatch of Marketing Agent email campaigns — United States</li>
     </ul>
     <p>Each sub-processor is bound by a data processing agreement consistent with applicable privacy law. We will update this list as our sub-processor relationships change.</p>
@@ -128,7 +129,9 @@ export default function PrivacyStatementPage() {
     <p>To exercise any of these rights, contact us via the contact form on our waitlist page. We will respond within 30 days. We may need to verify your identity before processing certain requests. If you are located in California, you may have additional rights under the California Consumer Privacy Act (CCPA). If you are located in the European Economic Area, you may have additional rights under the General Data Protection Regulation (GDPR).</p>
 
     <h2>8. Cookies and Tracking</h2>
-    <p>The Astra dashboard uses essential cookies necessary for authentication, session management, and platform functionality. We do not use third-party advertising tracking cookies. We use analytics tools to understand aggregate usage patterns. You may disable non-essential cookies through your browser settings, though this may affect certain dashboard functionality.</p>
+    <p>The Astra dashboard uses essential cookies necessary for authentication, session management, and platform functionality. The Astra website may also use cookies, pixels, local storage, or similar technologies for analytics, advertising measurement, fraud prevention, and site performance.</p>
+    <p>Third-party vendors, including Google, may use cookies to serve ads based on a user's prior visits to Astra or other websites. Google's use of advertising cookies enables Google and its partners to serve ads to users based on their visit to Astra and other sites on the internet. Users may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener noreferrer" target="_blank" style="color:var(--accent);">Google Ads Settings</a>. Users may also opt out of some third-party vendors' uses of cookies for personalized advertising by visiting <a href="https://www.aboutads.info/choices/" rel="noopener noreferrer" target="_blank" style="color:var(--accent);">AboutAds.info</a>.</p>
+    <p>You may disable cookies through your browser settings, though this may affect certain dashboard functionality and may not stop all contextual or non-personalized advertising.</p>
 
     <h2>9. Children's Privacy</h2>
     <p>Astra is intended for use by founders who are at least 18 years of age. We do not knowingly collect personal information from individuals under 18. If we become aware that we have collected information from someone under 18, we will delete that information promptly.</p>
@@ -137,15 +140,15 @@ export default function PrivacyStatementPage() {
     <p>We may update this Privacy Statement from time to time. When we make material changes, we will notify you via dashboard notification at least 14 days before the changes take effect. Your continued use of Astra after the effective date of any update constitutes your acceptance of the revised Privacy Statement.</p>
 
     <h2>11. Contact</h2>
-    <p>For privacy-related questions, requests, or concerns, please use the contact form on our <a href="waitlist.html" style="color:var(--accent);">waitlist page</a>.</p>
+    <p>For privacy-related questions, requests, or concerns, email us at <a href="mailto:hello@astracreates.com" style="color:var(--accent);">hello@astracreates.com</a> or use the contact form on our <a href="/contact" style="color:var(--accent);">contact page</a>.</p>
   </div>
 
   <footer>
     <div class="foot-inner wrap">
       <span class="mono">© 2026 Astra Technologies Inc.</span>
       <div style="display:flex;gap:24px;">
-        <a href="terms.html" class="mono" style="color:var(--mute)">Terms</a>
-        <a href="privacy.html" class="mono" style="color:var(--mute)">Privacy</a>
+        <a href="/terms" class="mono" style="color:var(--mute)">Terms</a>
+        <a href="/privacy" class="mono" style="color:var(--mute)">Privacy</a>
         <a href="mailto:hello@astracreates.com" class="mono" style="color:var(--mute)">hello@astracreates.com</a>
       </div>
     </div>

@@ -3,9 +3,9 @@ export default function DisclosuresPage() {
     <div
       dangerouslySetInnerHTML={{
         __html: `<div class="legal-wrap">
-    <div class="draft-banner">
-      <strong>Pre-Release Draft</strong>
-      These documents are pre-release drafts provided for informational and review purposes only. They are not finalized, not executed, and not legally binding. Astra LLC reserves the right to modify any portion of these documents prior to final publication. Do not rely on these drafts for legal, financial, or business decisions.
+    <div class="legal-notice">
+      <strong>Current Disclosures</strong>
+      These disclosures are published for the Astra website and platform. Astra LLC may update them from time to time as our services, vendors, and legal requirements change.
     </div>
 
     <h1>Disclosures</h1>
@@ -82,15 +82,15 @@ export default function DisclosuresPage() {
     <p>By activating your Astra account and engaging the Agent Stack, you acknowledge that you have read and understood all disclosures contained in this document, that you understand the AI-generated nature of all platform outputs, and that you accept the responsibilities outlined herein.</p>
 
     <h2>10. Contact for Disclosure Questions</h2>
-    <p>If you have questions about any disclosure in this document, please use the contact form on our <a href="waitlist.html" style="color:var(--accent);">waitlist page</a>.</p>
+    <p>If you have questions about any disclosure in this document, email <a href="mailto:hello@astracreates.com" style="color:var(--accent);">hello@astracreates.com</a> or use the contact form on our <a href="/contact" style="color:var(--accent);">contact page</a>.</p>
   </div>
 
   <footer>
     <div class="foot-inner wrap">
       <span class="mono">© 2026 Astra Technologies Inc.</span>
       <div style="display:flex;gap:24px;">
-        <a href="terms.html" class="mono" style="color:var(--mute)">Terms</a>
-        <a href="privacy.html" class="mono" style="color:var(--mute)">Privacy</a>
+        <a href="/terms" class="mono" style="color:var(--mute)">Terms</a>
+        <a href="/privacy" class="mono" style="color:var(--mute)">Privacy</a>
         <a href="mailto:hello@astracreates.com" class="mono" style="color:var(--mute)">hello@astracreates.com</a>
       </div>
     </div>

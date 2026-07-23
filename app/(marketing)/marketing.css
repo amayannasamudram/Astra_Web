@@ -249,6 +249,188 @@
   gap: 16px;
 }
 
+/* Legal and trust pages */
+.marketing-root .legal-wrap {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 88px 28px 48px;
+}
+
+.marketing-root .legal-wrap h1 {
+  font-size: clamp(44px, 7vw, 82px);
+  line-height: 0.95;
+  margin-bottom: 18px;
+}
+
+.marketing-root .legal-wrap h2 {
+  font-size: 28px;
+  margin-top: 42px;
+  margin-bottom: 14px;
+}
+
+.marketing-root .legal-wrap h3 {
+  font-size: 19px;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.marketing-root .legal-wrap p,
+.marketing-root .legal-wrap li {
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+.marketing-root .legal-wrap ul {
+  margin: 12px 0 0;
+  padding-left: 22px;
+}
+
+.marketing-root .legal-meta {
+  color: var(--mute);
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+
+.marketing-root .legal-notice {
+  border: 1px solid var(--hair-2);
+  border-left: 4px solid var(--accent);
+  background: var(--surface);
+  border-radius: 10px;
+  color: var(--ink-2);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  padding: 18px 20px;
+}
+
+.marketing-root .legal-notice strong {
+  color: var(--ink);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.marketing-root .caps {
+  border: 1px solid var(--hair-2);
+  background: var(--surface);
+  border-radius: 8px;
+  color: var(--ink-2);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  padding: 18px;
+  text-transform: none;
+}
+
+.marketing-root .legal-soon {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 96px 28px 56px;
+  text-align: center;
+}
+
+.marketing-root .legal-soon h1 {
+  font-size: clamp(64px, 12vw, 132px);
+  line-height: 0.86;
+  margin-bottom: 28px;
+}
+
+.marketing-root .legal-soon .sub {
+  color: var(--ink-2);
+  font-size: clamp(18px, 2.5vw, 24px);
+  line-height: 1.45;
+  margin: 0 auto 36px;
+  max-width: 720px;
+}
+
+.marketing-root .docs-list {
+  border: 1px solid var(--hair);
+  border-radius: 14px;
+  margin: 0 auto 36px;
+  max-width: 680px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.marketing-root .doc-row {
+  align-items: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--hair);
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+}
+
+.marketing-root .doc-row:last-child {
+  border-bottom: 0;
+}
+
+.marketing-root .doc-badge {
+  border: 1px solid var(--hair-2);
+  border-radius: 999px;
+  color: var(--accent);
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 12px;
+  padding: 5px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.marketing-root .legal-note {
+  color: var(--mute);
+  margin-top: 18px;
+}
+
+.marketing-root .contact-section {
+  min-height: 68vh;
+}
+
+.marketing-root .contact-grid {
+  display: grid;
+  gap: 64px;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+}
+
+.marketing-root .contact-card {
+  background: var(--surface);
+  border: 1px solid var(--hair);
+  border-radius: 18px;
+  box-shadow: 0 24px 80px rgba(14, 14, 12, 0.06);
+  padding: 34px;
+}
+
+.marketing-root .contact-kicker {
+  color: var(--mute);
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.marketing-root .contact-email {
+  color: var(--accent);
+  display: inline-block;
+  font-size: clamp(24px, 3.5vw, 34px);
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+  text-decoration: none;
+}
+
+.marketing-root .contact-copy {
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.marketing-root .contact-divider {
+  background: var(--hair);
+  height: 1px;
+  margin: 26px 0;
+}
+
 /* ── Aurora ──────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .aurora-layer { animation: none !important; }
@@ -418,6 +600,7 @@
   .marketing-root .mkt-pricing-inner { padding: 0 20px; }
   .marketing-root .mkt-tier-grid   { grid-template-columns: 1fr; padding: 32px 20px 0; }
   .marketing-root .mkt-pricing-cta-grid { grid-template-columns: 1fr; gap: 32px; }
+  .marketing-root .contact-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 
 @media (max-width: 480px) {

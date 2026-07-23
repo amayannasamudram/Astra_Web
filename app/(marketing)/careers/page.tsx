@@ -25,7 +25,7 @@ export default function CareersPage() {
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
                 <Link href="/waitlist" className="btn-primary">Reserve your spot →</Link>
-                <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)" }}>Applications open June 1st · 25 founding spots</p>
+                <p style={{ fontFamily: "var(--font-jetbrains-mono, monospace)", fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--mute)" }}>Applications open now · 25 founding spots</p>
               </div>
             </div>
             <div style={{ padding: "52px 48px", border: "1px solid var(--hair)", borderRadius: 4, background: "#fff" }}>
